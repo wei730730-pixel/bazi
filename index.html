@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>八字排盤 · 農曆版</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1410;
+  --ink-soft: #3a2e26;
+  --paper: #f4ede0;
+  --paper-deep: #e8dcc4;
+  --vermillion: #c8392f;
+  --vermillion-deep: #9b2820;
+  --gold: #b8893c;
+  --gold-soft: #d4a857;
+  --jade: #4a6741;
+  --indigo: #2c3e5a;
+  --shadow: rgba(26, 20, 16, 0.15);
+
+  --wuxing-wood: #4a6741;
+  --wuxing-fire: #c8392f;
+  --wuxing-earth: #b8893c;
+  --wuxing-metal: #c5c2b8;
+  --wuxing-water: #2c3e5a;
+
+  --font-display: 'Noto Serif TC', serif;
+  --font-latin: 'Cormorant Garamond', serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--font-display);
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.6;
+  min-height: 100vh;
+  background-image:
+    radial-gradient(ellipse at top left, rgba(184, 137, 60, 0.08), transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(44, 62, 90, 0.06), transparent 50%);
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' /%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.08 0 0 0 0 0.06 0 0 0 0.04 0' /%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' /%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.6;
+  z-index: 1;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+  position: relative;
+  z-index: 2;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 48px;
+  padding: 32px 16px 24px;
+  position: relative;
+}
+
+.hero::before, .hero::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 1px;
+  background: var(--gold);
+}
+.hero::before { top: 0; }
+.hero::after { bottom: 0; }
+
+.hero-cn {
+  font-size: clamp(40px, 7vw, 64px);
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  color: var(--ink);
+  margin-bottom: 8px;
+  text-indent: 0.2em;
+}
+
+.hero-cn .seal {
+  display: inline-block;
+  color: var(--vermillion);
+  font-size: 0.6em;
+  vertical-align: middle;
+  margin: 0 0.3em;
+  transform: translateY(-0.1em);
+}
+
+.hero-en {
+  font-family: var(--font-latin);
+  font-style: italic;
+  font-size: 18px;
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  margin-bottom: 6px;
+}
+
+.hero-sub {
+  font-size: 14px;
+  color: var(--ink-soft);
+  letter-spacing: 0.3em;
+}
+
+.input-card {
+  background: linear-gradient(180deg, #faf5e8 0%, var(--paper) 100%);
+  border: 1px solid var(--paper-deep);
+  border-radius: 4px;
+  padding: 36px 32px;
+  box-shadow: 0 4px 30px var(--shadow);
+  margin-bottom: 32px;
+  position: relative;
+}
+
+.input-card::before {
+  content: '◆';
+  position: absolute;
+  top: -10px;
+  left: 24px;
+  background: var(--paper);
+  color: var(--vermillion);
+  padding: 0 8px;
+  font-size: 14px;
+}
+
+.section-label {
+  font-size: 13px;
+  letter-spacing: 0.4em;
+  color: var(--gold);
+  margin-bottom: 8px;
+  font-weight: 500;
+  text-indent: 0.4em;
+}
+
+.lunar-note {
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin-bottom: 24px;
+  opacity: 0.75;
+  font-style: italic;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  font-size: 13px;
+  color: var(--ink-soft);
+  letter-spacing: 0.1em;
+}
+
+.field input, .field select {
+  font-family: var(--font-display);
+  font-size: 16px;
+  padding: 10px 12px;
+  border: 1px solid var(--paper-deep);
+  background: #fdfaf2;
+  color: var(--ink);
+  border-radius: 2px;
+  transition: all 0.2s;
+}
+
+.field input:focus, .field select:focus {
+  outline: none;
+  border-color: var(--vermillion);
+  box-shadow: 0 0 0 3px rgba(200, 57, 47, 0.1);
+}
+
+.field.checkbox {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  padding-top: 24px;
+}
+
+.field.checkbox input {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.field.checkbox label {
+  cursor: pointer;
+  user-select: none;
+}
+
+.field.checkbox.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.error-msg {
+  background: rgba(200, 57, 47, 0.1);
+  border-left: 3px solid var(--vermillion);
+  padding: 12px 16px;
+  margin-top: 16px;
+  color: var(--vermillion-deep);
+  font-size: 14px;
+  display: none;
+}
+
+.error-msg.show { display: block; }
+
+.btn-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+button {
+  font-family: var(--font-display);
+  font-size: 15px;
+  letter-spacing: 0.2em;
+  padding: 12px 28px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-radius: 2px;
+}
+
+.btn-primary {
+  background: var(--vermillion);
+  color: var(--paper);
+  box-shadow: 0 2px 10px rgba(200, 57, 47, 0.3);
+}
+.btn-primary:hover {
+  background: var(--vermillion-deep);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(200, 57, 47, 0.4);
+}
+
+.result {
+  display: none;
+  animation: fadeUp 0.6s ease;
+}
+.result.show { display: block; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.result-header {
+  text-align: center;
+  margin-bottom: 32px;
+  padding: 20px;
+  background: linear-gradient(180deg, transparent, rgba(184, 137, 60, 0.05));
+}
+
+.result-header .meta {
+  font-size: 14px;
+  color: var(--ink-soft);
+  letter-spacing: 0.15em;
+  margin-bottom: 4px;
+}
+
+.result-header .solar-equiv {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--gold);
+  margin-top: 8px;
+}
+
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  background: var(--ink);
+  border: 2px solid var(--ink);
+  margin-bottom: 32px;
+  overflow: hidden;
+}
+
+.pillar {
+  background: var(--paper);
+  padding: 16px 8px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pillar-title {
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  color: var(--ink-soft);
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--paper-deep);
+  text-indent: 0.3em;
+}
+
+.pillar-cell {
+  padding: 4px 0;
+  font-size: 13px;
+  color: var(--ink-soft);
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.pillar-cell.gz {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--ink);
+  padding: 8px 0;
+  line-height: 1.1;
+}
+
+.pillar-cell .gan, .pillar-cell .zhi {
+  position: relative;
+  display: inline-block;
+}
+
+.wx-wood { color: var(--wuxing-wood); }
+.wx-fire { color: var(--wuxing-fire); }
+.wx-earth { color: var(--wuxing-earth); }
+.wx-metal { color: #8a8576; }
+.wx-water { color: var(--wuxing-water); }
+
+.pillar-cell.hidden {
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--ink-soft);
+}
+.pillar-cell.hidden span {
+  display: block;
+}
+
+.pillar-cell.shishen {
+  font-size: 13px;
+  color: var(--vermillion);
+  letter-spacing: 0.05em;
+}
+
+.pillar.daymaster {
+  background: linear-gradient(180deg, #fdfaf2 0%, #f9f0db 100%);
+  position: relative;
+}
+.pillar.daymaster::before {
+  content: '日元';
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  font-size: 10px;
+  color: var(--vermillion);
+  letter-spacing: 0.1em;
+}
+
+.wuxing-section {
+  margin-bottom: 32px;
+}
+
+.wuxing-bars {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid var(--paper-deep);
+}
+
+.wuxing-bar {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wuxing-name {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.wuxing-count-wrap {
+  width: 100%;
+  height: 100px;
+  background: rgba(0,0,0,0.04);
+  position: relative;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.wuxing-fill {
+  width: 100%;
+  background: currentColor;
+  transition: height 0.8s ease;
+  opacity: 0.9;
+}
+
+.wuxing-count {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.wuxing-dual {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 4px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.wuxing-dual .label-innate {
+  color: var(--ink-soft);
+  opacity: 0.6;
+}
+
+.wuxing-dual .label-acquired {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.wuxing-legend {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 16px;
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+.wuxing-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.wuxing-legend-swatch {
+  width: 14px;
+  height: 14px;
+  background: var(--ink-soft);
+  display: inline-block;
+}
+
+.wuxing-legend-swatch.innate {
+  opacity: 0.3;
+  border-top: 2px dashed var(--ink-soft);
+}
+
+.wuxing-legend-swatch.acquired {
+  opacity: 0.9;
+}
+
+.wuxing-formula {
+  font-size: 12px;
+  color: var(--ink-soft);
+  text-align: center;
+  margin-top: 12px;
+  font-style: italic;
+  opacity: 0.7;
+}
+
+.luck-section {
+  margin-bottom: 32px;
+}
+
+.luck-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 4px;
+  background: var(--ink);
+  border: 1px solid var(--ink);
+}
+
+.luck-cell {
+  background: var(--paper);
+  padding: 12px 6px;
+  text-align: center;
+  font-size: 13px;
+}
+
+.luck-cell.current {
+  background: linear-gradient(180deg, #fff8ea 0%, #f9e9c4 100%);
+  position: relative;
+}
+.luck-cell.current::after {
+  content: '當';
+  position: absolute;
+  top: 2px;
+  right: 4px;
+  font-size: 9px;
+  color: var(--vermillion);
+}
+
+.luck-age {
+  font-size: 11px;
+  color: var(--ink-soft);
+  margin-bottom: 4px;
+}
+
+.luck-gz {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.luck-shen {
+  font-size: 10px;
+  color: var(--vermillion);
+}
+
+.crystal-section {
+  margin-top: 32px;
+  padding: 24px;
+  background: linear-gradient(135deg, rgba(184, 137, 60, 0.08), rgba(200, 57, 47, 0.05));
+  border-left: 3px solid var(--vermillion);
+}
+
+.crystal-section h3 {
+  font-size: 18px;
+  letter-spacing: 0.2em;
+  margin-bottom: 12px;
+  color: var(--ink);
+}
+
+.crystal-analysis {
+  font-size: 14px;
+  line-height: 1.8;
+  margin-bottom: 16px;
+  color: var(--ink-soft);
+}
+
+.crystal-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.crystal-item {
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.6);
+  border-radius: 2px;
+  border: 1px solid rgba(184, 137, 60, 0.2);
+}
+
+.crystal-item .element {
+  font-size: 12px;
+  color: var(--vermillion);
+  letter-spacing: 0.1em;
+  margin-bottom: 4px;
+}
+
+.crystal-item .stones {
+  font-size: 14px;
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.section-title h2 {
+  font-size: 18px;
+  letter-spacing: 0.3em;
+  font-weight: 500;
+  text-indent: 0.3em;
+}
+
+.section-title .line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+.section-title .symbol {
+  color: var(--vermillion);
+}
+
+.disclaimer {
+  font-size: 12px;
+  color: var(--ink-soft);
+  text-align: center;
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px dashed var(--paper-deep);
+  font-style: italic;
+  opacity: 0.7;
+  letter-spacing: 0.1em;
+}
+
+@media (max-width: 600px) {
+  .container { padding: 24px 16px 60px; }
+  .input-card { padding: 24px 18px; }
+  .pillar-cell.gz { font-size: 26px; }
+  .pillar-cell.hidden { font-size: 12px; }
+  .pillar { padding: 12px 4px; }
+  .wuxing-bars { padding: 16px 8px; gap: 6px; }
+  .wuxing-name { font-size: 20px; }
+  .wuxing-count-wrap { height: 80px; }
+  .luck-grid { grid-template-columns: repeat(4, 1fr); }
+  .luck-cell { padding: 8px 4px; }
+  .luck-gz { font-size: 18px; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <header class="hero">
+    <div class="hero-en">FOUR PILLARS · LUNAR EDITION</div>
+    <h1 class="hero-cn">八字排盤</h1>
+    <div class="hero-sub">農 曆 排 盤</div>
+  </header>
+
+  <section class="input-card">
+    <div class="section-label">出 生 資 料 · 農 曆</div>
+    <div class="lunar-note">請輸入農曆（陰曆）出生日期。若該年有閏月且為閏月生，請勾選「是閏月」。</div>
+
+    <div class="form-grid">
+      <div class="field">
+        <label>農曆年</label>
+        <input type="number" id="year" value="1990" min="1900" max="2099">
+      </div>
+      <div class="field">
+        <label>月</label>
+        <select id="month"></select>
+      </div>
+      <div class="field">
+        <label>日</label>
+        <select id="day"></select>
+      </div>
+      <div class="field">
+        <label>時辰</label>
+        <select id="hour"></select>
+      </div>
+      <div class="field">
+        <label>性別</label>
+        <select id="gender">
+          <option value="male">男</option>
+          <option value="female">女</option>
+        </select>
+      </div>
+      <div class="field checkbox" id="leap-wrap">
+        <input type="checkbox" id="isLeap">
+        <label for="isLeap">是閏月</label>
+      </div>
+    </div>
+
+    <div class="error-msg" id="error-msg"></div>
+
+    <div class="btn-row">
+      <button class="btn-primary" onclick="calculate()">起 　 盤</button>
+    </div>
+  </section>
+
+  <section class="result" id="result">
+
+    <div class="result-header">
+      <div class="meta" id="meta-line"></div>
+      <div class="solar-equiv" id="solar-equiv"></div>
+    </div>
+
+    <div class="section-title">
+      <span class="symbol">◆</span>
+      <h2>四柱命盤</h2>
+      <span class="line"></span>
+    </div>
+    <div class="pillars" id="pillars"></div>
+
+    <div class="section-title">
+      <span class="symbol">◆</span>
+      <h2>五行 · 先天後天</h2>
+      <span class="line"></span>
+    </div>
+    <div class="wuxing-section">
+      <div class="wuxing-bars" id="wuxing-bars"></div>
+      <div class="wuxing-formula">
+        <strong>先天</strong>：出生那一刻命盤呈現的字面五行．天干各 1 分．地支藏干依數量加權（1藏=1.0／2藏=0.75+0.25／3藏=0.5+0.25+0.25）<br>
+        <strong>後天</strong>：經過五行生剋網路動態消長後的實際強弱（柱狀圖以後天為主視覺）．同我×2．生我×1.5．我生×1．我剋×0.5．剋我×0.2<br>
+        <span style="opacity:0.65;">兩者的差異反映「天賦 vs 運化」——例如先天偏少的五行可能因為被強生而後天反而充足；先天充沛的五行也可能因為被洩而後天耗弱。</span>
+      </div>
+    </div>
+
+    <div class="section-title">
+      <span class="symbol">◆</span>
+      <h2>大運流年</h2>
+      <span class="line"></span>
+    </div>
+    <div class="luck-section">
+      <div class="luck-grid" id="luck-grid"></div>
+    </div>
+
+    <div class="crystal-section" id="crystal">
+      <h3>◇ 五行 · 水晶補運建議</h3>
+      <div class="crystal-analysis" id="crystal-analysis"></div>
+      <div class="crystal-list" id="crystal-list"></div>
+    </div>
+
+  </section>
+
+  <p class="disclaimer">— 命由天定 · 運由己造 —<br>命理為參考，人生由自己掌握</p>
+
+</div>
+
+<script>
+const TIANGAN = ['甲','乙','丙','丁','戊','己','庚','辛','壬','癸'];
+const DIZHI   = ['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥'];
+const GAN_WX = {甲:'wood',乙:'wood',丙:'fire',丁:'fire',戊:'earth',己:'earth',庚:'metal',辛:'metal',壬:'water',癸:'water'};
+const ZHI_WX = {子:'water',丑:'earth',寅:'wood',卯:'wood',辰:'earth',巳:'fire',午:'fire',未:'earth',申:'metal',酉:'metal',戌:'earth',亥:'water'};
+const GAN_YIN = {甲:'yang',乙:'yin',丙:'yang',丁:'yin',戊:'yang',己:'yin',庚:'yang',辛:'yin',壬:'yang',癸:'yin'};
+const ZHI_CANG = {
+  子:['癸'], 丑:['己','癸','辛'], 寅:['甲','丙','戊'], 卯:['乙'],
+  辰:['戊','乙','癸'], 巳:['丙','戊','庚'], 午:['丁','己'], 未:['己','丁','乙'],
+  申:['庚','壬','戊'], 酉:['辛'], 戌:['戊','辛','丁'], 亥:['壬','甲']
+};
+const WX_CN = {wood:'木',fire:'火',earth:'土',metal:'金',water:'水'};
+const WX_COLOR_CLASS = {wood:'wx-wood',fire:'wx-fire',earth:'wx-earth',metal:'wx-metal',water:'wx-water'};
+const WX_ORDER = ['wood','fire','earth','metal','water'];
+
+const LUNAR_MONTH_CN = ['正月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'];
+const LUNAR_DAY_CN = [
+  '初一','初二','初三','初四','初五','初六','初七','初八','初九','初十',
+  '十一','十二','十三','十四','十五','十六','十七','十八','十九','二十',
+  '廿一','廿二','廿三','廿四','廿五','廿六','廿七','廿八','廿九','三十'
+];
+const SHICHEN = [
+  {name:'子時 (23–01)', hour:23},
+  {name:'丑時 (01–03)', hour:1},
+  {name:'寅時 (03–05)', hour:3},
+  {name:'卯時 (05–07)', hour:5},
+  {name:'辰時 (07–09)', hour:7},
+  {name:'巳時 (09–11)', hour:9},
+  {name:'午時 (11–13)', hour:11},
+  {name:'未時 (13–15)', hour:13},
+  {name:'申時 (15–17)', hour:15},
+  {name:'酉時 (17–19)', hour:17},
+  {name:'戌時 (19–21)', hour:19},
+  {name:'亥時 (21–23)', hour:21}
+];
+
+// 1900-2099 農曆資料（紫金山天文台公開資料）
+const LUNAR_INFO = [
+  0x04bd8,0x04ae0,0x0a570,0x054d5,0x0d260,0x0d950,0x16554,0x056a0,0x09ad0,0x055d2,
+  0x04ae0,0x0a5b6,0x0a4d0,0x0d250,0x1d255,0x0b540,0x0d6a0,0x0ada2,0x095b0,0x14977,
+  0x04970,0x0a4b0,0x0b4b5,0x06a50,0x06d40,0x1ab54,0x02b60,0x09570,0x052f2,0x04970,
+  0x06566,0x0d4a0,0x0ea50,0x06e95,0x05ad0,0x02b60,0x186e3,0x092e0,0x1c8d7,0x0c950,
+  0x0d4a0,0x1d8a6,0x0b550,0x056a0,0x1a5b4,0x025d0,0x092d0,0x0d2b2,0x0a950,0x0b557,
+  0x06ca0,0x0b550,0x15355,0x04da0,0x0a5b0,0x14573,0x052b0,0x0a9a8,0x0e950,0x06aa0,
+  0x0aea6,0x0ab50,0x04b60,0x0aae4,0x0a570,0x05260,0x0f263,0x0d950,0x05b57,0x056a0,
+  0x096d0,0x04dd5,0x04ad0,0x0a4d0,0x0d4d4,0x0d250,0x0d558,0x0b540,0x0b6a0,0x195a6,
+  0x095b0,0x049b0,0x0a974,0x0a4b0,0x0b27a,0x06a50,0x06d40,0x0af46,0x0ab60,0x09570,
+  0x04af5,0x04970,0x064b0,0x074a3,0x0ea50,0x06b58,0x055c0,0x0ab60,0x096d5,0x092e0,
+  0x0c960,0x0d954,0x0d4a0,0x0da50,0x07552,0x056a0,0x0abb7,0x025d0,0x092d0,0x0cab5,
+  0x0a950,0x0b4a0,0x0baa4,0x0ad50,0x055d9,0x04ba0,0x0a5b0,0x15176,0x052b0,0x0a930,
+  0x07954,0x06aa0,0x0ad50,0x05b52,0x04b60,0x0a6e6,0x0a4e0,0x0d260,0x0ea65,0x0d530,
+  0x05aa0,0x076a3,0x096d0,0x04afb,0x04ad0,0x0a4d0,0x1d0b6,0x0d250,0x0d520,0x0dd45,
+  0x0b5a0,0x056d0,0x055b2,0x049b0,0x0a577,0x0a4b0,0x0aa50,0x1b255,0x06d20,0x0ada0,
+  0x14b63,0x09370,0x049f8,0x04970,0x064b0,0x168a6,0x0ea50,0x06b20,0x1a6c4,0x0aae0,
+  0x0a2e0,0x0d2e3,0x0c960,0x0d557,0x0d4a0,0x0da50,0x05d55,0x056a0,0x0a6d0,0x055d4,
+  0x052d0,0x0a9b8,0x0a950,0x0b4a0,0x0b6a6,0x0ad50,0x055a0,0x0aba4,0x0a5b0,0x052b0,
+  0x0b273,0x06930,0x07337,0x06aa0,0x0ad50,0x14b55,0x04b60,0x0a570,0x054e4,0x0d160,
+  0x0e968,0x0d520,0x0daa0,0x16aa6,0x056d0,0x04ae0,0x0a9d4,0x0a2d0,0x0d150,0x0f252
+];
+
+function lunarLeapMonth(year){
+  return LUNAR_INFO[year - 1900] & 0xf;
+}
+function lunarLeapDays(year){
+  if(lunarLeapMonth(year)){
+    return (LUNAR_INFO[year - 1900] & 0x10000) ? 30 : 29;
+  }
+  return 0;
+}
+function lunarMonthDays(year, month){
+  return (LUNAR_INFO[year - 1900] & (0x10000 >> month)) ? 30 : 29;
+}
+function lunarYearDays(year){
+  let sum = 348;
+  for(let i = 0x8000; i > 0x8; i >>= 1){
+    sum += (LUNAR_INFO[year - 1900] & i) ? 1 : 0;
+  }
+  return sum + lunarLeapDays(year);
+}
+
+function lunarToSolar(year, month, day, isLeap){
+  let offset = 0;
+  for(let y = 1900; y < year; y++){
+    offset += lunarYearDays(y);
+  }
+  const leap = lunarLeapMonth(year);
+  if(isLeap && leap !== month) return null;
+  for(let m = 1; m < month; m++){
+    offset += lunarMonthDays(year, m);
+    if(m === leap) offset += lunarLeapDays(year);
+  }
+  if(isLeap) offset += lunarMonthDays(year, month);
+  offset += day - 1;
+  const base = new Date(Date.UTC(1900, 0, 31));
+  const result = new Date(base.getTime() + offset * 86400000);
+  return {
+    year: result.getUTCFullYear(),
+    month: result.getUTCMonth() + 1,
+    day: result.getUTCDate()
+  };
+}
+
+// 節氣
+function dateToJD(y, m, d, h, mi, s){
+  if(m <= 2){ y -= 1; m += 12; }
+  const a = Math.floor(y/100);
+  const b = 2 - a + Math.floor(a/4);
+  const jd = Math.floor(365.25*(y+4716)) + Math.floor(30.6001*(m+1)) + d + b - 1524.5;
+  return jd + (h + mi/60 + s/3600)/24;
+}
+function jdToDate(jd){
+  jd += 0.5;
+  const z = Math.floor(jd);
+  const f = jd - z;
+  let a;
+  if(z < 2299161){ a = z; }
+  else {
+    const alpha = Math.floor((z - 1867216.25)/36524.25);
+    a = z + 1 + alpha - Math.floor(alpha/4);
+  }
+  const b = a + 1524;
+  const c = Math.floor((b - 122.1)/365.25);
+  const d = Math.floor(365.25*c);
+  const e = Math.floor((b - d)/30.6001);
+  const day = b - d - Math.floor(30.6001*e) + f;
+  const month = e < 14 ? e - 1 : e - 13;
+  const year = month > 2 ? c - 4716 : c - 4715;
+  const dayInt = Math.floor(day);
+  const fracDay = day - dayInt;
+  const totalSec = Math.round(fracDay * 86400);
+  const h = Math.floor(totalSec / 3600);
+  const mi = Math.floor((totalSec % 3600) / 60);
+  const s = totalSec % 60;
+  return new Date(Date.UTC(year, month-1, dayInt, h, mi, s));
+}
+function sunLongitude(jd){
+  const t = (jd - 2451545.0) / 36525;
+  let L0 = 280.46646 + 36000.76983*t + 0.0003032*t*t;
+  const Mrad = (357.52911 + 35999.05029*t - 0.0001537*t*t) * Math.PI/180;
+  const C = (1.914602 - 0.004817*t - 0.000014*t*t)*Math.sin(Mrad)
+          + (0.019993 - 0.000101*t)*Math.sin(2*Mrad)
+          + 0.000289*Math.sin(3*Mrad);
+  let lon = L0 + C;
+  lon = ((lon % 360) + 360) % 360;
+  return lon;
+}
+function solarTermDate(year, termIdx){
+  const targetLon = ((285 + termIdx * 15) % 360);
+  const approxDates = [
+    [1,6],[1,20],[2,4],[2,19],[3,6],[3,21],[4,5],[4,20],
+    [5,6],[5,21],[6,6],[6,21],[7,7],[7,23],[8,8],[8,23],
+    [9,8],[9,23],[10,8],[10,23],[11,7],[11,22],[12,7],[12,22]
+  ];
+  let [m,d] = approxDates[termIdx];
+  let jd = dateToJD(year, m, d, 12, 0, 0);
+  for(let i=0; i<5; i++){
+    const lon = sunLongitude(jd);
+    let diff = targetLon - lon;
+    if(diff > 180) diff -= 360;
+    if(diff < -180) diff += 360;
+    if(Math.abs(diff) < 0.00001) break;
+    jd += diff / 0.9856;
+  }
+  return jdToDate(jd);
+}
+// 節氣的台灣時間毫秒（UTC+8）
+function solarTermLocalMs(year, termIdx){
+  return solarTermDate(year, termIdx).getTime() + 8 * 3600 * 1000;
+}
+
+const JIE_IDX = [2,4,6,8,10,12,14,16,18,20,22,0];
+const JIE_TO_ZHI = ['寅','卯','辰','巳','午','未','申','酉','戌','亥','子','丑'];
+
+function wxRelation(meWx, otherWx){
+  if(meWx === otherWx) return 'same';
+  const meIdx = WX_ORDER.indexOf(meWx);
+  if(WX_ORDER[(meIdx+1)%5] === otherWx) return 'gen';
+  if(WX_ORDER[(meIdx+2)%5] === otherWx) return 'ke';
+  if(WX_ORDER[(meIdx+4)%5] === otherWx) return 'gen_me';
+  if(WX_ORDER[(meIdx+3)%5] === otherWx) return 'ke_me';
+}
+function shishen(dayGan, otherGan){
+  const rel = wxRelation(GAN_WX[dayGan], GAN_WX[otherGan]);
+  const sameYy = GAN_YIN[dayGan] === GAN_YIN[otherGan];
+  return {
+    same: sameYy ? '比肩' : '劫財',
+    gen: sameYy ? '食神' : '傷官',
+    ke: sameYy ? '偏財' : '正財',
+    ke_me: sameYy ? '七殺' : '正官',
+    gen_me: sameYy ? '偏印' : '正印'
+  }[rel];
+}
+
+// 四柱推算（輸入 ms 是本地時間視為 UTC 的毫秒）
+function yearPillar(birthMs, birthYear){
+  const lichunMs = solarTermLocalMs(birthYear, 2);
+  let usedYear = birthYear;
+  if(birthMs < lichunMs) usedYear = birthYear - 1;
+  const offset = (usedYear - 1984) % 60;
+  const idx = (offset + 60) % 60;
+  return {gan: TIANGAN[idx % 10], zhi: DIZHI[idx % 12], year: usedYear};
+}
+
+function monthPillar(birthMs, birthYear, yearGan){
+  const allJie = [];
+  for(let yr of [birthYear-1, birthYear, birthYear+1]){
+    JIE_IDX.forEach((termIdx, i) => {
+      allJie.push({ms: solarTermLocalMs(yr, termIdx), zhi: JIE_TO_ZHI[i]});
+    });
+  }
+  allJie.sort((a,b) => a.ms - b.ms);
+  let chosen = allJie[0];
+  for(const j of allJie){
+    if(j.ms <= birthMs) chosen = j;
+    else break;
+  }
+  const monthZhi = chosen.zhi;
+  const wuhu = {甲:'丙',己:'丙',乙:'戊',庚:'戊',丙:'庚',辛:'庚',丁:'壬',壬:'壬',戊:'甲',癸:'甲'};
+  const startGanIdx = TIANGAN.indexOf(wuhu[yearGan]);
+  const zhiIdx = DIZHI.indexOf(monthZhi);
+  const monthOrder = (zhiIdx - 2 + 12) % 12;
+  return {gan: TIANGAN[(startGanIdx + monthOrder) % 10], zhi: monthZhi};
+}
+
+// 日柱用 yyyy-mm-dd（已套用晚子時規則）
+function dayPillar(year, month, day){
+  const BASE_MS = Date.UTC(2026, 0, 1);
+  const BASE_IDX = 11; // 乙亥
+  const targetMs = Date.UTC(year, month-1, day);
+  const diff = Math.round((targetMs - BASE_MS) / 86400000);
+  const idx = ((BASE_IDX + diff) % 60 + 60) % 60;
+  return {gan: TIANGAN[idx % 10], zhi: DIZHI[idx % 12]};
+}
+
+function hourPillar(hour, dayGan){
+  let zhiIdx;
+  if(hour === 23 || hour === 0) zhiIdx = 0;
+  else zhiIdx = Math.floor((hour+1)/2);
+  const hourZhi = DIZHI[zhiIdx];
+  const wushu = {甲:'甲',己:'甲',乙:'丙',庚:'丙',丙:'戊',辛:'戊',丁:'庚',壬:'庚',戊:'壬',癸:'壬'};
+  const startIdx = TIANGAN.indexOf(wushu[dayGan]);
+  return {gan: TIANGAN[(startIdx + zhiIdx) % 10], zhi: hourZhi};
+}
+
+function calcLuck(birthMs, birthYear, yearGan, gender, monthGZ){
+  const isYangYear = ['甲','丙','戊','庚','壬'].includes(yearGan);
+  const forward = (isYangYear && gender === 'male') || (!isYangYear && gender === 'female');
+  const allJie = [];
+  for(let yr of [birthYear-1, birthYear, birthYear+1]){
+    JIE_IDX.forEach((termIdx) => {
+      allJie.push(solarTermLocalMs(yr, termIdx));
+    });
+  }
+  allJie.sort((a,b) => a - b);
+  let targetMs;
+  if(forward){
+    targetMs = allJie.find(ms => ms > birthMs);
+  } else {
+    const reversed = [...allJie].reverse();
+    targetMs = reversed.find(ms => ms < birthMs);
+  }
+  const diffDays = Math.abs(targetMs - birthMs) / 86400000;
+  const startAge = diffDays / 3;
+  const startYears = Math.floor(startAge);
+  const remainMonths = Math.round((startAge - startYears) * 12);
+  const monthGanIdx = TIANGAN.indexOf(monthGZ.gan);
+  const monthZhiIdx = DIZHI.indexOf(monthGZ.zhi);
+  const luckList = [];
+  for(let i = 1; i <= 8; i++){
+    const step = forward ? i : -i;
+    const ganIdx = ((monthGanIdx + step) % 10 + 10) % 10;
+    const zhiIdx = ((monthZhiIdx + step) % 12 + 12) % 12;
+    luckList.push({
+      gan: TIANGAN[ganIdx],
+      zhi: DIZHI[zhiIdx],
+      startAge: startYears + (i-1)*10,
+      endAge: startYears + i*10 - 1
+    });
+  }
+  return {startAge: startYears, startMonths: remainMonths, list: luckList};
+}
+
+const CRYSTAL_MAP = {
+  wood: ['天河石', '綠草莓晶', '純草莓晶', '綠幽靈水晶', '海洋玉髓', '彩虹螢石'],
+  fire: ['石榴石', '紫水晶', '紫玉', '紫幽靈', '草莓晶', '粉晶', '摩根石', '硃砂', '彩兔毛水晶'],
+  earth: ['黃水晶', '拉長石', '灰胱石', '橙胱石', '瑪瑙', '膠花水晶', '石青貓眼', '安德森胱石', '拉絲西瓜螢石'],
+  metal: ['白水晶', '月光石', '硨磲貝', '奶蓋黃水晶', '白翡翠', '彩曜石'],
+  water: ['黑瑪瑙', '金曜石', '黑髮晶', '黑草莓晶', '青金石', '堇青石', '藍虎眼石', '海藍寶']
+};
+
+function populateSelects(){
+  const monthSel = document.getElementById('month');
+  monthSel.innerHTML = '';
+  LUNAR_MONTH_CN.forEach((m, i) => {
+    const opt = document.createElement('option');
+    opt.value = i + 1;
+    opt.textContent = m;
+    monthSel.appendChild(opt);
+  });
+  monthSel.value = 5;
+
+  const daySel = document.getElementById('day');
+  daySel.innerHTML = '';
+  LUNAR_DAY_CN.forEach((d, i) => {
+    const opt = document.createElement('option');
+    opt.value = i + 1;
+    opt.textContent = d;
+    daySel.appendChild(opt);
+  });
+  daySel.value = 23;
+
+  const hourSel = document.getElementById('hour');
+  hourSel.innerHTML = '';
+  SHICHEN.forEach((s) => {
+    const opt = document.createElement('option');
+    opt.value = s.hour;
+    opt.textContent = s.name;
+    hourSel.appendChild(opt);
+  });
+  hourSel.value = 13;
+}
+
+function updateLeapAvailability(){
+  const year = parseInt(document.getElementById('year').value);
+  const month = parseInt(document.getElementById('month').value);
+  const leapWrap = document.getElementById('leap-wrap');
+  const leapCheck = document.getElementById('isLeap');
+  if(year >= 1900 && year <= 2099){
+    const leap = lunarLeapMonth(year);
+    if(leap > 0 && leap === month){
+      leapWrap.classList.remove('disabled');
+      return;
+    }
+  }
+  leapWrap.classList.add('disabled');
+  leapCheck.checked = false;
+}
+
+function showError(msg){
+  const el = document.getElementById('error-msg');
+  el.textContent = msg;
+  el.classList.add('show');
+  document.getElementById('result').classList.remove('show');
+}
+function clearError(){
+  document.getElementById('error-msg').classList.remove('show');
+}
+
+function calculate(){
+  clearError();
+  const year = parseInt(document.getElementById('year').value);
+  const month = parseInt(document.getElementById('month').value);
+  const day = parseInt(document.getElementById('day').value);
+  const hour = parseInt(document.getElementById('hour').value);
+  const gender = document.getElementById('gender').value;
+  const isLeap = document.getElementById('isLeap').checked &&
+                 !document.getElementById('leap-wrap').classList.contains('disabled');
+
+  if(year < 1900 || year > 2099){
+    showError('農曆年需在 1900–2099 之間');
+    return;
+  }
+  const maxDay = isLeap ? lunarLeapDays(year) : lunarMonthDays(year, month);
+  if(day > maxDay){
+    showError(`農曆 ${year} 年 ${isLeap ? '閏' : ''}${LUNAR_MONTH_CN[month-1]} 只有 ${maxDay} 天，請檢查日期`);
+    return;
+  }
+
+  const solar = lunarToSolar(year, month, day, isLeap);
+  if(!solar){
+    showError('日期轉換失敗，請檢查輸入');
+    return;
+  }
+
+  // 出生時刻（本地時間視為 UTC 毫秒，方便和節氣比較）
+  const birthMs = Date.UTC(solar.year, solar.month - 1, solar.day, hour, 0);
+
+  // 晚子時規則：23 點屬於隔日子時，所以日柱用隔天
+  let dayY = solar.year, dayM = solar.month, dayD = solar.day;
+  if(hour === 23){
+    const next = new Date(Date.UTC(solar.year, solar.month - 1, solar.day + 1));
+    dayY = next.getUTCFullYear();
+    dayM = next.getUTCMonth() + 1;
+    dayD = next.getUTCDate();
+  }
+
+  const yp = yearPillar(birthMs, solar.year);
+  const mp = monthPillar(birthMs, solar.year, yp.gan);
+  const dp = dayPillar(dayY, dayM, dayD);
+  const hp = hourPillar(hour, dp.gan);
+
+  renderResult({yp, mp, dp, hp}, {year, month, day, hour, gender, isLeap, solar, birthMs});
+}
+
+function renderResult(pillars, opts){
+  const {yp, mp, dp, hp} = pillars;
+  const {year, month, day, hour, gender, isLeap, solar, birthMs} = opts;
+  document.getElementById('result').classList.add('show');
+
+  const shichenName = SHICHEN.find(s => s.hour === hour).name;
+  const lunarStr = `${year} 年 ${isLeap ? '閏' : ''}${LUNAR_MONTH_CN[month-1]} ${LUNAR_DAY_CN[day-1]} · ${shichenName}`;
+  const genderStr = gender === 'male' ? '乾造（男）' : '坤造（女）';
+  document.getElementById('meta-line').textContent = `${lunarStr}　·　${genderStr}`;
+  document.getElementById('solar-equiv').textContent =
+    `對應國曆：${solar.year}/${String(solar.month).padStart(2,'0')}/${String(solar.day).padStart(2,'0')}`;
+
+  const pillarsEl = document.getElementById('pillars');
+  const titles = ['年柱','月柱','日柱','時柱'];
+  const pArr = [yp, mp, dp, hp];
+  pillarsEl.innerHTML = '';
+  pArr.forEach((p, i) => {
+    const div = document.createElement('div');
+    div.className = 'pillar' + (i === 2 ? ' daymaster' : '');
+    const ganWx = GAN_WX[p.gan];
+    const zhiWx = ZHI_WX[p.zhi];
+    const cang = ZHI_CANG[p.zhi];
+    const cangHtml = cang.map(g => {
+      const wx = GAN_WX[g];
+      const ss = shishen(dp.gan, g);
+      // 藏干若為日元自己（地支主氣的天干 = 日干），則不顯示十神（會是「比肩」沒意義）
+      const showSs = !(i === 2 && g === dp.gan);
+      return `<span class="${WX_COLOR_CLASS[wx]}">${g}${showSs && ss ? '·'+ss : ''}</span>`;
+    }).join('');
+    const ganShishen = i === 2 ? '日元' : shishen(dp.gan, p.gan);
+    div.innerHTML = `
+      <div class="pillar-title">${titles[i]}</div>
+      <div class="pillar-cell shishen">${ganShishen}</div>
+      <div class="pillar-cell gz">
+        <span class="gan ${WX_COLOR_CLASS[ganWx]}">${p.gan}</span>
+        <span class="zhi ${WX_COLOR_CLASS[zhiWx]}">${p.zhi}</span>
+      </div>
+      <div class="pillar-cell hidden">${cangHtml}</div>
+    `;
+    pillarsEl.appendChild(div);
+  });
+
+  const wxCount = {wood:0, fire:0, earth:0, metal:0, water:0};
+  // 原始分：天干各 1 分，地支藏干依數量加權
+  pArr.forEach(p => wxCount[GAN_WX[p.gan]] += 1);
+  pArr.forEach(p => {
+    const cang = ZHI_CANG[p.zhi];
+    let weights;
+    if(cang.length === 1)      weights = [1.0];
+    else if(cang.length === 2) weights = [0.75, 0.25];
+    else                       weights = [0.5, 0.25, 0.25];
+    cang.forEach((g, idx) => {
+      wxCount[GAN_WX[g]] += weights[idx];
+    });
+  });
+
+  // 淨值計算（五行流通：乘法權重）
+  // 公式（全為正權重，避免負數混淆）：
+  //   同我（自身）× 2.0（同類凝聚加成）
+  //   生我者     × 1.5（母旺則子安）
+  //   我生者     × 1.0（被洩，但仍有貢獻）
+  //   我剋者     × 0.5（剋人耗自身，貢獻減半）
+  //   剋我者     × 0.2（被打壓，貢獻最小）
+  // 五行相生序：wood → fire → earth → metal → water → wood
+  function calcNetValue(wx, counts){
+    const idx = WX_ORDER.indexOf(wx);
+    const genMeWx = WX_ORDER[(idx + 4) % 5];  // 生我者
+    const genWx   = WX_ORDER[(idx + 1) % 5];  // 我生者
+    const keWx    = WX_ORDER[(idx + 2) % 5];  // 我剋者
+    const keMeWx  = WX_ORDER[(idx + 3) % 5];  // 剋我者
+    return counts[wx]       * 2.0
+         + counts[genMeWx]  * 1.5
+         + counts[genWx]    * 1.0
+         + counts[keWx]     * 0.5
+         + counts[keMeWx]   * 0.2;
+  }
+
+  const wxNet = {};
+  WX_ORDER.forEach(wx => wxNet[wx] = calcNetValue(wx, wxCount));
+
+  // 柱狀圖（單柱）：以「後天」為主視覺，下方同時顯示先天+後天兩個數字
+  const acquiredValues = Object.values(wxNet);
+  const acquiredMin = Math.min(...acquiredValues);
+  const acquiredMax = Math.max(...acquiredValues);
+  const acquiredRange = acquiredMax - acquiredMin;
+
+  const barsEl = document.getElementById('wuxing-bars');
+  barsEl.innerHTML = '';
+  WX_ORDER.forEach(wx => {
+    const innateVal = wxCount[wx];
+    const acquiredVal = wxNet[wx];
+    // 高度用「後天」相對位置：最低 15%、最高 100%，視覺差距才明顯
+    const h = acquiredRange > 0 ? 15 + (acquiredVal - acquiredMin) / acquiredRange * 85 : 50;
+    const bar = document.createElement('div');
+    bar.className = 'wuxing-bar ' + WX_COLOR_CLASS[wx];
+    bar.innerHTML = `
+      <div class="wuxing-name">${WX_CN[wx]}</div>
+      <div class="wuxing-count-wrap">
+        <div class="wuxing-fill" style="height:0"></div>
+      </div>
+      <div class="wuxing-dual">
+        <span class="label-innate">先天 ${innateVal.toFixed(2)}</span>
+        <span class="label-acquired">後天 ${acquiredVal.toFixed(2)}</span>
+      </div>
+    `;
+    barsEl.appendChild(bar);
+    setTimeout(() => {
+      bar.querySelector('.wuxing-fill').style.height = h + '%';
+    }, 100);
+  });
+
+  const luckData = calcLuck(birthMs, solar.year, yp.gan, gender, mp);
+  const luckGridEl = document.getElementById('luck-grid');
+  luckGridEl.innerHTML = '';
+  const currentYear = new Date().getFullYear();
+  const currentAge = currentYear - solar.year;
+  luckData.list.forEach(l => {
+    const cell = document.createElement('div');
+    const isCurrent = currentAge >= l.startAge && currentAge <= l.endAge;
+    cell.className = 'luck-cell' + (isCurrent ? ' current' : '');
+    const ss = shishen(dp.gan, l.gan);
+    cell.innerHTML = `
+      <div class="luck-age">${l.startAge}–${l.endAge} 歲</div>
+      <div class="luck-gz">
+        <span class="${WX_COLOR_CLASS[GAN_WX[l.gan]]}">${l.gan}</span><span class="${WX_COLOR_CLASS[ZHI_WX[l.zhi]]}">${l.zhi}</span>
+      </div>
+      <div class="luck-shen">${ss}</div>
+    `;
+    luckGridEl.appendChild(cell);
+  });
+  const startInfo = document.createElement('div');
+  startInfo.className = 'luck-cell';
+  startInfo.style.gridColumn = '1 / -1';
+  startInfo.style.background = 'rgba(184, 137, 60, 0.08)';
+  startInfo.innerHTML = `<div style="font-size:13px; color: var(--ink-soft);">起運：${luckData.startAge} 歲 ${luckData.startMonths} 個月</div>`;
+  luckGridEl.appendChild(startInfo);
+
+  renderCrystals(wxCount, wxNet, dp.gan);
+}
+
+function renderCrystals(wxCount, wxNet, dayGan){
+  // 用淨值排序找出相對強弱
+  const sorted = [...WX_ORDER].sort((a,b) => wxNet[a] - wxNet[b]);
+  const netValues = WX_ORDER.map(wx => wxNet[wx]);
+  const minNet = Math.min(...netValues);
+  const maxNet = Math.max(...netValues);
+  const range = maxNet - minNet;
+
+  // 取最低淨值為「相對偏弱」候選（前 1-2 名）、最高為「相對偏強」（後 1 名）
+  const weak = [sorted[0]];
+  if(range > 0 && (wxNet[sorted[1]] - minNet) < range * 0.4){
+    weak.push(sorted[1]); // 第二低如果也夠低就一起算
+  }
+  const strong = [sorted[sorted.length - 1]];
+
+  const dayWx = GAN_WX[dayGan];
+  let analysis = `日元為 <strong>${dayGan}（${WX_CN[dayWx]}）</strong>。`;
+  analysis += `<br>依五行流通後的「<strong>後天</strong>」實際強弱排序（由弱到強）：`;
+  analysis += `<br><strong>${sorted.map((wx, i) => `${i+1}. ${WX_CN[wx]} (${wxNet[wx].toFixed(2)})`).join('　')}</strong>`;
+  analysis += `<br>建議優先補強：<strong>${weak.map(w=>WX_CN[w]).join('、')}</strong>。`;
+  analysis += `<br><span style="font-size:12px; opacity:0.7;">※ 此為相對排序參考，最終仍需結合月令、季節、調候等綜合判斷。權重：同我×2．生我×1.5．我生×1．我剋×0.5．剋我×0.2</span>`;
+  document.getElementById('crystal-analysis').innerHTML = analysis;
+
+  const listEl = document.getElementById('crystal-list');
+  listEl.innerHTML = '';
+  // 推薦排序最低的兩個五行（補強候選）
+  sorted.slice(0, 2).forEach((wx, i) => {
+    const item = document.createElement('div');
+    item.className = 'crystal-item';
+    const tag = i === 0 ? '（首選補強）' : '（次選補強）';
+    item.innerHTML = `
+      <div class="element ${WX_COLOR_CLASS[wx]}">${WX_CN[wx]} ${tag}</div>
+      <div class="stones">${CRYSTAL_MAP[wx].join('・')}</div>
+    `;
+    listEl.appendChild(item);
+  });
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  populateSelects();
+  updateLeapAvailability();
+  document.getElementById('year').addEventListener('input', updateLeapAvailability);
+  document.getElementById('month').addEventListener('change', updateLeapAvailability);
+  calculate();
+});
+</script>
+
+</body>
+</html>
