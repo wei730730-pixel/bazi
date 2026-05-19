@@ -1265,14 +1265,10 @@ function calculate(){
   // 出生時刻（本地時間視為 UTC 毫秒，方便和節氣比較）
   const birthMs = Date.UTC(solar.year, solar.month - 1, solar.day, hour, 0);
 
-  // 晚子時規則：23 點屬於隔日子時，所以日柱用隔天
-  let dayY = solar.year, dayM = solar.month, dayD = solar.day;
-  if(hour === 23){
-    const next = new Date(Date.UTC(solar.year, solar.month - 1, solar.day + 1));
-    dayY = next.getUTCFullYear();
-    dayM = next.getUTCMonth() + 1;
-    dayD = next.getUTCDate();
-  }
+  // 子時換日規則：以 00:00（子正）為日界
+  // 23:00-00:00（晚子時）仍屬當日，00:00-01:00（早子時）已屬隔日
+  // 因為使用者輸入「初三 子時」明確是當日 23 點，所以日柱用當日，不需要再推
+  const dayY = solar.year, dayM = solar.month, dayD = solar.day;
 
   const yp = yearPillar(birthMs, solar.year);
   const mp = monthPillar(birthMs, solar.year, yp.gan);
