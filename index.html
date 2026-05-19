@@ -540,6 +540,16 @@ button {
   border: 1px solid var(--ink);
 }
 
+.luck-start-info {
+  background: rgba(184, 137, 60, 0.08);
+  border: 1px solid var(--paper-deep);
+  border-top: none;
+  padding: 10px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
 .luck-cell {
   background: var(--paper);
   padding: 12px 6px;
@@ -551,12 +561,86 @@ button {
   background: linear-gradient(180deg, #fff8ea 0%, #f9e9c4 100%);
   position: relative;
 }
+
 .luck-cell.current::after {
   content: '當';
   position: absolute;
   top: 2px;
   right: 4px;
   font-size: 9px;
+  color: var(--vermillion);
+  font-weight: 700;
+}
+
+.liunian-section {
+  margin-top: 24px;
+}
+
+.liunian-title {
+  font-size: 14px;
+  color: var(--ink-soft);
+  text-align: center;
+  margin-bottom: 12px;
+  letter-spacing: 0.05em;
+  padding: 8px;
+  background: rgba(184, 137, 60, 0.06);
+  border-left: 3px solid var(--gold);
+}
+
+.liunian-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 3px;
+  background: var(--ink);
+  border: 1px solid var(--ink);
+}
+
+.liunian-cell {
+  background: var(--paper);
+  padding: 10px 4px;
+  text-align: center;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  align-items: center;
+}
+
+.liunian-cell.current {
+  background: linear-gradient(180deg, #fff8ea 0%, #f9e9c4 100%);
+  position: relative;
+}
+
+.liunian-cell.current::after {
+  content: '今';
+  position: absolute;
+  top: 2px;
+  right: 4px;
+  font-size: 9px;
+  color: var(--vermillion);
+  font-weight: 700;
+}
+
+.liunian-year {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-soft);
+}
+
+.liunian-age {
+  font-size: 10px;
+  color: var(--ink-soft);
+  opacity: 0.7;
+}
+
+.liunian-gz {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.liunian-shen {
+  font-size: 10px;
   color: var(--vermillion);
 }
 
@@ -625,6 +709,16 @@ button {
   line-height: 1.5;
 }
 
+.crystal-footnote {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(184, 137, 60, 0.3);
+  font-size: 12px;
+  color: var(--ink-soft);
+  opacity: 0.75;
+  line-height: 1.6;
+}
+
 .section-title {
   display: flex;
   align-items: center;
@@ -677,6 +771,12 @@ button {
   .luck-grid { grid-template-columns: repeat(4, 1fr); }
   .luck-cell { padding: 8px 4px; }
   .luck-gz { font-size: 18px; }
+  .liunian-grid { grid-template-columns: repeat(5, 1fr); }
+  .liunian-cell { padding: 6px 2px; }
+  .liunian-gz { font-size: 15px; }
+  .liunian-year { font-size: 10px; }
+  .liunian-age { font-size: 9px; }
+  .liunian-shen { font-size: 9px; }
 }
 </style>
 </head>
@@ -754,7 +854,7 @@ button {
       <div class="wuxing-table" id="wuxing-table"></div>
       <div class="wuxing-formula">
         <strong>先天</strong>：出生那一刻命盤呈現的字面五行．天干各 1 分．地支藏干依數量加權（1藏=1.0／2藏=0.75+0.25／3藏=0.5+0.25+0.25）<br>
-        <strong>後天</strong>：經過五行生剋網路動態消長後的實際強弱．同我×2．生我×1.5．我生×1．我剋×0.5．剋我×0.2<br>
+        <strong>後天</strong>：經過五行生剋網路動態消長後的實際強弱<br>
         <span style="opacity:0.65;">兩排柱狀圖顯示「占比 %」，可直接對比同一五行從先天到後天的比例變化（↑ 比例上升、↓ 比例下降）。</span>
       </div>
     </div>
@@ -766,12 +866,20 @@ button {
     </div>
     <div class="luck-section">
       <div class="luck-grid" id="luck-grid"></div>
+      <div class="luck-start-info" id="luck-start-info"></div>
+      <div class="liunian-section">
+        <div class="liunian-title" id="liunian-title"></div>
+        <div class="liunian-grid" id="liunian-grid"></div>
+      </div>
     </div>
 
     <div class="crystal-section" id="crystal">
       <h3>◇ 五行 · 致中和補運建議</h3>
       <div class="crystal-analysis" id="crystal-analysis"></div>
       <div class="crystal-list" id="crystal-list"></div>
+      <div class="crystal-footnote">
+        ※ 中華傳統文化重「致中和」，五行各占 20% 為最佳均衡。實務上請依個人狀況調整介入強度（如水晶大小、佩戴時間、配合飲食衣著等）。
+      </div>
     </div>
 
   </section>
@@ -1324,7 +1432,15 @@ function renderResult(pillars, opts){
   luckGridEl.innerHTML = '';
   const currentYear = new Date().getFullYear();
   const currentAge = currentYear - solar.year;
-  luckData.list.forEach(l => {
+
+  // 流年計算：以 1984 = 甲子年為基準
+  function yearGZ(y){
+    const offset = (y - 1984) % 60;
+    const idx = (offset + 60) % 60;
+    return { gan: TIANGAN[idx % 10], zhi: DIZHI[idx % 12] };
+  }
+
+  luckData.list.forEach((l) => {
     const cell = document.createElement('div');
     const isCurrent = currentAge >= l.startAge && currentAge <= l.endAge;
     cell.className = 'luck-cell' + (isCurrent ? ' current' : '');
@@ -1338,12 +1454,37 @@ function renderResult(pillars, opts){
     `;
     luckGridEl.appendChild(cell);
   });
-  const startInfo = document.createElement('div');
-  startInfo.className = 'luck-cell';
-  startInfo.style.gridColumn = '1 / -1';
-  startInfo.style.background = 'rgba(184, 137, 60, 0.08)';
-  startInfo.innerHTML = `<div style="font-size:13px; color: var(--ink-soft);">起運：${luckData.startAge} 歲 ${luckData.startMonths} 個月</div>`;
-  luckGridEl.appendChild(startInfo);
+  // 起運資訊
+  document.getElementById('luck-start-info').innerHTML = `起運：${luckData.startAge} 歲 ${luckData.startMonths} 個月`;
+
+  // 流年表格渲染
+  function showLiunian(){
+    const lnEl = document.getElementById('liunian-grid');
+    const lnTitle = document.getElementById('liunian-title');
+    const thisYearGZ = yearGZ(currentYear);
+    lnTitle.innerHTML = `<strong>${currentYear} 年（${thisYearGZ.gan}${thisYearGZ.zhi}）</strong> · 前後十年流年`;
+    lnEl.innerHTML = '';
+    // 以今年為中心：前 4 年 + 今年 + 後 5 年
+    for(let offset = -4; offset <= 5; offset++){
+      const y = currentYear + offset;
+      const gz = yearGZ(y);
+      const age = y - solar.year;
+      const isCurrentYear = (offset === 0);
+      const ss = shishen(dp.gan, gz.gan);
+      const cell = document.createElement('div');
+      cell.className = 'liunian-cell' + (isCurrentYear ? ' current' : '');
+      cell.innerHTML = `
+        <div class="liunian-year">${y}</div>
+        <div class="liunian-age">${age} 歲</div>
+        <div class="liunian-gz">
+          <span class="${WX_COLOR_CLASS[GAN_WX[gz.gan]]}">${gz.gan}</span><span class="${WX_COLOR_CLASS[ZHI_WX[gz.zhi]]}">${gz.zhi}</span>
+        </div>
+        <div class="liunian-shen">${ss}</div>
+      `;
+      lnEl.appendChild(cell);
+    }
+  }
+  showLiunian();
 
   renderCrystals(wxCount, wxNet, dp.gan);
 }
@@ -1401,31 +1542,18 @@ function renderCrystals(wxCount, wxNet, dayGan){
 
   const dayWx = GAN_WX[dayGan];
   let analysis = `日元為 <strong>${dayGan}（${WX_CN[dayWx]}）</strong>。`;
-  analysis += `<br>後天五行占比（理想：每行 20%，「致中和」）：`;
+  analysis += `<br>後天五行占比：`;
   analysis += `<br><strong>${WX_ORDER.map(wx => `${WX_CN[wx]} ${acquiredPct[wx].toFixed(1)}%`).join('　')}</strong>`;
-  analysis += `<br>目前總偏離度：<strong>${currentDev.toFixed(2)}</strong>`;
 
   if(topMinimal.improvement <= 0.01){
-    analysis += `<br><br><strong>命局已相對均衡</strong>，目前不論補強何種五行皆難以再改善。`;
+    analysis += `<br><br><strong>命局已相對均衡</strong>，不論補強何種五行皆難以再改善。`;
   } else {
-    analysis += `<br><br><strong>＜小改動 · 最高效率＞</strong>`;
-    analysis += `<br>同樣補強最小量（+0.25），各五行的改善效率：`;
-    minimalChange.forEach(c => {
-      const sign = c.improvement > 0 ? '+' : '';
-      const color = c.improvement > 0 ? 'var(--jade)' : (c.improvement < 0 ? 'var(--vermillion)' : 'var(--ink-soft)');
-      analysis += `<br>　補 <strong>${WX_CN[c.wx]}</strong>：偏離 ${currentDev.toFixed(2)} → ${c.newDev.toFixed(2)}　改善 <span style="color:${color}">${sign}${c.improvement.toFixed(2)}</span>`;
-    });
-    analysis += `<br><span style="font-size:13px;">→ 微調首選：<strong>${WX_CN[topMinimal.wx]}</strong>（最少介入、最高 CP 值）</span>`;
-
     if(!isSame){
-      analysis += `<br><br><strong>＜深度調整 · 最大改善＞</strong>`;
-      analysis += `<br>若願意加大介入劑量，<strong>${WX_CN[topBest.wx]}</strong> 在劑量 +${topBest.bestDose} 時可達最佳均衡（偏離降至 ${topBest.bestDev.toFixed(2)}，改善 ${topBest.improvement.toFixed(2)}）。`;
-      analysis += `<br><span style="font-size:13px; opacity:0.7;">但注意「過猶不及」——超過此劑量反而失衡。</span>`;
+      analysis += `<br><br>建議補強：<strong>${WX_CN[topMinimal.wx]}</strong>（微調首選）或 <strong>${WX_CN[topBest.wx]}</strong>（深度調整）。`;
     } else {
-      analysis += `<br><span style="font-size:13px; opacity:0.7;">深度調整：補 ${WX_CN[topBest.wx]} 至 +${topBest.bestDose} 為最佳劑量（偏離降至 ${topBest.bestDev.toFixed(2)}）。</span>`;
+      analysis += `<br><br>建議補強：<strong>${WX_CN[topMinimal.wx]}</strong>。`;
     }
   }
-  analysis += `<br><br><span style="font-size:12px; opacity:0.65;">※ 中華傳統文化重「致中和」，五行各占 20% 為最佳均衡。「最小改動」評估的是補強效率；實務上請依個人狀況調整介入強度（如水晶大小、佩戴時間、配合飲食衣著等）。</span>`;
   document.getElementById('crystal-analysis').innerHTML = analysis;
 
   const listEl = document.getElementById('crystal-list');
