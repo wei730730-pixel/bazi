@@ -376,34 +376,55 @@ button {
   margin-bottom: 32px;
 }
 
-.wuxing-bars {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 16px;
+.wuxing-table {
   padding: 24px;
   background: rgba(255, 255, 255, 0.4);
   border: 1px solid var(--paper-deep);
 }
 
-.wuxing-bar {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
+.wuxing-row {
+  display: grid;
+  grid-template-columns: 60px repeat(5, 1fr);
+  gap: 12px;
   align-items: center;
+}
+
+.wuxing-row.header {
+  margin-bottom: 8px;
+}
+
+.wuxing-row.values {
+  margin-top: 4px;
+  margin-bottom: 16px;
+}
+
+.wuxing-row.values:last-child {
+  margin-bottom: 0;
+}
+
+.wuxing-row-label {
+  font-size: 13px;
+  color: var(--ink-soft);
+  letter-spacing: 0.1em;
+  text-align: right;
+  padding-right: 8px;
+}
+
+.wuxing-row-label.bold {
+  font-weight: 700;
+  color: var(--ink);
 }
 
 .wuxing-name {
   font-size: 28px;
   font-weight: 700;
-  margin-bottom: 8px;
+  text-align: center;
 }
 
-.wuxing-count-wrap {
-  width: 100%;
-  height: 100px;
+.wuxing-bar-cell {
+  height: 60px;
   background: rgba(0,0,0,0.04);
   position: relative;
-  margin-bottom: 8px;
   display: flex;
   align-items: flex-end;
 }
@@ -412,35 +433,60 @@ button {
   width: 100%;
   background: currentColor;
   transition: height 0.8s ease;
+}
+
+.wuxing-fill.innate {
+  opacity: 0.45;
+}
+
+.wuxing-fill.acquired {
   opacity: 0.9;
 }
 
-.wuxing-count {
+.wuxing-value {
   font-family: var(--font-mono);
-  font-size: 18px;
-  font-weight: 600;
-}
-
-.wuxing-dual {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 4px;
-  font-family: var(--font-mono);
-  font-size: 12px;
-}
-
-.wuxing-dual .label-innate {
+  font-size: 13px;
+  text-align: center;
   color: var(--ink-soft);
-  opacity: 0.6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
 }
 
-.wuxing-dual .label-acquired {
-  font-weight: 600;
+.wuxing-value.acquired {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.wuxing-value .wuxing-pct {
   font-size: 14px;
 }
+
+.wuxing-value.acquired .wuxing-pct {
+  font-size: 15px;
+}
+
+.wuxing-value .wuxing-raw {
+  font-size: 10px;
+  opacity: 0.5;
+  font-weight: 400;
+}
+
+.wuxing-value .diff {
+  font-size: 11px;
+  font-weight: 700;
+  margin-left: 2px;
+}
+.wuxing-value .diff.up { color: var(--vermillion); }
+.wuxing-value .diff.down { color: var(--indigo); }
+.wuxing-value .diff.flat { color: var(--ink-soft); opacity: 0.4; }
+
+.wx-wood-bg .wuxing-fill { background: var(--wuxing-wood); }
+.wx-fire-bg .wuxing-fill { background: var(--wuxing-fire); }
+.wx-earth-bg .wuxing-fill { background: var(--wuxing-earth); }
+.wx-metal-bg .wuxing-fill { background: #8a8576; }
+.wx-water-bg .wuxing-fill { background: var(--wuxing-water); }
 
 .wuxing-legend {
   display: flex;
@@ -621,9 +667,13 @@ button {
   .pillar-cell.gz { font-size: 26px; }
   .pillar-cell.hidden { font-size: 12px; }
   .pillar { padding: 12px 4px; }
-  .wuxing-bars { padding: 16px 8px; gap: 6px; }
+  .wuxing-table { padding: 16px 8px; }
+  .wuxing-row { grid-template-columns: 36px repeat(5, 1fr); gap: 4px; }
+  .wuxing-row-label { font-size: 11px; padding-right: 4px; }
   .wuxing-name { font-size: 20px; }
-  .wuxing-count-wrap { height: 80px; }
+  .wuxing-bar-cell { height: 50px; }
+  .wuxing-value { font-size: 11px; }
+  .wuxing-value.acquired { font-size: 12px; }
   .luck-grid { grid-template-columns: repeat(4, 1fr); }
   .luck-cell { padding: 8px 4px; }
   .luck-gz { font-size: 18px; }
@@ -701,11 +751,11 @@ button {
       <span class="line"></span>
     </div>
     <div class="wuxing-section">
-      <div class="wuxing-bars" id="wuxing-bars"></div>
+      <div class="wuxing-table" id="wuxing-table"></div>
       <div class="wuxing-formula">
         <strong>先天</strong>：出生那一刻命盤呈現的字面五行．天干各 1 分．地支藏干依數量加權（1藏=1.0／2藏=0.75+0.25／3藏=0.5+0.25+0.25）<br>
-        <strong>後天</strong>：經過五行生剋網路動態消長後的實際強弱（柱狀圖以後天為主視覺）．同我×2．生我×1.5．我生×1．我剋×0.5．剋我×0.2<br>
-        <span style="opacity:0.65;">兩者的差異反映「天賦 vs 運化」——例如先天偏少的五行可能因為被強生而後天反而充足；先天充沛的五行也可能因為被洩而後天耗弱。</span>
+        <strong>後天</strong>：經過五行生剋網路動態消長後的實際強弱．同我×2．生我×1.5．我生×1．我剋×0.5．剋我×0.2<br>
+        <span style="opacity:0.65;">兩排柱狀圖顯示「占比 %」，可直接對比同一五行從先天到後天的比例變化（↑ 比例上升、↓ 比例下降）。</span>
       </div>
     </div>
 
@@ -1204,36 +1254,70 @@ function renderResult(pillars, opts){
   const wxNet = {};
   WX_ORDER.forEach(wx => wxNet[wx] = calcNetValue(wx, wxCount));
 
-  // 柱狀圖（單柱）：以「後天」為主視覺，下方同時顯示先天+後天兩個數字
-  const acquiredValues = Object.values(wxNet);
-  const acquiredMin = Math.min(...acquiredValues);
-  const acquiredMax = Math.max(...acquiredValues);
-  const acquiredRange = acquiredMax - acquiredMin;
-
-  const barsEl = document.getElementById('wuxing-bars');
-  barsEl.innerHTML = '';
+  // 兩排柱狀圖：先天列 + 後天列
+  // 重點：把兩者都正規化為「占比 %」，這樣才能直觀比較消長
+  // 否則後天總和遠大於先天（約 5 倍），會誤導讀者以為「能量變多」
+  const innateSum = Object.values(wxCount).reduce((a,b) => a+b, 0);
+  const acquiredSum = Object.values(wxNet).reduce((a,b) => a+b, 0);
+  const innatePct = {};
+  const acquiredPct = {};
   WX_ORDER.forEach(wx => {
-    const innateVal = wxCount[wx];
-    const acquiredVal = wxNet[wx];
-    // 高度用「後天」相對位置：最低 15%、最高 100%，視覺差距才明顯
-    const h = acquiredRange > 0 ? 15 + (acquiredVal - acquiredMin) / acquiredRange * 85 : 50;
-    const bar = document.createElement('div');
-    bar.className = 'wuxing-bar ' + WX_COLOR_CLASS[wx];
-    bar.innerHTML = `
-      <div class="wuxing-name">${WX_CN[wx]}</div>
-      <div class="wuxing-count-wrap">
-        <div class="wuxing-fill" style="height:0"></div>
-      </div>
-      <div class="wuxing-dual">
-        <span class="label-innate">先天 ${innateVal.toFixed(2)}</span>
-        <span class="label-acquired">後天 ${acquiredVal.toFixed(2)}</span>
-      </div>
-    `;
-    barsEl.appendChild(bar);
-    setTimeout(() => {
-      bar.querySelector('.wuxing-fill').style.height = h + '%';
-    }, 100);
+    innatePct[wx] = innateSum > 0 ? (wxCount[wx] / innateSum * 100) : 0;
+    acquiredPct[wx] = acquiredSum > 0 ? (wxNet[wx] / acquiredSum * 100) : 0;
   });
+  // 共用同一個 scale（0% ~ 兩者中的最大占比）
+  const maxPct = Math.max(...Object.values(innatePct), ...Object.values(acquiredPct));
+
+  const tableEl = document.getElementById('wuxing-table');
+
+  const cellsName = WX_ORDER.map(wx => `<div class="wuxing-name ${WX_COLOR_CLASS[wx]}">${WX_CN[wx]}</div>`).join('');
+
+  const cellsBarInnate = WX_ORDER.map(wx => {
+    return `<div class="wuxing-bar-cell ${WX_COLOR_CLASS[wx]}-bg"><div class="wuxing-fill innate" data-h="${innatePct[wx]}" style="height:0"></div></div>`;
+  }).join('');
+  const cellsValInnate = WX_ORDER.map(wx => {
+    return `<div class="wuxing-value"><span class="wuxing-pct">${innatePct[wx].toFixed(1)}%</span><span class="wuxing-raw">(${wxCount[wx].toFixed(2)})</span></div>`;
+  }).join('');
+
+  const cellsBarAcquired = WX_ORDER.map(wx => {
+    return `<div class="wuxing-bar-cell ${WX_COLOR_CLASS[wx]}-bg"><div class="wuxing-fill acquired" data-h="${acquiredPct[wx]}" style="height:0"></div></div>`;
+  }).join('');
+  const cellsValAcquired = WX_ORDER.map(wx => {
+    const diff = acquiredPct[wx] - innatePct[wx];
+    const arrow = diff > 0.5 ? '<span class="diff up">↑</span>' : (diff < -0.5 ? '<span class="diff down">↓</span>' : '<span class="diff flat">·</span>');
+    return `<div class="wuxing-value acquired ${WX_COLOR_CLASS[wx]}"><span class="wuxing-pct">${acquiredPct[wx].toFixed(1)}%</span> ${arrow}<span class="wuxing-raw">(${wxNet[wx].toFixed(2)})</span></div>`;
+  }).join('');
+
+  tableEl.innerHTML = `
+    <div class="wuxing-row header">
+      <div></div>
+      ${cellsName}
+    </div>
+    <div class="wuxing-row">
+      <div class="wuxing-row-label">先天</div>
+      ${cellsBarInnate}
+    </div>
+    <div class="wuxing-row values">
+      <div></div>
+      ${cellsValInnate}
+    </div>
+    <div class="wuxing-row">
+      <div class="wuxing-row-label bold">後天</div>
+      ${cellsBarAcquired}
+    </div>
+    <div class="wuxing-row values">
+      <div></div>
+      ${cellsValAcquired}
+    </div>
+  `;
+
+  setTimeout(() => {
+    tableEl.querySelectorAll('.wuxing-fill').forEach(el => {
+      const v = parseFloat(el.dataset.h);
+      const h = maxPct > 0 ? (v / maxPct * 100) : 0;
+      el.style.height = h + '%';
+    });
+  }, 100);
 
   const luckData = calcLuck(birthMs, solar.year, yp.gan, gender, mp);
   const luckGridEl = document.getElementById('luck-grid');
@@ -1265,31 +1349,34 @@ function renderResult(pillars, opts){
 }
 
 function renderCrystals(wxCount, wxNet, dayGan){
-  // 用淨值排序找出相對強弱
-  const sorted = [...WX_ORDER].sort((a,b) => wxNet[a] - wxNet[b]);
-  const netValues = WX_ORDER.map(wx => wxNet[wx]);
-  const minNet = Math.min(...netValues);
-  const maxNet = Math.max(...netValues);
-  const range = maxNet - minNet;
+  // 計算後天占比
+  const acquiredSum = Object.values(wxNet).reduce((a,b) => a+b, 0);
+  const acquiredPct = {};
+  WX_ORDER.forEach(wx => acquiredPct[wx] = acquiredSum > 0 ? (wxNet[wx] / acquiredSum * 100) : 0);
 
-  // 取最低淨值為「相對偏弱」候選（前 1-2 名）、最高為「相對偏強」（後 1 名）
+  // 用後天占比排序找出相對強弱
+  const sorted = [...WX_ORDER].sort((a,b) => acquiredPct[a] - acquiredPct[b]);
+  const pctValues = WX_ORDER.map(wx => acquiredPct[wx]);
+  const minPct = Math.min(...pctValues);
+  const maxPct = Math.max(...pctValues);
+  const range = maxPct - minPct;
+
+  // 取最低占比為「相對偏弱」候選（前 1-2 名）
   const weak = [sorted[0]];
-  if(range > 0 && (wxNet[sorted[1]] - minNet) < range * 0.4){
-    weak.push(sorted[1]); // 第二低如果也夠低就一起算
+  if(range > 0 && (acquiredPct[sorted[1]] - minPct) < range * 0.4){
+    weak.push(sorted[1]);
   }
-  const strong = [sorted[sorted.length - 1]];
 
   const dayWx = GAN_WX[dayGan];
   let analysis = `日元為 <strong>${dayGan}（${WX_CN[dayWx]}）</strong>。`;
-  analysis += `<br>依五行流通後的「<strong>後天</strong>」實際強弱排序（由弱到強）：`;
-  analysis += `<br><strong>${sorted.map((wx, i) => `${i+1}. ${WX_CN[wx]} (${wxNet[wx].toFixed(2)})`).join('　')}</strong>`;
+  analysis += `<br>依五行流通後的「<strong>後天</strong>」占比排序（由弱到強）：`;
+  analysis += `<br><strong>${sorted.map((wx, i) => `${i+1}. ${WX_CN[wx]} ${acquiredPct[wx].toFixed(1)}%`).join('　')}</strong>`;
   analysis += `<br>建議優先補強：<strong>${weak.map(w=>WX_CN[w]).join('、')}</strong>。`;
   analysis += `<br><span style="font-size:12px; opacity:0.7;">※ 此為相對排序參考，最終仍需結合月令、季節、調候等綜合判斷。權重：同我×2．生我×1.5．我生×1．我剋×0.5．剋我×0.2</span>`;
   document.getElementById('crystal-analysis').innerHTML = analysis;
 
   const listEl = document.getElementById('crystal-list');
   listEl.innerHTML = '';
-  // 推薦排序最低的兩個五行（補強候選）
   sorted.slice(0, 2).forEach((wx, i) => {
     const item = document.createElement('div');
     item.className = 'crystal-item';
