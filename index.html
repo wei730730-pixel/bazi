@@ -769,7 +769,7 @@ button {
     </div>
 
     <div class="crystal-section" id="crystal">
-      <h3>◇ 五行 · 水晶補運建議</h3>
+      <h3>◇ 五行 · 致中和補運建議</h3>
       <div class="crystal-analysis" id="crystal-analysis"></div>
       <div class="crystal-list" id="crystal-list"></div>
     </div>
@@ -1063,11 +1063,11 @@ function calcLuck(birthMs, birthYear, yearGan, gender, monthGZ){
 }
 
 const CRYSTAL_MAP = {
-  wood: ['天河石', '綠草莓晶', '純草莓晶', '綠幽靈水晶', '海洋玉髓', '彩虹螢石'],
-  fire: ['石榴石', '紫水晶', '紫玉', '紫幽靈', '草莓晶', '粉晶', '摩根石', '硃砂', '彩兔毛水晶'],
-  earth: ['黃水晶', '拉長石', '灰胱石', '橙胱石', '瑪瑙', '膠花水晶', '石青貓眼', '安德森胱石', '拉絲西瓜螢石'],
-  metal: ['白水晶', '月光石', '硨磲貝', '奶蓋黃水晶', '白翡翠', '彩曜石'],
-  water: ['黑瑪瑙', '金曜石', '黑髮晶', '黑草莓晶', '青金石', '堇青石', '藍虎眼石', '海藍寶']
+  wood: ['綠幽靈', '翡翠', '橄欖石', '孔雀石', '綠碧璽', '東陵玉', '天河石', '綠草莓晶', '純草莓晶', '海洋玉髓', '彩虹螢石'],
+  fire: ['紅瑪瑙', '紅碧璽', '石榴石', '紫水晶', '粉水晶', '紫鋰輝', '紫玉', '紫幽靈', '草莓晶', '摩根石', '硃砂', '彩兔毛水晶'],
+  earth: ['黃水晶', '茶晶', '虎眼石', '琥珀', '黃玉', '碧玉', '灰胱石', '橙胱石', '瑪瑙', '膠花水晶', '石青貓眼', '安德森胱石', '拉絲西瓜螢石'],
+  metal: ['白水晶', '金髮晶', '銀曜石', '白瑪瑙', '珍珠', '月光石', '硨磲貝', '奶蓋黃水晶', '白翡翠', '彩曜石'],
+  water: ['黑曜石', '藍寶石', '海藍寶', '拉長石', '青金石', '藍晶石', '黑瑪瑙', '金曜石', '黑髮晶', '黑草莓晶', '堇青石', '藍虎眼石']
 };
 
 function populateSelects(){
@@ -1349,44 +1349,116 @@ function renderResult(pillars, opts){
 }
 
 function renderCrystals(wxCount, wxNet, dayGan){
-  // 計算後天占比
-  const acquiredSum = Object.values(wxNet).reduce((a,b) => a+b, 0);
-  const acquiredPct = {};
-  WX_ORDER.forEach(wx => acquiredPct[wx] = acquiredSum > 0 ? (wxNet[wx] / acquiredSum * 100) : 0);
-
-  // 用後天占比排序找出相對強弱
-  const sorted = [...WX_ORDER].sort((a,b) => acquiredPct[a] - acquiredPct[b]);
-  const pctValues = WX_ORDER.map(wx => acquiredPct[wx]);
-  const minPct = Math.min(...pctValues);
-  const maxPct = Math.max(...pctValues);
-  const range = maxPct - minPct;
-
-  // 取最低占比為「相對偏弱」候選（前 1-2 名）
-  const weak = [sorted[0]];
-  if(range > 0 && (acquiredPct[sorted[1]] - minPct) < range * 0.4){
-    weak.push(sorted[1]);
+  function calcPct(counts){
+    const net = {};
+    WX_ORDER.forEach(wx => {
+      const i = WX_ORDER.indexOf(wx);
+      net[wx] = counts[wx] * 2
+              + counts[WX_ORDER[(i+4)%5]] * 1.5
+              + counts[WX_ORDER[(i+1)%5]] * 1.0
+              + counts[WX_ORDER[(i+2)%5]] * 0.5
+              + counts[WX_ORDER[(i+3)%5]] * 0.2;
+    });
+    const sum = Object.values(net).reduce((a,b)=>a+b, 0);
+    const pct = {};
+    WX_ORDER.forEach(wx => pct[wx] = sum > 0 ? (net[wx] / sum * 100) : 0);
+    return pct;
   }
+  function deviation(pct){
+    return WX_ORDER.reduce((sum, wx) => sum + Math.abs(pct[wx] - 20), 0);
+  }
+
+  const acquiredPct = calcPct(wxCount);
+  const currentDev = deviation(acquiredPct);
+
+  // 「最小改動」分析：每個五行只補 +0.25，看哪個 CP 值最高
+  const minimalChange = WX_ORDER.map(wx => {
+    const trial = {...wxCount};
+    trial[wx] += 0.25;
+    const dev = deviation(calcPct(trial));
+    return { wx, improvement: currentDev - dev, newDev: dev };
+  }).sort((a,b) => b.improvement - a.improvement);
+
+  // 「最佳劑量」分析：每個五行掃描 0.25 ~ 2.0，找出該五行的最佳劑量
+  const bestDosage = WX_ORDER.map(wx => {
+    let bestDev = currentDev;
+    let bestDose = 0;
+    for(let dose = 0.25; dose <= 2.0; dose += 0.25){
+      const trial = {...wxCount};
+      trial[wx] += dose;
+      const dev = deviation(calcPct(trial));
+      if(dev < bestDev){
+        bestDev = dev;
+        bestDose = dose;
+      }
+    }
+    return { wx, bestDev, bestDose, improvement: currentDev - bestDev };
+  }).sort((a,b) => b.improvement - a.improvement);
+
+  const topMinimal = minimalChange[0];
+  const topBest = bestDosage[0];
+  const isSame = topMinimal.wx === topBest.wx;
 
   const dayWx = GAN_WX[dayGan];
   let analysis = `日元為 <strong>${dayGan}（${WX_CN[dayWx]}）</strong>。`;
-  analysis += `<br>依五行流通後的「<strong>後天</strong>」占比排序（由弱到強）：`;
-  analysis += `<br><strong>${sorted.map((wx, i) => `${i+1}. ${WX_CN[wx]} ${acquiredPct[wx].toFixed(1)}%`).join('　')}</strong>`;
-  analysis += `<br>建議優先補強：<strong>${weak.map(w=>WX_CN[w]).join('、')}</strong>。`;
-  analysis += `<br><span style="font-size:12px; opacity:0.7;">※ 此為相對排序參考，最終仍需結合月令、季節、調候等綜合判斷。權重：同我×2．生我×1.5．我生×1．我剋×0.5．剋我×0.2</span>`;
+  analysis += `<br>後天五行占比（理想：每行 20%，「致中和」）：`;
+  analysis += `<br><strong>${WX_ORDER.map(wx => `${WX_CN[wx]} ${acquiredPct[wx].toFixed(1)}%`).join('　')}</strong>`;
+  analysis += `<br>目前總偏離度：<strong>${currentDev.toFixed(2)}</strong>`;
+
+  if(topMinimal.improvement <= 0.01){
+    analysis += `<br><br><strong>命局已相對均衡</strong>，目前不論補強何種五行皆難以再改善。`;
+  } else {
+    analysis += `<br><br><strong>＜小改動 · 最高效率＞</strong>`;
+    analysis += `<br>同樣補強最小量（+0.25），各五行的改善效率：`;
+    minimalChange.forEach(c => {
+      const sign = c.improvement > 0 ? '+' : '';
+      const color = c.improvement > 0 ? 'var(--jade)' : (c.improvement < 0 ? 'var(--vermillion)' : 'var(--ink-soft)');
+      analysis += `<br>　補 <strong>${WX_CN[c.wx]}</strong>：偏離 ${currentDev.toFixed(2)} → ${c.newDev.toFixed(2)}　改善 <span style="color:${color}">${sign}${c.improvement.toFixed(2)}</span>`;
+    });
+    analysis += `<br><span style="font-size:13px;">→ 微調首選：<strong>${WX_CN[topMinimal.wx]}</strong>（最少介入、最高 CP 值）</span>`;
+
+    if(!isSame){
+      analysis += `<br><br><strong>＜深度調整 · 最大改善＞</strong>`;
+      analysis += `<br>若願意加大介入劑量，<strong>${WX_CN[topBest.wx]}</strong> 在劑量 +${topBest.bestDose} 時可達最佳均衡（偏離降至 ${topBest.bestDev.toFixed(2)}，改善 ${topBest.improvement.toFixed(2)}）。`;
+      analysis += `<br><span style="font-size:13px; opacity:0.7;">但注意「過猶不及」——超過此劑量反而失衡。</span>`;
+    } else {
+      analysis += `<br><span style="font-size:13px; opacity:0.7;">深度調整：補 ${WX_CN[topBest.wx]} 至 +${topBest.bestDose} 為最佳劑量（偏離降至 ${topBest.bestDev.toFixed(2)}）。</span>`;
+    }
+  }
+  analysis += `<br><br><span style="font-size:12px; opacity:0.65;">※ 中華傳統文化重「致中和」，五行各占 20% 為最佳均衡。「最小改動」評估的是補強效率；實務上請依個人狀況調整介入強度（如水晶大小、佩戴時間、配合飲食衣著等）。</span>`;
   document.getElementById('crystal-analysis').innerHTML = analysis;
 
   const listEl = document.getElementById('crystal-list');
   listEl.innerHTML = '';
-  sorted.slice(0, 2).forEach((wx, i) => {
+
+  if(topMinimal.improvement <= 0.01){
+    const sorted = [...WX_ORDER].sort((a,b) => acquiredPct[a] - acquiredPct[b]);
     const item = document.createElement('div');
     item.className = 'crystal-item';
-    const tag = i === 0 ? '（首選補強）' : '（次選補強）';
     item.innerHTML = `
-      <div class="element ${WX_COLOR_CLASS[wx]}">${WX_CN[wx]} ${tag}</div>
-      <div class="stones">${CRYSTAL_MAP[wx].join('・')}</div>
+      <div class="element ${WX_COLOR_CLASS[sorted[0]]}">${WX_CN[sorted[0]]} （命局均衡，僅供參考）</div>
+      <div class="stones">${CRYSTAL_MAP[sorted[0]].join('・')}</div>
     `;
     listEl.appendChild(item);
-  });
+  } else {
+    const item1 = document.createElement('div');
+    item1.className = 'crystal-item';
+    item1.innerHTML = `
+      <div class="element ${WX_COLOR_CLASS[topMinimal.wx]}">${WX_CN[topMinimal.wx]} （微調首選 · 效率最高）</div>
+      <div class="stones">${CRYSTAL_MAP[topMinimal.wx].join('・')}</div>
+    `;
+    listEl.appendChild(item1);
+
+    if(!isSame && topBest.improvement > 0.01){
+      const item2 = document.createElement('div');
+      item2.className = 'crystal-item';
+      item2.innerHTML = `
+        <div class="element ${WX_COLOR_CLASS[topBest.wx]}">${WX_CN[topBest.wx]} （深度調整 · 最大改善）</div>
+        <div class="stones">${CRYSTAL_MAP[topBest.wx].join('・')}</div>
+      `;
+      listEl.appendChild(item2);
+    }
+  }
 }
 
 window.addEventListener('DOMContentLoaded', () => {
