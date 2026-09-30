@@ -772,7 +772,17 @@ button {
   flex-wrap: wrap;
   margin-bottom: 20px;
 }
-.ec-actions button { padding: 10px 22px; font-size: 14px; }
+.ec-actions { align-items: center; gap: 24px; }
+.ec-actions > button { padding: 10px 22px; font-size: 14px; }
+.ec-beads { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.ec-beads-label { font-size: 13px; letter-spacing: 0.2em; color: var(--ink-soft); margin-right: 6px; }
+.ec-bead-btn {
+  min-width: 44px; height: 44px; padding: 0 8px;
+  font-family: var(--font-mono); font-size: 15px; letter-spacing: 0;
+  background: #fdfaf2; color: var(--ink); border: 1px solid var(--paper-deep);
+}
+.ec-bead-btn:hover { border-color: var(--vermillion); }
+.ec-bead-btn.on { background: var(--vermillion); color: var(--paper); border-color: var(--vermillion); }
 .ec-hint {
   font-size: 12px;
   color: var(--ink-soft);
@@ -1052,6 +1062,17 @@ button {
       </div>
       <div class="ec-actions">
         <button class="btn-primary" id="ec-dl" onclick="downloadCard()">下載能量卡</button>
+        <div class="ec-beads">
+          <span class="ec-beads-label">手串珠數</span>
+          <button class="ec-bead-btn" data-n="13" onclick="ecSetBeads(13)">13</button>
+          <button class="ec-bead-btn" data-n="14" onclick="ecSetBeads(14)">14</button>
+          <button class="ec-bead-btn" data-n="15" onclick="ecSetBeads(15)">15</button>
+          <button class="ec-bead-btn on" data-n="16" onclick="ecSetBeads(16)">16</button>
+          <button class="ec-bead-btn" data-n="17" onclick="ecSetBeads(17)">17</button>
+          <button class="ec-bead-btn" data-n="18" onclick="ecSetBeads(18)">18</button>
+          <button class="ec-bead-btn" data-n="19" onclick="ecSetBeads(19)">19</button>
+          <button class="ec-bead-btn" data-n="20" onclick="ecSetBeads(20)">20</button>
+        </div>
       </div>
       <div class="ec-stage" id="ec-stage"></div>
     </div>
@@ -1838,6 +1859,86 @@ function ecAdvice(strong, supp, balanced){
 }
 
 let ecName = '';
+let ecBeadCount = 16;
+let ecSupp = null;
+
+function ecCnNum(n){
+  const d = '〇一二三四五六七八九';
+  if(n < 10) return d[n];
+  if(n < 20) return '十' + (n % 10 ? d[n % 10] : '');
+  return d[Math.floor(n / 10)] + '十' + (n % 10 ? d[n % 10] : '');
+}
+
+// 依珠數分配珠材
+function ecRecipe(supp, N){
+  const A = EC_STONES[supp[0]];
+  if(supp.length > 1){
+    const B = EC_STONES[supp[1]];
+    const nB = Math.round(N * 6 / 16);
+    const nA = N - nB;
+    const aThird = Math.max(1, Math.round((nA - 2) * 0.25));
+    const aMain = nA - 2 - aThird;
+    const bAcc = Math.max(1, Math.round(nB / 3));
+    const bMain = nB - bAcc;
+    return {
+      rows: [[A[1],supp[0],2],[A[0],supp[0],aMain],[A[2],supp[0],aThird],[B[0],supp[1],bMain],[B[1],supp[1],bAcc]],
+      groupLine: `${WX_CN[supp[0]]}系 ${nA} 顆 ・ ${WX_CN[supp[1]]}系 ${nB} 顆`
+    };
+  }
+  const third = Math.round((N - 2) * 3 / 7);
+  return {
+    rows: [[A[1],supp[0],2],[A[0],supp[0],N - 2 - third],[A[2],supp[0],third]],
+    groupLine: `${WX_CN[supp[0]]}系 ${N} 顆`
+  };
+}
+
+// 排列：兩顆點綴珠置於正上、正下，其餘均勻交錯
+function ecSequence(rows, N){
+  const acc = rows[0][0];
+  const others = rows.slice(1).filter(r => r[2] > 0);
+  const items = [];
+  others.forEach(([st, , c]) => { for(let k = 0; k < c; k++) items.push({st, key: (k + 0.5) / c}); });
+  items.sort((a, b) => a.key - b.key);
+  const seq = new Array(N);
+  const accPos = [0, Math.floor(N / 2)];
+  accPos.forEach(i => seq[i] = acc);
+  let j = 0;
+  for(let i = 0; i < N; i++){ if(!seq[i]) seq[i] = items[j++].st; }
+  return seq;
+}
+
+function ecBracelet(supp, N){
+  const {rows, groupLine} = ecRecipe(supp, N);
+  const seq = ecSequence(rows, N);
+  const gap = 2 * Math.PI * 112 / N;
+  const r = Math.min(21, gap * 0.44);
+  const rAcc = Math.min(r * 1.15, gap * 0.52);
+  const beads = seq.map((st, i) => {
+    const t = (-90 + i * 360 / N) * Math.PI / 180;
+    return ecBead(st, 150 + 112 * Math.cos(t), 150 + 112 * Math.sin(t), st === rows[0][0] ? rAcc : r);
+  }).join('');
+  const recipeHtml = rows.filter(x => x[2] > 0).map(([st, w, n]) => `<div class="ec-recipe-row"><svg width="28" height="28" viewBox="0 0 28 28">${ecBead(st, 14, 14, 12)}</svg><span><strong>${st.n}</strong><span class="el">　${WX_CN[w]}</span></span><span class="ct">${n} 顆</span></div>`).join('');
+  const centerText = supp.map(w => WX_CN[w]).join(' ');
+  return `
+      <svg width="370" height="370" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+        <circle cx="150" cy="150" r="112" fill="none" stroke="#b8893c" stroke-width="1" stroke-dasharray="2 4"/>
+        ${beads}
+        <text x="150" y="146" text-anchor="middle" font-size="22" font-weight="900" fill="#c8392f" font-family="Noto Serif TC, serif">${centerText}</text>
+        <text x="150" y="172" text-anchor="middle" font-size="12" fill="#6b5a4c" letter-spacing="3" font-family="Noto Serif TC, serif">${ecCnNum(N)}珠・致中和</text>
+      </svg>
+      <div style="flex:1;display:flex;flex-direction:column">
+        <div class="ec-label" style="margin-bottom:6px">珠 材 清 單</div>
+        ${recipeHtml}
+        <div style="display:flex;justify-content:space-between;font-size:19px;padding-top:12px;color:#6b5a4c"><span>${groupLine}</span><span>手圍 [　　] cm</span></div>
+      </div>`;
+}
+
+function ecSetBeads(n){
+  ecBeadCount = n;
+  document.querySelectorAll('.ec-bead-btn').forEach(b => b.classList.toggle('on', +b.dataset.n === n));
+  const el = document.getElementById('ec-bracelet');
+  if(el && ecSupp) el.innerHTML = ecBracelet(ecSupp, n);
+}
 
 function ecEsc(s){
   return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -1969,34 +2070,13 @@ function renderEnergyCard(pArr, dp, rec, yGZ){
     </div>
   </div></div></div>`;
 
-  // 手串配方：16 珠
-  const A = EC_STONES[supp[0]];
-  let seq, recipe;
-  if(supp.length > 1){
-    const B = EC_STONES[supp[1]];
-    const unit = [A[1], A[0], B[0], A[2], A[0], B[0], B[1], A[0]];
-    seq = unit.concat(unit);
-    recipe = [[A[1],supp[0],2],[A[0],supp[0],6],[A[2],supp[0],2],[B[0],supp[1],4],[B[1],supp[1],2]];
-  } else {
-    const unit = [A[1], A[0], A[2], A[0], A[2], A[0], A[2], A[0]];
-    seq = unit.concat(unit);
-    recipe = [[A[1],supp[0],2],[A[0],supp[0],8],[A[2],supp[0],6]];
-  }
-  const beads = seq.map((s, i) => {
-    const t = (-90 + i * 22.5) * Math.PI / 180;
-    const big = (s === A[1]);
-    return ecBead(s, 150 + 112*Math.cos(t), 150 + 112*Math.sin(t), big ? 23 : 20);
-  }).join('');
-  const recipeHtml = recipe.map(([s, w, n]) => `<div class="ec-recipe-row"><svg width="28" height="28" viewBox="0 0 28 28">${ecBead(s, 14, 14, 12)}</svg><span><strong>${s.n}</strong><span class="el">　${WX_CN[w]}</span></span><span class="ct">${n} 顆</span></div>`).join('');
-  const groupLine = supp.length > 1
-    ? `${WX_CN[supp[0]]}系 10 顆 ・ ${WX_CN[supp[1]]}系 6 顆`
-    : `${WX_CN[supp[0]]}系 16 顆`;
+  const br = ecBracelet(supp, ecBeadCount);
+  ecSupp = supp;
   const subLine = balanced
     ? `${nameHtml}・命局均衡，以${suppCn}輕補，守中致和`
     : (supp.length > 1
         ? `${nameHtml}・以${WX_CN[supp[0]]}為主、${WX_CN[supp[1]]}為輔，調和過旺之${WX_CN[strong]}`
         : `${nameHtml}・以${WX_CN[supp[0]]}為主，調和過旺之${WX_CN[strong]}`);
-  const centerText = supp.map(w => WX_CN[w]).join(' ');
 
   const trends = WX_ORDER.map(w => {
     let ar = '・', tx = '持平', col = '#6b5a4c';
@@ -2014,19 +2094,7 @@ function renderEnergyCard(pArr, dp, rec, yGZ){
       <div class="ec-title sm">專屬手串配方</div>
       <div class="ec-sub">${subLine}</div>
     </div>
-    <div class="ec-main" style="gap:52px">
-      <svg width="370" height="370" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
-        <circle cx="150" cy="150" r="112" fill="none" stroke="#b8893c" stroke-width="1" stroke-dasharray="2 4"/>
-        ${beads}
-        <text x="150" y="146" text-anchor="middle" font-size="22" font-weight="900" fill="#c8392f" font-family="Noto Serif TC, serif">${centerText}</text>
-        <text x="150" y="172" text-anchor="middle" font-size="12" fill="#6b5a4c" letter-spacing="3" font-family="Noto Serif TC, serif">十六珠・致中和</text>
-      </svg>
-      <div style="flex:1;display:flex;flex-direction:column">
-        <div class="ec-label" style="margin-bottom:6px">珠 材 清 單</div>
-        ${recipeHtml}
-        <div style="display:flex;justify-content:space-between;font-size:19px;padding-top:12px;color:#6b5a4c"><span>${groupLine}</span><span>手圍 [　　] cm</span></div>
-      </div>
-    </div>
+    <div class="ec-main" style="gap:52px" id="ec-bracelet">${br}</div>
     <div style="display:flex;flex-direction:column;gap:14px">
       <div class="ec-label">配 戴 後 的 能 量 走 向</div>
       <div class="ec-trends">${trends}</div>
