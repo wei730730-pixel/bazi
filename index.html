@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>八字排盤 · 農曆版</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root {
   --ink: #1a1410;
@@ -251,6 +251,15 @@ button {
   background: var(--vermillion-deep);
   transform: translateY(-1px);
   box-shadow: 0 4px 14px rgba(200, 57, 47, 0.4);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--vermillion-deep);
+  border: 1px solid var(--vermillion);
+}
+.btn-ghost:hover {
+  background: rgba(200, 57, 47, 0.08);
 }
 
 .result {
@@ -755,6 +764,155 @@ button {
   letter-spacing: 0.1em;
 }
 
+/* ===== 五行能量卡 ===== */
+#ec-section { margin-top: 40px; }
+.ec-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.ec-actions button { padding: 10px 22px; font-size: 14px; }
+.ec-hint {
+  font-size: 12px;
+  color: var(--ink-soft);
+  opacity: 0.75;
+  margin-bottom: 16px;
+}
+.ec-stage {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+}
+.ec-holder {
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 6px 30px var(--shadow);
+}
+.ec-face {
+  width: 1080px;
+  height: 1350px;
+  padding: 36px;
+  background: #f4ede0;
+  color: #1a1410;
+  font-family: var(--font-display);
+  line-height: 1.5;
+  transform-origin: top left;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.ec-frame { height: 100%; border: 2px solid #b8893c; padding: 8px; }
+.ec-inner {
+  height: 100%;
+  border: 1px solid #d4a857;
+  padding: 46px 56px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.ec-en {
+  font-family: var(--font-latin);
+  font-style: italic;
+  font-size: 22px;
+  letter-spacing: 0.18em;
+  color: #8a6a2c;
+}
+.ec-title { font-size: 76px; font-weight: 900; letter-spacing: 0.22em; line-height: 1.15; }
+.ec-title.sm { font-size: 64px; letter-spacing: 0.2em; line-height: 1.2; }
+.ec-seal {
+  width: 96px; height: 96px;
+  background: #c8392f; color: #f4ede0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 54px; font-weight: 900; border-radius: 6px;
+  transform: rotate(-4deg); margin-top: 8px; flex-shrink: 0;
+}
+.ec-label { font-size: 17px; letter-spacing: 0.35em; color: #8a6a2c; }
+.ec-muted { color: #6b5a4c; }
+.ec-row { display: flex; justify-content: space-between; align-items: flex-end; }
+.ec-idrow { padding-bottom: 22px; border-bottom: 1px solid #d4a857; }
+.ec-id { display: flex; gap: 40px; font-size: 24px; }
+.ec-id .k { color: #6b5a4c; letter-spacing: 0.2em; }
+.ec-id .v { font-weight: 700; }
+.ec-pillars { display: flex; gap: 22px; }
+.ec-pillar { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.ec-pillar .t { font-size: 15px; color: #6b5a4c; }
+.ec-pillar .t.day { color: #c8392f; }
+.ec-pillar .g { font-size: 34px; font-weight: 700; line-height: 1.1; }
+.ec-main { display: flex; gap: 48px; align-items: center; }
+.ec-summary { flex: 1; display: flex; flex-direction: column; gap: 18px; }
+.ec-tone { font-size: 40px; font-weight: 900; letter-spacing: 0.06em; line-height: 1.3; }
+.ec-bars { display: flex; flex-direction: column; gap: 10px; }
+.ec-bar {
+  display: grid;
+  grid-template-columns: 34px 1fr 56px;
+  gap: 12px;
+  align-items: center;
+  font-size: 22px;
+}
+.ec-bar .ch { font-weight: 700; }
+.ec-bar .track { height: 14px; background: #e8dcc4; border-radius: 7px; overflow: hidden; }
+.ec-bar .fill { height: 100%; border-radius: 7px; }
+.ec-bar .num { text-align: right; }
+.ec-bar .num.hi { font-weight: 700; color: #9b2820; }
+.ec-legend { font-size: 16px; color: #6b5a4c; display: flex; align-items: center; gap: 10px; }
+.ec-two { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.ec-box {
+  background: #faf5e8;
+  border: 1px solid #e0cfa8;
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.ec-box p { font-size: 21px; line-height: 1.75; }
+.ec-stones { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.ec-stone {
+  display: flex; align-items: center; gap: 16px;
+  padding: 14px 18px; border: 1px solid #e0cfa8; background: #fdfaf2;
+}
+.ec-stone .nm { font-size: 24px; font-weight: 700; display: block; }
+.ec-stone .ds { font-size: 16px; color: #6b5a4c; display: block; }
+.ec-bottom { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 18px; }
+.ec-motto { text-align: center; font-size: 40px; font-weight: 700; letter-spacing: 0.3em; color: #c8392f; }
+.ec-foot {
+  display: flex; justify-content: space-between;
+  font-size: 17px; color: #6b5a4c;
+  border-top: 1px dashed #d4a857; padding-top: 14px;
+}
+.ec-sub { font-size: 22px; color: #6b5a4c; letter-spacing: 0.1em; }
+.ec-recipe-row {
+  display: grid;
+  grid-template-columns: 30px 1fr 70px;
+  gap: 14px;
+  align-items: center;
+  font-size: 23px;
+  padding: 10px 0;
+  border-bottom: 1px solid #eadfc6;
+}
+.ec-recipe-row .el { color: #6b5a4c; font-size: 18px; }
+.ec-recipe-row .ct { text-align: right; font-weight: 700; }
+.ec-trends { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+.ec-trend {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  padding: 12px 8px; background: #faf5e8; border: 1px solid #e0cfa8;
+}
+.ec-trend .ch { font-size: 36px; font-weight: 700; }
+.ec-trend .ar { font-size: 28px; font-weight: 700; }
+.ec-trend .tx { font-size: 16px; color: #6b5a4c; }
+.ec-advice { display: flex; flex-direction: column; gap: 8px; }
+.ec-advice p { font-size: 20px; line-height: 1.6; display: flex; gap: 12px; }
+.ec-advice .dot { color: #c8392f; flex-shrink: 0; }
+.ec-qr {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  font-size: 15px; color: #6b5a4c; letter-spacing: 0.15em;
+}
+.ec-qr img {
+  width: 132px; height: 132px; display: block;
+  background: #ffffff; padding: 6px; border: 1px solid #d4a857;
+}
+
 @media (max-width: 600px) {
   .container { padding: 24px 16px 60px; }
   .input-card { padding: 24px 18px; }
@@ -795,6 +953,10 @@ button {
     <div class="lunar-note">請輸入農曆（陰曆）出生日期。若該年有閏月且為閏月生，請勾選「是閏月」。</div>
 
     <div class="form-grid">
+      <div class="field">
+        <label>姓名</label>
+        <input type="text" id="name" maxlength="12" placeholder="例：陳小明">
+      </div>
       <div class="field">
         <label>農曆年</label>
         <input type="number" id="year" value="1990" min="1900" max="2099">
@@ -880,6 +1042,18 @@ button {
       <div class="crystal-footnote">
         ※ 中華傳統文化重「致中和」，五行各占 20% 為最佳均衡。實務上請依個人狀況調整介入強度（如水晶大小、佩戴時間、配合飲食衣著等）。
       </div>
+    </div>
+
+    <div id="ec-section">
+      <div class="section-title">
+        <span class="symbol">◆</span>
+        <h2>五行能量卡</h2>
+        <span class="line"></span>
+      </div>
+      <div class="ec-actions">
+        <button class="btn-primary" id="ec-dl" onclick="downloadCard()">下載能量卡</button>
+      </div>
+      <div class="ec-stage" id="ec-stage"></div>
     </div>
 
   </section>
@@ -1482,7 +1656,8 @@ function renderResult(pillars, opts){
   }
   showLiunian();
 
-  renderCrystals(wxCount, wxNet, dp.gan);
+  const rec = renderCrystals(wxCount, wxNet, dp.gan);
+  renderEnergyCard(pArr, dp, rec, yearGZ(currentYear));
 }
 
 function renderCrystals(wxCount, wxNet, dayGan){
@@ -1555,13 +1730,15 @@ function renderCrystals(wxCount, wxNet, dayGan){
   const listEl = document.getElementById('crystal-list');
   listEl.innerHTML = '';
 
-  if(topMinimal.improvement <= 0.01){
-    const sorted = [...WX_ORDER].sort((a,b) => acquiredPct[a] - acquiredPct[b]);
+  const balanced = topMinimal.improvement <= 0.01;
+  const sortedAsc = [...WX_ORDER].sort((a,b) => acquiredPct[a] - acquiredPct[b]);
+
+  if(balanced){
     const item = document.createElement('div');
     item.className = 'crystal-item';
     item.innerHTML = `
-      <div class="element ${WX_COLOR_CLASS[sorted[0]]}">${WX_CN[sorted[0]]} （命局均衡，僅供參考）</div>
-      <div class="stones">${CRYSTAL_MAP[sorted[0]].join('・')}</div>
+      <div class="element ${WX_COLOR_CLASS[sortedAsc[0]]}">${WX_CN[sortedAsc[0]]} （命局均衡，僅供參考）</div>
+      <div class="stones">${CRYSTAL_MAP[sortedAsc[0]].join('・')}</div>
     `;
     listEl.appendChild(item);
   } else {
@@ -1582,6 +1759,370 @@ function renderCrystals(wxCount, wxNet, dayGan){
       `;
       listEl.appendChild(item2);
     }
+  }
+
+  // 提供給能量卡使用
+  let supplements;
+  if(balanced) supplements = [sortedAsc[0]];
+  else if(!isSame && topBest.improvement > 0.01) supplements = [topMinimal.wx, topBest.wx];
+  else supplements = [topMinimal.wx];
+  return { acquiredPct, supplements, balanced };
+}
+
+/* =========================================================
+   五行能量卡
+   ========================================================= */
+const EC_COLOR = {wood:'#4a6741', fire:'#c8392f', earth:'#8a6a2c', metal:'#6f6a5c', water:'#2c3e5a'};
+const EC_FILL  = {wood:'#4a6741', fire:'#c8392f', earth:'#b8893c', metal:'#8a8576', water:'#2c3e5a'};
+const EC_TRAIT = {wood:'舒展', fire:'溫暖', earth:'穩定', metal:'收斂', water:'沉靜'};
+const EC_DESC  = {wood:'舒展生發', fire:'溫暖熱情', earth:'穩定踏實', metal:'清明收斂', water:'沉靜柔和'};
+const EC_Q     = {wood:'生', fire:'暖', earth:'穩', metal:'清', water:'潤'};
+const EC_S     = {wood:'華', fire:'明', earth:'德', metal:'鋒', water:'智'};
+const EC_STRONG = {
+  wood:  '天生帶著木的生長力，有理想、有衝勁，總想往上伸展。木氣過盛時易固執、易躁進，',
+  fire:  '天生一團明亮的火，熱情、有行動力，常是人群中的焦點。火勢過旺時易急、易耗，',
+  earth: '天生有土的厚實，穩重可靠，是身邊人的依靠。土氣過重時易保守、易鬱滯，',
+  metal: '天生帶著金的鋒芒，果斷、有原則，做事講求效率。金氣過剛時易嚴苛、易孤高，',
+  water: '天生有水的靈動，聰慧、善於變通，心思細膩。水氣過旺時易多慮、易飄移，'
+};
+// 每個五行三種珠材：[主珠, 點綴珠, 輔珠]（取自五行能量寶珠目錄）
+const EC_STONES = {
+  wood:  [{n:'綠幽靈', f:'#8dbb86', s:'#4a6741'}, {n:'天河石', f:'#8fcfc0', s:'#4f8f80'}, {n:'綠草莓晶', f:'#b5d9a5', s:'#5f8f55'}],
+  fire:  [{n:'粉晶',   f:'#f2c4cf', s:'#c08593'}, {n:'紫水晶', f:'#9b7bc4', s:'#654a8c'}, {n:'石榴石', f:'#8e2a36', s:'#5e1822'}],
+  earth: [{n:'黃水晶', f:'#e8c25a', s:'#a7832a'}, {n:'黃虎眼石', f:'#b8862e', s:'#7a5818'}, {n:'茶晶', f:'#8a6a4a', s:'#5a4330'}],
+  metal: [{n:'白水晶', f:'#f7f7f4', s:'#bdb8ab'}, {n:'鈦晶',   f:'#d4a857', s:'#9a7330'}, {n:'月光石', f:'#e3e6ee', s:'#a9aec0'}],
+  water: [{n:'海藍寶', f:'#9cc7d8', s:'#5f8fa3'}, {n:'青金石', f:'#2d4a8a', s:'#1b2f5c'}, {n:'拉長石', f:'#7d8a96', s:'#4d5863'}]
+};
+
+const EC_LIFE = {
+  wood:  '多著綠、青色，晨起散步、伸展筋骨，親近草木',
+  fire:  '多著紅、紫色，多曬太陽、保持開朗，樂於交流',
+  earth: '多著黃、褐色，飲食定時、作息規律，腳踏實地',
+  metal: '多著白、金色，整理環境、規律作息，言行有度',
+  water: '多著黑、藍色，靜心早睡、親近水邊，沉澱思緒'
+};
+const EC_COLORNAME = {wood:'綠', fire:'紅', earth:'黃', metal:'白', water:'黑'};
+const EC_QR = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAmoAAAJoAQAAAAD+YfDZAAAK1mlDQ1BJQ0MgUHJvZmlsZQAAeJyVlwdUU8kax+fem15ooUsJvSOdAFJCD106iEpIAgklxoSgInYWV3AtqIhgRRdEFFxdAVkLYsHComDB/oIsCuq6WLCh8m7gEXb3nffeed85k/mdLzNfmcyc8w8A1FC2SJQLqwCQJ8wXx4b405NTUun45wAGCNAARsCczZGImDExEQC1qfmv9v4OgOTzTTt5rH///r+aGpcn4QAApaGcwZVw8lBuR8dzjkicDwByGPWbLMoXyfkGyupitECUf5Nz1iR/lHPGBGMoE2viYwNQpgNAoLDZ4iwAKLaon17AyULjUOQ9OAi5AiHKRSj7cPhsLsqnULbNy1sg5yGULdH1IgCo6OkARsafYmb9JX6GIj6bnaXgyb4mjBAokIhy2Uv+z6P535aXK53KYY4OCl8cGivPh57f3ZwF4QoWZkRFT7GAO1mTnPnS0IQp5kgCUqeYyw4MV+zNjYqY4kxBMEsRJ58VP8U8SVDcFIsXxCpyZYoDmFPMFk/kJaEsk+YkKPx8HksRv5AfnzTFBYLEqCmW5MSFT68JUPjF0lhF/TxhiP903mBF73mSP/UrYCn25vPjQxW9s6fr5wmZ0zElyYrauLzAoOk1CYr1onx/RS5RboxiPS83ROGXFMQp9uajl3N6b4ziDLPZYTFTDAQgErABh648RQDk8xbnyxsJWCBaIhZk8fPpTPS18egsIcfelu7k4OQGgPztTl6Ht3cn3iSkSZj2SW4B4IneE0g47ZtXAkCbOwC036d9puibIO8H4HQvRyoumPRh5B9Y9NdTBupABxgAE2AJ7IATcANewA8EgTAQDeJBCpiH1soHeUAMFoEisAqUgDKwCWwDVWAP2A8OgiPgGGgBp8A5cAlcAzfAbfAAyMAgeAFGwHswBkEQHqJCNEgHMoTMIBvICWJAPlAQFAHFQilQOpQFCSEpVAStgcqgcqgK2gfVQz9BJ6Fz0BWoB7oH9UPD0BvoM4zAFFgd1ofN4ZkwA2bC4XA8PBfOghfChXAxvAGuhGvgw3AzfA6+Bt+GZfALeBQBCBnRRIwQO4SBBCDRSCqSiYiR5UgpUoHUII1IG9KJ3ERkyEvkEwaHoWHoGDuMFyYUk4DhYBZilmPWY6owBzHNmAuYm5h+zAjmG5aK1cPaYD2xLGwyNgu7CFuCrcDWYk9gL2JvYwex73E4nCbOAueOC8Wl4LJxS3HrcbtwTbh2XA9uADeKx+N18DZ4b3w0no3Px5fgd+AP48/ie/GD+I8EMsGQ4EQIJqQShITVhArCIcIZQi/hGWGMqEI0I3oSo4lc4hLiRuIBYhvxOnGQOEZSJVmQvEnxpGzSKlIlqZF0kfSQ9JZMJhuTPcizyQLySnIl+Sj5Mrmf/ImiRrGmBFDSKFLKBkodpZ1yj/KWSqWaU/2oqdR86gZqPfU89TH1oxJNyV6JpcRVWqFUrdSs1Kv0SpmobKbMVJ6nXKhcoXxc+brySxWiirlKgApbZblKtcpJlT6VUVWaqqNqtGqe6nrVQ6pXVIfU8GrmakFqXLVitf1q59UGaAjNhBZA49DW0A7QLtIG1XHqFuos9Wz1MvUj6t3qIxpqGi4aiRqLNao1TmvINBFNc02WZq7mRs1jmnc0P2vpazG1eFrrtBq1erU+aM/Q9tPmaZdqN2nf1v6sQ9cJ0snR2azTovNIF6NrrTtbd5Hubt2Lui9nqM/wmsGZUTrj2Iz7erCetV6s3lK9/XpdeqP6Bvoh+iL9Hfrn9V8aaBr4GWQbbDU4YzBsSDP0MRQYbjU8a/icrkFn0nPplfQL9BEjPaNQI6nRPqNuozFjC+ME49XGTcaPTEgmDJNMk60mHSYjpoamkaZFpg2m982IZgwzvtl2s06zD+YW5knma81bzIcstC1YFoUWDRYPLamWvpYLLWssb1nhrBhWOVa7rG5Yw9au1nzrauvrNrCNm43AZpdNjy3W1sNWaFtj22dHsWPaFdg12PXba9pH2K+2b7F/NdN0ZurMzTM7Z35zcHXIdTjg8MBRzTHMcbVjm+MbJ2snjlO10y1nqnOw8wrnVufXLjYuPJfdLnddaa6RrmtdO1y/urm7id0a3YbdTd3T3Xe69zHUGTGM9YzLHlgPf48VHqc8Pnm6eeZ7HvP8w8vOK8frkNfQLItZvFkHZg14G3uzvfd5y3zoPuk+e31kvka+bN8a3yd+Jn5cv1q/Z0wrZjbzMPOVv4O/2P+E/4cAz4BlAe2BSGBIYGlgd5BaUEJQVdDjYOPgrOCG4JEQ15ClIe2h2NDw0M2hfSx9FodVzxoJcw9bFnYhnBIeF14V/iTCOkIc0RYJR4ZFbol8GGUWJYxqiQbRrOgt0Y9iLGIWxvwyGzc7Znb17KexjrFFsZ1xtLj5cYfi3sf7x2+Mf5BgmSBN6EhUTkxLrE/8kBSYVJ4kS56ZvCz5WopuiiClNRWfmphamzo6J2jOtjmDaa5pJWl35lrMXTz3yjzdebnzTs9Xns+efzwdm56Ufij9CzuaXcMezWBl7MwY4QRwtnNecP24W7nDPG9eOe9ZpndmeeZQlnfWlqxhvi+/gv9SECCoErzODs3ek/0hJzqnLmc8Nym3KY+Ql553UqgmzBFeWGCwYPGCHpGNqEQkW+i5cNvCEXG4uFYCSeZKWvPVUZHUJbWUfiftL/ApqC74uChx0fHFqouFi7uWWC9Zt+RZYXDhj0sxSzlLO4qMilYV9S9jLtu3HFqesbxjhcmK4hWDK0NWHlxFWpWz6tfVDqvLV79bk7SmrVi/eGXxwHch3zWUKJWIS/rWeq3d8z3me8H33euc1+1Y962UW3q1zKGsouzLes76qz84/lD5w/iGzA3dG9027t6E2yTcdGez7+aD5arlheUDWyK3NG+lby3d+m7b/G1XKlwq9mwnbZdul1VGVLbuMN2xaceXKn7V7Wr/6qadejvX7fywi7urd7ff7sY9+nvK9nzeK9h7d1/IvuYa85qK/bj9BfufHkg80Pkj48f6Wt3astqvdcI62cHYgxfq3evrD+kd2tgAN0gbhg+nHb5xJPBIa6Nd474mzaayo+Co9Ojzn9J/unMs/FjHccbxxp/Nft55gnaitBlqXtI80sJvkbWmtPacDDvZ0ebVduIX+1/qThmdqj6tcXrjGdKZ4jPjZwvPjraL2l+eyzo30DG/48H55PO3Lsy+0H0x/OLlS8GXzncyO89e9r586ornlZNXGVdbrrlda+5y7Trxq+uvJ7rdupuvu19vveFxo61nVs+ZXt/eczcDb166xbp17XbU7Z47CXfu9qX1ye5y7w7dy733+n7B/bEHKx9iH5Y+UnlU8Vjvcc0/rP7RJHOTne4P7O96EvfkwQBn4MVvkt++DBY/pT6teGb4rH7IaejUcPDwjedzng++EL0Ye1nyu+rvO19Zvvr5D78/ukaSRwZfi1+Pv1n/Vudt3TuXdx2jMaOP3+e9H/tQ+lHn48FPjE+dn5M+Pxtb9AX/pfKr1de2b+HfHo7njY+L2GL2hBRA0AFnZgLwpg7VximodkB1OWnOpLaeMGjy/8AEgf/Ek/p7wlDlUtcOgFx2ha8EYO+UnEVHjB8A8X4AdnZWjH+ZJNPZaTIWuQWVJhXj429R7Yi3AuBr3/j4WMv4+NdatNj7ALS/n9T0csOhWr4RqX2XbXs9asNK8Deb1Pt/6vHvM5BX4AL+Pv8T474Ya/t8/4QAAAf5SURBVHja7Z07kuPIEYb/BBkBGhsBemqPuIHkySSPsp6OwZoT6AjSUcATrHQDdMiZdTbAiDXQE2j8MuqBwpOP5vT2TieMmR48PhTI6n8yszITQjxwOyV46KY4xSlOcYpTnOIUpzjF/blxzxJvCWB/OLgDG7z6AwBwEhGRLV56V4kJuPK6Wy8b+YV+s4pTnOK+Cy6l36r46I4kWWNFkmwlnG2cZPmt7eOeAuGn+VuLV7wn/AwAWHWHzF0Pa/SbVZziFHcfrlywvC7hzs4ydNuewLMcAMAZiyJCWrvwWf7qZJb2wNzoGv/DASaMrxnr3db93X6Xz8586G92PLrqQ8+7rf7OKu7D4u61oGKNXL99dCchDYCzbLFiDWEDAEeSBjueZHvzwx6i8SXdmYc3fHaVzjvFKU5xb8QZAAY58mndqmYDiNO4I0lgx2JKV4GzHB71sIV+s4pTnOKuxM1ahu20OZbM4TIXlwQAfAlrNl5AKQkgCbDvBTXF/uPCcMxMLID3fnbmsaa2zjvFKe4z4aq3ckwPdw5L1OvOLjyyQMZn2QLW2z7yixg8ywFnyRFFMUO4Mlm0C60W14D1tr2qlqhmnkcniuIUp7gH4/LhLhMZmhsADVoAYnWrcN72euiEA9Fqd38zOJIskQWTVHpmprNWB1uh36ziFKe498Ntb+R5z3kfEnxSkizgd/ul6L7ebfckiYw+Swj+KrKATSqqY4ecLLAjWSFlHeP2QS0brEKOEfY9+Vy0jtc6URT3R+LMh8bpVzGF2751YIdI9TqrENZYtApWOruwgbD1QlgEg7HByorufmAubp1T7SzW6WcahCprL9NRfDW58sNM3vObNTqNFae4P+qXrH3E6KqeSRaUqFy6TxMnNaJnNCKYmO6Uo9udsQKwsrutE96dvbIC6s8fe9u3f5St/retOMUp7pIFZe6zIkc46f4sMIhjGtpg5YQ4mZF8pq6Ap0XPBY/ks9uycKCN452xfG76VxSXIg4bnSiKU5zi3gOXuTDii4gkpC1Y3PEkIn9hhVdZA0cXzdyRLJ1x+WLPPPXqtvsaLt6czZ0MWmET40Q6Hz9agQt12+amZ1T3WHGKU+c94PKpEw6LNS0jA7O3tl1ixxpw9d7RViJj3a3XAPvgbaehPnzSXKyv+kjiIa/nT6x0oihOcYqb9DTvwdUzkoMtBjG/WGxnC61fxK5uh8LukxwAZCwBUKL7xPU57PUMmo/MmiVvO9eJojjFKe4q3KUC6GKZx1CAs4+Lao4sQdZdalCe+oPe1067PJ6w7L32lmTET5xKAl9R4nekNfC6Dq0yDgWQVectIASYxGved9Ztb3WiKE5xfwqc+Rg4c/0tZIw7S44X2YK2l+SRNgC5539l53KG2NXb7FgCeJENKC4Z8tQLVlYAatSdsXhRxQfGbDEIVt7jbTc6jRWnuB/FPb7NgroCV/UF0dx0n8MgWGmNxqgQx6tk1q1r255Be3f2ijVWXcLlxUKcfChr/QF7f56P+mbXOo0Vp7jPjLvVgvo3gBpfp83SBvXA9uzhUp5lA/q+vnt+EYOMv0ruM4aAL+7qjBVebeM138hyiOvKKZdCCw/1to3OO8Up7sfGJUPp2NyB6xZchK++He8BGUuk1jqUwX0yljbvXKQr3ekGk8/L2hMm+wU9IRkduLbqqNWJojjFKe5unJnIspHpU2UO5zIrbbByT/IkIrmr20a3tLNz/jbmgpULZlw1MYixDBb6RhzFKU5xb1uvWAi4lTOCGDYujiYOVpbOnmy6TEnjKhNtZmXYjlHVY+perTMKVpazoYJrNuq8U5ziFHctrr4Z97dw3U+dhWeCan2dvvSblVrTswYZvZks7d40dmS8CNTr7btn4arDXSJ7d35xbc1777xcU4MUpzjF3eZtXyU0Y+uMXW5lytY34/USmIV+5qt+l7QKK9cnbbIQp3aDiJrxdgbzZmp864lhX/fZ/WhN16rPNI23KgFvxrWPxSUf+reiffTo2guruqW7fTMnnyXsanUad7c4suwlB0U9K/fRS28l9s2Lpdd3l3PWcTkrGNolTXGKU9zk/7NF9HNzEy53RtwmHmw5gHFKu0YxzKlO5a1XyTK41UFTjdPU1HXpBYSc97aB2SWn4Gt7g3Q8Pp13ilOc4i5YhgtO+KSneu5JcVqjOAD+XYkj5Tq5XUyyanJ0/+nt+ub9807efS82p6tWQL9NRFnfNY1U553iFKc4zMbvxhlDUdO1LmgZJYyXSF03jASwdYw7niQHxhlDmGi6trYabsLuzTDikC+YlppJrjjFKe7744p5TbEmad03yYrI2y6wc051ysZ6z97bRpcaNJVZGcUwjxPe9kIMQS444UXvYavvHPjQeac4xX1anIl04XeXGkTDK3h9+VxZ+aSr92ao+G78ub7DJVl3Z1ux1fcxKk5xintX3HbWdb0Ll5EsXYvz1gcqvb8dba4Q8pqHfbJjMwCKUdaQ235Wb1txilPcgyTAzOAWsgpn3neYTJuL3TtlxRZ1H0Pn87RbxO7eXnuxxfnMM9Vz47unzU+l805xivucuOLyxbPLvdX4lDJoSjNnfc4uRp99q3IJOTrPrmdljle7sx+sTHmWyNJdLAOfeqrB2EavHyt0oihOcYoDll6C4Lztdb/z+WRp3yGYi/08yL+TvzjT0Rfk/JP8l9v3P5LkC8mWbH7xV/32D5IshI981pNOFMUpTnGKU5ziPivu//QnEGsxQUmwAAAAAElFTkSuQmCC';
+
+// 依五行生剋產生諮詢師叮嚀
+function ecRelLine(S, w){
+  const s = WX_CN[S], x = WX_CN[w];
+  const r = wxRelation(S, w);
+  if(r === 'gen')    return `${s}生${x}，以${x}洩${s}之秀：讓旺盛的${s}氣有出口，化為實在的成果。`;
+  if(r === 'ke')     return `${s}剋${x}，以${x}耗${s}之力：把多餘的${s}氣用於經營實踐，動而有得。`;
+  if(r === 'ke_me')  return `${x}剋${s}，以${x}制${s}之過：適度的規矩與節制，讓${s}氣不致泛濫。`;
+  if(r === 'gen_me') return `${x}生${s}，以${x}固${s}之本：根基穩了，旺氣才能用得長久。`;
+  return `${x}氣入局，助命局流通，使五行相生不息。`;
+}
+function ecAdvice(strong, supp, balanced){
+  const a = supp[0], s = WX_CN[strong];
+  if(balanced){
+    return [
+      '五行周流，相生不息：木生火、火生土、土生金、金生水、水生木，氣韻自足。',
+      `宜守中持平，不必刻意大補；以${WX_CN[a]}輕輕點綴，${EC_TRAIT[a]}身心即可。`,
+      `生活上${EC_LIFE[a]}，順四時而行。`
+    ];
+  }
+  if(supp.length > 1){
+    return [
+      ecRelLine(strong, supp[0]),
+      ecRelLine(strong, supp[1]),
+      `生活上${EC_LIFE[a]}；${EC_COLORNAME[strong]}色系之物宜少，過猶不及。`
+    ];
+  }
+  return [
+    ecRelLine(strong, a),
+    `生活上${EC_LIFE[a]}，助${WX_CN[a]}氣${EC_TRAIT[a]}。`,
+    `${s}氣已足，${EC_COLORNAME[strong]}色系之物宜少用，過猶不及，貴在致中和。`
+  ];
+}
+
+let ecName = '';
+
+function ecEsc(s){
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function ecCnYear(y){
+  const d = '〇一二三四五六七八九';
+  return String(y).split('').map(x => d[+x]).join('');
+}
+function ecBead(stone, cx, cy, r){
+  return `<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${r}" fill="${stone.f}" stroke="${stone.s}" stroke-width="1.5"/>` +
+         `<circle cx="${(cx - r*0.3).toFixed(1)}" cy="${(cy - r*0.35).toFixed(1)}" r="${(r*0.25).toFixed(1)}" fill="#ffffff" opacity="0.55"/>`;
+}
+
+function renderEnergyCard(pArr, dp, rec, yGZ){
+  const pct = rec.acquiredPct;
+  const supp = rec.supplements;
+  const balanced = rec.balanced;
+  const strong = [...WX_ORDER].sort((a,b) => pct[b] - pct[a])[0];
+  const name = (document.getElementById('name').value || '').trim();
+  ecName = name;
+  const nameHtml = name ? ecEsc(name) : '＿＿＿＿';
+
+  // 雷達圖
+  const maxv = Math.max(40, ...Object.values(pct));
+  const k = 140 / maxv;
+  const ang = i => (-90 + i * 72) * Math.PI / 180;
+  const pt = (r, i) => `${(170 + r * Math.cos(ang(i))).toFixed(1)},${(170 + r * Math.sin(ang(i))).toFixed(1)}`;
+  const outer = WX_ORDER.map((w,i) => pt(maxv * k, i)).join(' ');
+  const ideal = WX_ORDER.map((w,i) => pt(20 * k, i)).join(' ');
+  const val   = WX_ORDER.map((w,i) => pt(pct[w] * k, i)).join(' ');
+  const spokes = WX_ORDER.map((w,i) => { const [x,y] = pt(maxv*k, i).split(','); return `<line x1="170" y1="170" x2="${x}" y2="${y}" stroke="#e0cfa8" stroke-width="1"/>`; }).join('');
+  const dots = WX_ORDER.map((w,i) => { const [x,y] = pt(pct[w]*k, i).split(','); return `<circle cx="${x}" cy="${y}" r="6" fill="${EC_FILL[w]}"/>`; }).join('');
+  const labels = WX_ORDER.map((w,i) => {
+    const r = maxv * k + 26;
+    const x = 170 + r * Math.cos(ang(i));
+    const y = 170 + r * Math.sin(ang(i)) + 10;
+    return `<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="middle" font-size="28" font-weight="700" fill="${EC_COLOR[w]}" font-family="Noto Serif TC, serif">${WX_CN[w]}</text>`;
+  }).join('');
+  const radar = `<svg width="400" height="378" viewBox="-12 -16 364 344" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+    <polygon points="${outer}" fill="none" stroke="#d4a857" stroke-width="1"/>
+    ${spokes}
+    <polygon points="${ideal}" fill="none" stroke="#b8893c" stroke-width="2" stroke-dasharray="6 5"/>
+    <polygon points="${val}" fill="#c8392f" fill-opacity="0.16" stroke="#c8392f" stroke-width="2.5"/>
+    ${dots}${labels}
+  </svg>`;
+
+  const bars = WX_ORDER.map(w => {
+    const hi = !balanced && w === strong;
+    return `<div class="ec-bar"><span class="ch" style="color:${EC_COLOR[w]}">${WX_CN[w]}</span><div class="track"><div class="fill" style="width:${(pct[w]/maxv*100).toFixed(1)}%;background:${EC_FILL[w]}"></div></div><span class="num${hi ? ' hi' : ''}">${Math.round(pct[w])}%</span></div>`;
+  }).join('');
+
+  const suppCn = supp.map(w => WX_CN[w]).join('');
+  const tone = balanced
+    ? '五行均衡・氣韻流通'
+    : `${WX_CN[strong]}勢旺盛・<span style="color:${EC_COLOR[supp[0]]}">${suppCn}待補</span>`;
+  const reading = balanced
+    ? '五行分布相對均衡，氣韻流通，進退有度。宜守中持平、順勢而為，讓各方能量自然相生。'
+    : EC_STRONG[strong] + '宜以' + supp.map(w => `${WX_CN[w]}之${EC_TRAIT[w]}`).join('、') + '來調和。';
+
+  const yWx = GAN_WX[yGZ.gan];
+  const yCn = WX_CN[yWx];
+  const yNum = new Date().getFullYear();
+  let yearText;
+  if(supp.includes(yWx) && !balanced){
+    yearText = `今年${yGZ.gan}${yGZ.zhi}，${yCn}氣入局，正好補你所需，是順勢開展的好年。把握機會，穩步向前。`;
+  } else if(yWx === strong && !balanced){
+    yearText = `今年${yGZ.gan}${yGZ.zhi}，${yCn}上加${yCn}，機會多、節奏快。宜放慢半拍，先沉澱再出手，讓優勢走得更長遠。`;
+  } else {
+    yearText = `今年${yGZ.gan}${yGZ.zhi}，${yCn}氣當令，為命局帶來新的變化。保持彈性、順勢調整，便能化變為機。`;
+  }
+
+  const motto = balanced
+    ? '守中致和　順勢而行'
+    : `以${suppCn}之${supp.map(w => EC_Q[w]).join('')}　養${WX_CN[strong]}之${EC_S[strong]}`;
+
+  // 三顆開運寶石
+  let stones;
+  if(supp.length > 1) stones = [[supp[0],0],[supp[0],1],[supp[1],0]];
+  else stones = [[supp[0],0],[supp[0],1],[supp[0],2]];
+  const stonesHtml = stones.map(([w,i]) => {
+    const s = EC_STONES[w][i];
+    return `<div class="ec-stone"><svg width="52" height="52" viewBox="0 0 52 52">${ecBead(s, 26, 26, 24)}</svg><div><span class="nm">${s.n}</span><span class="ds">${WX_CN[w]}・${EC_DESC[w]}</span></div></div>`;
+  }).join('');
+
+  const pillarTitles = ['年','月','日','時'];
+  const pillarsHtml = pArr.map((p, i) => `<div class="ec-pillar"><span class="t${i === 2 ? ' day' : ''}">${pillarTitles[i]}</span><span class="g"><span style="color:${EC_COLOR[GAN_WX[p.gan]]}">${p.gan}</span><span style="color:${EC_COLOR[ZHI_WX[p.zhi]]}">${p.zhi}</span></span></div>`).join('');
+
+  const now = new Date();
+  const dateStr = `${now.getFullYear() - 1911} . ${String(now.getMonth()+1).padStart(2,'0')} . ${String(now.getDate()).padStart(2,'0')}`;
+
+  const front = `
+  <div class="ec-face" id="ec-front"><div class="ec-frame"><div class="ec-inner">
+    <div class="ec-row" style="align-items:flex-start">
+      <div>
+        <div class="ec-en">FIVE ELEMENTS · ENERGY CARD</div>
+        <div class="ec-title">五行能量卡</div>
+      </div>
+      <div class="ec-seal">能</div>
+    </div>
+    <div class="ec-row ec-idrow">
+      <div class="ec-id">
+        <div><span class="k">姓名　</span><span class="v">${nameHtml}</span></div>
+        <div><span class="k">日元　</span><span class="v" style="color:${EC_COLOR[GAN_WX[dp.gan]]}">${dp.gan}${WX_CN[GAN_WX[dp.gan]]}</span></div>
+      </div>
+      <div class="ec-pillars">${pillarsHtml}</div>
+    </div>
+    <div class="ec-main">
+      ${radar}
+      <div class="ec-summary">
+        <div>
+          <div class="ec-label">能 量 主 調</div>
+          <div class="ec-tone">${tone}</div>
+        </div>
+        <div class="ec-bars">${bars}</div>
+        <div class="ec-legend"><svg width="34" height="6"><line x1="0" y1="3" x2="34" y2="3" stroke="#b8893c" stroke-width="2" stroke-dasharray="6 5"/></svg>虛線為五行均衡（致中和）</div>
+      </div>
+    </div>
+    <div class="ec-two">
+      <div class="ec-box"><div class="ec-label">能 量 解 讀</div><p>${reading}</p></div>
+      <div class="ec-box"><div class="ec-label">${yGZ.gan} ${yGZ.zhi} 流 年 ・ ${ecCnYear(yNum)}</div><p>${yearText}</p></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="ec-label">開 運 寶 石</div>
+      <div class="ec-stones">${stonesHtml}</div>
+    </div>
+    <div class="ec-bottom">
+      <div class="ec-motto">${motto}</div>
+      <div class="ec-foot"><span>命理為參考・人生由自己掌握</span><span>${dateStr}</span></div>
+    </div>
+  </div></div></div>`;
+
+  // 手串配方：16 珠
+  const A = EC_STONES[supp[0]];
+  let seq, recipe;
+  if(supp.length > 1){
+    const B = EC_STONES[supp[1]];
+    const unit = [A[1], A[0], B[0], A[2], A[0], B[0], B[1], A[0]];
+    seq = unit.concat(unit);
+    recipe = [[A[1],supp[0],2],[A[0],supp[0],6],[A[2],supp[0],2],[B[0],supp[1],4],[B[1],supp[1],2]];
+  } else {
+    const unit = [A[1], A[0], A[2], A[0], A[2], A[0], A[2], A[0]];
+    seq = unit.concat(unit);
+    recipe = [[A[1],supp[0],2],[A[0],supp[0],8],[A[2],supp[0],6]];
+  }
+  const beads = seq.map((s, i) => {
+    const t = (-90 + i * 22.5) * Math.PI / 180;
+    const big = (s === A[1]);
+    return ecBead(s, 150 + 112*Math.cos(t), 150 + 112*Math.sin(t), big ? 23 : 20);
+  }).join('');
+  const recipeHtml = recipe.map(([s, w, n]) => `<div class="ec-recipe-row"><svg width="28" height="28" viewBox="0 0 28 28">${ecBead(s, 14, 14, 12)}</svg><span><strong>${s.n}</strong><span class="el">　${WX_CN[w]}</span></span><span class="ct">${n} 顆</span></div>`).join('');
+  const groupLine = supp.length > 1
+    ? `${WX_CN[supp[0]]}系 10 顆 ・ ${WX_CN[supp[1]]}系 6 顆`
+    : `${WX_CN[supp[0]]}系 16 顆`;
+  const subLine = balanced
+    ? `${nameHtml}・命局均衡，以${suppCn}輕補，守中致和`
+    : (supp.length > 1
+        ? `${nameHtml}・以${WX_CN[supp[0]]}為主、${WX_CN[supp[1]]}為輔，調和過旺之${WX_CN[strong]}`
+        : `${nameHtml}・以${WX_CN[supp[0]]}為主，調和過旺之${WX_CN[strong]}`);
+  const centerText = supp.map(w => WX_CN[w]).join(' ');
+
+  const trends = WX_ORDER.map(w => {
+    let ar = '・', tx = '持平', col = '#6b5a4c';
+    if(supp.includes(w)){ ar = '↑'; tx = '補強'; col = '#9b2820'; }
+    else if(w === strong && !balanced){ ar = '↓'; tx = '收斂'; col = '#2c3e5a'; }
+    return `<div class="ec-trend"><span class="ch" style="color:${EC_COLOR[w]}">${WX_CN[w]}</span><span class="ar" style="color:${col}">${ar}</span><span class="tx">${tx}</span></div>`;
+  }).join('');
+
+  const adviceHtml = ecAdvice(strong, supp, balanced).map(t => `<p><span class="dot">◆</span><span>${t}</span></p>`).join('');
+
+  const back = `
+  <div class="ec-face" id="ec-back"><div class="ec-frame"><div class="ec-inner" style="gap:28px">
+    <div>
+      <div class="ec-en">YOUR BALANCING BRACELET</div>
+      <div class="ec-title sm">專屬手串配方</div>
+      <div class="ec-sub">${subLine}</div>
+    </div>
+    <div class="ec-main" style="gap:52px">
+      <svg width="370" height="370" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+        <circle cx="150" cy="150" r="112" fill="none" stroke="#b8893c" stroke-width="1" stroke-dasharray="2 4"/>
+        ${beads}
+        <text x="150" y="146" text-anchor="middle" font-size="22" font-weight="900" fill="#c8392f" font-family="Noto Serif TC, serif">${centerText}</text>
+        <text x="150" y="172" text-anchor="middle" font-size="12" fill="#6b5a4c" letter-spacing="3" font-family="Noto Serif TC, serif">十六珠・致中和</text>
+      </svg>
+      <div style="flex:1;display:flex;flex-direction:column">
+        <div class="ec-label" style="margin-bottom:6px">珠 材 清 單</div>
+        ${recipeHtml}
+        <div style="display:flex;justify-content:space-between;font-size:19px;padding-top:12px;color:#6b5a4c"><span>${groupLine}</span><span>手圍 [　　] cm</span></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="ec-label">配 戴 後 的 能 量 走 向</div>
+      <div class="ec-trends">${trends}</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div class="ec-label">諮 詢 師 叮 嚀</div>
+      <div class="ec-advice">${adviceHtml}</div>
+    </div>
+    <div class="ec-row" style="flex:1;border-top:1px dashed #d4a857;padding-top:16px">
+      <div style="display:flex;flex-direction:column;gap:6px;font-size:18px;color:#6b5a4c">
+        <span>命理為參考・人生由自己掌握</span>
+      </div>
+      <div class="ec-qr"><img src="${EC_QR}" alt="預約諮詢 QR code"><span>掃碼預約諮詢</span></div>
+    </div>
+  </div></div></div>`;
+
+  const stage = document.getElementById('ec-stage');
+  stage.innerHTML = `<div class="ec-holder">${front}</div><div class="ec-holder">${back}</div>`;
+  ecFit();
+}
+
+function ecFit(){
+  const stage = document.getElementById('ec-stage');
+  if(!stage || !stage.clientWidth) return;
+  const cw = stage.clientWidth;
+  const s = cw >= 700 ? (cw - 24) / 2 / 1080 : cw / 1080;
+  stage.querySelectorAll('.ec-holder').forEach(h => {
+    h.style.width = (1080 * s) + 'px';
+    h.style.height = (1350 * s) + 'px';
+    h.firstElementChild.style.transform = `scale(${s})`;
+  });
+}
+window.addEventListener('resize', ecFit);
+
+function ecLoadH2C(){
+  if(window.html2canvas) return Promise.resolve();
+  return new Promise((resolve, reject) => {
+    const s = document.createElement('script');
+    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+    s.onload = resolve;
+    s.onerror = reject;
+    document.head.appendChild(s);
+  });
+}
+
+async function downloadCard(){
+  const faces = ['ec-front','ec-back'].map(id => document.getElementById(id));
+  if(faces.some(f => !f)) return;
+  const btn = document.getElementById('ec-dl');
+  const label = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = '產生中…';
+  try {
+    await ecLoadH2C();
+  } catch(e) {
+    alert('圖片工具載入失敗，請確認網路連線後再試一次。');
+    btn.disabled = false; btn.textContent = label;
+    return;
+  }
+  const holder = document.createElement('div');
+  holder.style.cssText = 'position:fixed;left:-20000px;top:0;width:1080px;';
+  const clones = faces.map(f => {
+    const c = f.cloneNode(true);
+    c.removeAttribute('id');
+    c.style.transform = 'none';
+    c.style.position = 'static';
+    holder.appendChild(c);
+    return c;
+  });
+  document.body.appendChild(holder);
+  try {
+    if(document.fonts && document.fonts.ready) await document.fonts.ready;
+    // 正面在上、背面在下，合成一張圖
+    const out = document.createElement('canvas');
+    out.width = 1080;
+    out.height = 1350 * 2;
+    const ctx = out.getContext('2d');
+    for(let i = 0; i < clones.length; i++){
+      const cv = await html2canvas(clones[i], { scale: 1, backgroundColor: '#f4ede0', width: 1080, height: 1350 });
+      ctx.drawImage(cv, 0, 1350 * i);
+    }
+    const blob = await new Promise(res => out.toBlob(res, 'image/png'));
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.download = `五行能量卡${ecName ? '_' + ecName : ''}.png`;
+    a.href = url;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 5000);
+  } catch(e) {
+    alert('圖片產生失敗，請再試一次。');
+  } finally {
+    holder.remove();
+    btn.disabled = false;
+    btn.textContent = label;
   }
 }
 
