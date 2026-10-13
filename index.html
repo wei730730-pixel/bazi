@@ -18,20 +18,20 @@
   --jade: #4a6741;
   --indigo: #2c3e5a;
   --shadow: rgba(26, 20, 16, 0.15);
-
+ 
   --wuxing-wood: #4a6741;
   --wuxing-fire: #c8392f;
   --wuxing-earth: #b8893c;
   --wuxing-metal: #c5c2b8;
   --wuxing-water: #2c3e5a;
-
+ 
   --font-display: 'Noto Serif TC', serif;
   --font-latin: 'Cormorant Garamond', serif;
   --font-mono: 'JetBrains Mono', monospace;
 }
-
+ 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-
+ 
 body {
   font-family: var(--font-display);
   background: var(--paper);
@@ -44,7 +44,7 @@ body {
   position: relative;
   overflow-x: hidden;
 }
-
+ 
 body::before {
   content: '';
   position: fixed;
@@ -54,7 +54,7 @@ body::before {
   opacity: 0.6;
   z-index: 1;
 }
-
+ 
 .container {
   max-width: 1100px;
   margin: 0 auto;
@@ -62,14 +62,14 @@ body::before {
   position: relative;
   z-index: 2;
 }
-
+ 
 .hero {
   text-align: center;
   margin-bottom: 48px;
   padding: 32px 16px 24px;
   position: relative;
 }
-
+ 
 .hero::before, .hero::after {
   content: '';
   position: absolute;
@@ -81,7 +81,7 @@ body::before {
 }
 .hero::before { top: 0; }
 .hero::after { bottom: 0; }
-
+ 
 .hero-cn {
   font-size: clamp(40px, 7vw, 64px);
   font-weight: 900;
@@ -90,7 +90,7 @@ body::before {
   margin-bottom: 8px;
   text-indent: 0.2em;
 }
-
+ 
 .hero-cn .seal {
   display: inline-block;
   color: var(--vermillion);
@@ -99,7 +99,7 @@ body::before {
   margin: 0 0.3em;
   transform: translateY(-0.1em);
 }
-
+ 
 .hero-en {
   font-family: var(--font-latin);
   font-style: italic;
@@ -108,13 +108,13 @@ body::before {
   letter-spacing: 0.15em;
   margin-bottom: 6px;
 }
-
+ 
 .hero-sub {
   font-size: 14px;
   color: var(--ink-soft);
   letter-spacing: 0.3em;
 }
-
+ 
 .input-card {
   background: linear-gradient(180deg, #faf5e8 0%, var(--paper) 100%);
   border: 1px solid var(--paper-deep);
@@ -124,7 +124,7 @@ body::before {
   margin-bottom: 32px;
   position: relative;
 }
-
+ 
 .input-card::before {
   content: '◆';
   position: absolute;
@@ -135,7 +135,7 @@ body::before {
   padding: 0 8px;
   font-size: 14px;
 }
-
+ 
 .section-label {
   font-size: 13px;
   letter-spacing: 0.4em;
@@ -144,7 +144,7 @@ body::before {
   font-weight: 500;
   text-indent: 0.4em;
 }
-
+ 
 .lunar-note {
   font-size: 12px;
   color: var(--ink-soft);
@@ -152,26 +152,26 @@ body::before {
   opacity: 0.75;
   font-style: italic;
 }
-
+ 
 .form-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 16px;
   margin-bottom: 20px;
 }
-
+ 
 .field {
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
-
+ 
 .field label {
   font-size: 13px;
   color: var(--ink-soft);
   letter-spacing: 0.1em;
 }
-
+ 
 .field input, .field select {
   font-family: var(--font-display);
   font-size: 16px;
@@ -182,36 +182,36 @@ body::before {
   border-radius: 2px;
   transition: all 0.2s;
 }
-
+ 
 .field input:focus, .field select:focus {
   outline: none;
   border-color: var(--vermillion);
   box-shadow: 0 0 0 3px rgba(200, 57, 47, 0.1);
 }
-
+ 
 .field.checkbox {
   flex-direction: row;
   align-items: center;
   gap: 8px;
   padding-top: 24px;
 }
-
+ 
 .field.checkbox input {
   width: 18px;
   height: 18px;
   cursor: pointer;
 }
-
+ 
 .field.checkbox label {
   cursor: pointer;
   user-select: none;
 }
-
+ 
 .field.checkbox.disabled {
   opacity: 0.4;
   pointer-events: none;
 }
-
+ 
 .error-msg {
   background: rgba(200, 57, 47, 0.1);
   border-left: 3px solid var(--vermillion);
@@ -221,16 +221,16 @@ body::before {
   font-size: 14px;
   display: none;
 }
-
+ 
 .error-msg.show { display: block; }
-
+ 
 .btn-row {
   display: flex;
   gap: 12px;
   margin-top: 24px;
   flex-wrap: wrap;
 }
-
+ 
 button {
   font-family: var(--font-display);
   font-size: 15px;
@@ -241,7 +241,7 @@ button {
   transition: all 0.2s;
   border-radius: 2px;
 }
-
+ 
 .btn-primary {
   background: var(--vermillion);
   color: var(--paper);
@@ -252,7 +252,7 @@ button {
   transform: translateY(-1px);
   box-shadow: 0 4px 14px rgba(200, 57, 47, 0.4);
 }
-
+ 
 .btn-ghost {
   background: transparent;
   color: var(--vermillion-deep);
@@ -261,39 +261,39 @@ button {
 .btn-ghost:hover {
   background: rgba(200, 57, 47, 0.08);
 }
-
+ 
 .result {
   display: none;
   animation: fadeUp 0.6s ease;
 }
 .result.show { display: block; }
-
+ 
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
-
+ 
 .result-header {
   text-align: center;
   margin-bottom: 32px;
   padding: 20px;
   background: linear-gradient(180deg, transparent, rgba(184, 137, 60, 0.05));
 }
-
+ 
 .result-header .meta {
   font-size: 14px;
   color: var(--ink-soft);
   letter-spacing: 0.15em;
   margin-bottom: 4px;
 }
-
+ 
 .result-header .solar-equiv {
   font-family: var(--font-mono);
   font-size: 12px;
   color: var(--gold);
   margin-top: 8px;
 }
-
+ 
 .pillars {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -303,7 +303,7 @@ button {
   margin-bottom: 32px;
   overflow: hidden;
 }
-
+ 
 .pillar {
   background: var(--paper);
   padding: 16px 8px;
@@ -312,7 +312,7 @@ button {
   flex-direction: column;
   gap: 8px;
 }
-
+ 
 .pillar-title {
   font-size: 12px;
   letter-spacing: 0.3em;
@@ -321,7 +321,7 @@ button {
   border-bottom: 1px solid var(--paper-deep);
   text-indent: 0.3em;
 }
-
+ 
 .pillar-cell {
   padding: 4px 0;
   font-size: 13px;
@@ -332,7 +332,7 @@ button {
   justify-content: center;
   flex-direction: column;
 }
-
+ 
 .pillar-cell.gz {
   font-size: 32px;
   font-weight: 700;
@@ -340,18 +340,18 @@ button {
   padding: 8px 0;
   line-height: 1.1;
 }
-
+ 
 .pillar-cell .gan, .pillar-cell .zhi {
   position: relative;
   display: inline-block;
 }
-
+ 
 .wx-wood { color: var(--wuxing-wood); }
 .wx-fire { color: var(--wuxing-fire); }
 .wx-earth { color: var(--wuxing-earth); }
 .wx-metal { color: #8a8576; }
 .wx-water { color: var(--wuxing-water); }
-
+ 
 .pillar-cell.hidden {
   font-size: 14px;
   line-height: 1.4;
@@ -360,13 +360,13 @@ button {
 .pillar-cell.hidden span {
   display: block;
 }
-
+ 
 .pillar-cell.shishen {
   font-size: 13px;
   color: var(--vermillion);
   letter-spacing: 0.05em;
 }
-
+ 
 .pillar.daymaster {
   background: linear-gradient(180deg, #fdfaf2 0%, #f9f0db 100%);
   position: relative;
@@ -380,37 +380,37 @@ button {
   color: var(--vermillion);
   letter-spacing: 0.1em;
 }
-
+ 
 .wuxing-section {
   margin-bottom: 32px;
 }
-
+ 
 .wuxing-table {
   padding: 24px;
   background: rgba(255, 255, 255, 0.4);
   border: 1px solid var(--paper-deep);
 }
-
+ 
 .wuxing-row {
   display: grid;
   grid-template-columns: 60px repeat(5, 1fr);
   gap: 12px;
   align-items: center;
 }
-
+ 
 .wuxing-row.header {
   margin-bottom: 8px;
 }
-
+ 
 .wuxing-row.values {
   margin-top: 4px;
   margin-bottom: 16px;
 }
-
+ 
 .wuxing-row.values:last-child {
   margin-bottom: 0;
 }
-
+ 
 .wuxing-row-label {
   font-size: 13px;
   color: var(--ink-soft);
@@ -418,18 +418,18 @@ button {
   text-align: right;
   padding-right: 8px;
 }
-
+ 
 .wuxing-row-label.bold {
   font-weight: 700;
   color: var(--ink);
 }
-
+ 
 .wuxing-name {
   font-size: 28px;
   font-weight: 700;
   text-align: center;
 }
-
+ 
 .wuxing-bar-cell {
   height: 60px;
   background: rgba(0,0,0,0.04);
@@ -437,21 +437,21 @@ button {
   display: flex;
   align-items: flex-end;
 }
-
+ 
 .wuxing-fill {
   width: 100%;
   background: currentColor;
   transition: height 0.8s ease;
 }
-
+ 
 .wuxing-fill.innate {
   opacity: 0.45;
 }
-
+ 
 .wuxing-fill.acquired {
   opacity: 0.9;
 }
-
+ 
 .wuxing-value {
   font-family: var(--font-mono);
   font-size: 13px;
@@ -462,26 +462,26 @@ button {
   align-items: center;
   gap: 1px;
 }
-
+ 
 .wuxing-value.acquired {
   font-weight: 700;
   color: var(--ink);
 }
-
+ 
 .wuxing-value .wuxing-pct {
   font-size: 14px;
 }
-
+ 
 .wuxing-value.acquired .wuxing-pct {
   font-size: 15px;
 }
-
+ 
 .wuxing-value .wuxing-raw {
   font-size: 10px;
   opacity: 0.5;
   font-weight: 400;
 }
-
+ 
 .wuxing-value .diff {
   font-size: 11px;
   font-weight: 700;
@@ -490,13 +490,13 @@ button {
 .wuxing-value .diff.up { color: var(--vermillion); }
 .wuxing-value .diff.down { color: var(--indigo); }
 .wuxing-value .diff.flat { color: var(--ink-soft); opacity: 0.4; }
-
+ 
 .wx-wood-bg .wuxing-fill { background: var(--wuxing-wood); }
 .wx-fire-bg .wuxing-fill { background: var(--wuxing-fire); }
 .wx-earth-bg .wuxing-fill { background: var(--wuxing-earth); }
 .wx-metal-bg .wuxing-fill { background: #8a8576; }
 .wx-water-bg .wuxing-fill { background: var(--wuxing-water); }
-
+ 
 .wuxing-legend {
   display: flex;
   justify-content: center;
@@ -505,29 +505,29 @@ button {
   font-size: 12px;
   color: var(--ink-soft);
 }
-
+ 
 .wuxing-legend-item {
   display: flex;
   align-items: center;
   gap: 6px;
 }
-
+ 
 .wuxing-legend-swatch {
   width: 14px;
   height: 14px;
   background: var(--ink-soft);
   display: inline-block;
 }
-
+ 
 .wuxing-legend-swatch.innate {
   opacity: 0.3;
   border-top: 2px dashed var(--ink-soft);
 }
-
+ 
 .wuxing-legend-swatch.acquired {
   opacity: 0.9;
 }
-
+ 
 .wuxing-formula {
   font-size: 12px;
   color: var(--ink-soft);
@@ -536,11 +536,11 @@ button {
   font-style: italic;
   opacity: 0.7;
 }
-
+ 
 .luck-section {
   margin-bottom: 32px;
 }
-
+ 
 .luck-grid {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
@@ -548,7 +548,7 @@ button {
   background: var(--ink);
   border: 1px solid var(--ink);
 }
-
+ 
 .luck-start-info {
   background: rgba(184, 137, 60, 0.08);
   border: 1px solid var(--paper-deep);
@@ -558,19 +558,19 @@ button {
   font-size: 13px;
   color: var(--ink-soft);
 }
-
+ 
 .luck-cell {
   background: var(--paper);
   padding: 12px 6px;
   text-align: center;
   font-size: 13px;
 }
-
+ 
 .luck-cell.current {
   background: linear-gradient(180deg, #fff8ea 0%, #f9e9c4 100%);
   position: relative;
 }
-
+ 
 .luck-cell.current::after {
   content: '當';
   position: absolute;
@@ -580,11 +580,11 @@ button {
   color: var(--vermillion);
   font-weight: 700;
 }
-
+ 
 .liunian-section {
   margin-top: 24px;
 }
-
+ 
 .liunian-title {
   font-size: 14px;
   color: var(--ink-soft);
@@ -595,7 +595,7 @@ button {
   background: rgba(184, 137, 60, 0.06);
   border-left: 3px solid var(--gold);
 }
-
+ 
 .liunian-grid {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
@@ -603,7 +603,7 @@ button {
   background: var(--ink);
   border: 1px solid var(--ink);
 }
-
+ 
 .liunian-cell {
   background: var(--paper);
   padding: 10px 4px;
@@ -614,12 +614,12 @@ button {
   gap: 3px;
   align-items: center;
 }
-
+ 
 .liunian-cell.current {
   background: linear-gradient(180deg, #fff8ea 0%, #f9e9c4 100%);
   position: relative;
 }
-
+ 
 .liunian-cell.current::after {
   content: '今';
   position: absolute;
@@ -629,95 +629,95 @@ button {
   color: var(--vermillion);
   font-weight: 700;
 }
-
+ 
 .liunian-year {
   font-family: var(--font-mono);
   font-size: 11px;
   color: var(--ink-soft);
 }
-
+ 
 .liunian-age {
   font-size: 10px;
   color: var(--ink-soft);
   opacity: 0.7;
 }
-
+ 
 .liunian-gz {
   font-size: 18px;
   font-weight: 700;
   line-height: 1;
 }
-
+ 
 .liunian-shen {
   font-size: 10px;
   color: var(--vermillion);
 }
-
+ 
 .luck-age {
   font-size: 11px;
   color: var(--ink-soft);
   margin-bottom: 4px;
 }
-
+ 
 .luck-gz {
   font-size: 22px;
   font-weight: 700;
   line-height: 1;
   margin-bottom: 4px;
 }
-
+ 
 .luck-shen {
   font-size: 10px;
   color: var(--vermillion);
 }
-
+ 
 .crystal-section {
   margin-top: 32px;
   padding: 24px;
   background: linear-gradient(135deg, rgba(184, 137, 60, 0.08), rgba(200, 57, 47, 0.05));
   border-left: 3px solid var(--vermillion);
 }
-
+ 
 .crystal-section h3 {
   font-size: 18px;
   letter-spacing: 0.2em;
   margin-bottom: 12px;
   color: var(--ink);
 }
-
+ 
 .crystal-analysis {
   font-size: 14px;
   line-height: 1.8;
   margin-bottom: 16px;
   color: var(--ink-soft);
 }
-
+ 
 .crystal-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 12px;
 }
-
+ 
 .crystal-item {
   padding: 12px 16px;
   background: rgba(255,255,255,0.6);
   border-radius: 2px;
   border: 1px solid rgba(184, 137, 60, 0.2);
 }
-
+ 
 .crystal-item .element {
   font-size: 12px;
   color: var(--vermillion);
   letter-spacing: 0.1em;
   margin-bottom: 4px;
 }
-
+ 
 .crystal-item .stones {
   font-size: 14px;
   color: var(--ink);
   line-height: 1.5;
 }
-
+ 
 .crystal-footnote {
   margin-top: 16px;
   padding-top: 12px;
@@ -727,31 +727,31 @@ button {
   opacity: 0.75;
   line-height: 1.6;
 }
-
+ 
 .section-title {
   display: flex;
   align-items: center;
   gap: 16px;
   margin-bottom: 16px;
 }
-
+ 
 .section-title h2 {
   font-size: 18px;
   letter-spacing: 0.3em;
   font-weight: 500;
   text-indent: 0.3em;
 }
-
+ 
 .section-title .line {
   flex: 1;
   height: 1px;
   background: linear-gradient(90deg, var(--gold), transparent);
 }
-
+ 
 .section-title .symbol {
   color: var(--vermillion);
 }
-
+ 
 .disclaimer {
   font-size: 12px;
   color: var(--ink-soft);
@@ -763,7 +763,7 @@ button {
   opacity: 0.7;
   letter-spacing: 0.1em;
 }
-
+ 
 /* ===== 五行能量卡 ===== */
 #ec-section { margin-top: 40px; }
 .ec-actions {
@@ -922,7 +922,7 @@ button {
   width: 132px; height: 132px; display: block;
   background: #ffffff; padding: 6px; border: 1px solid #d4a857;
 }
-
+ 
 @media (max-width: 600px) {
   .container { padding: 24px 16px 60px; }
   .input-card { padding: 24px 18px; }
@@ -946,22 +946,157 @@ button {
   .liunian-age { font-size: 9px; }
   .liunian-shen { font-size: 9px; }
 }
+
+/* ===== 分頁 ===== */
+.tab-bar {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  margin: 0 auto 32px;
+  border-bottom: 1px solid var(--paper-deep);
+  max-width: 520px;
+}
+.tab-btn {
+  flex: 1;
+  font-family: var(--font-display);
+  font-size: 16px;
+  letter-spacing: 0.3em;
+  text-indent: 0.3em;
+  padding: 12px 8px;
+  min-height: 44px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+.tab-btn:hover { color: var(--ink); }
+.tab-btn.on { color: var(--vermillion-deep); border-bottom-color: var(--vermillion); font-weight: 700; }
+.tab-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+/* ===== 姓名五格 ===== */
+.wg-toolbar {
+  display: flex; align-items: center; justify-content: flex-end; gap: 8px;
+  font-size: 13px; color: var(--ink-soft); margin-bottom: 16px;
+}
+.wg-toolbar select {
+  font-family: var(--font-display); font-size: 13px; padding: 6px 10px;
+  border: 1px solid var(--paper-deep); background: #faf5e8; color: var(--ink);
+}
+.wg-empty {
+  text-align: center; padding: 40px 16px; color: var(--ink-soft);
+  border: 1px dashed rgba(184,137,60,0.4); background: rgba(255,255,255,0.4);
+}
+.wg-board {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  grid-template-areas: "wai chars right" "zong zong zong";
+  gap: 20px 28px;
+  align-items: center;
+  max-width: 760px;
+  margin: 0 auto;
+}
+.wg-wai { grid-area: wai; display: flex; justify-content: flex-end; }
+.wg-chars { grid-area: chars; display: flex; flex-direction: column; gap: 6px; padding: 0 14px; border-left: 1px solid var(--gold); border-right: 1px solid var(--gold); }
+.wg-right { grid-area: right; display: flex; flex-direction: column; gap: 10px; }
+.wg-zong { grid-area: zong; display: flex; justify-content: center; padding-top: 16px; border-top: 1px solid var(--ink); }
+.wg-char { display: flex; align-items: flex-end; gap: 6px; }
+.wg-char .c { font-size: 56px; font-weight: 900; line-height: 1.05; width: 1em; text-align: center; }
+.wg-char .n { font-family: var(--font-mono); font-size: 14px; color: var(--vermillion-deep); padding-bottom: 6px; min-width: 2ch; }
+.wg-char.sur .c { color: var(--ink); }
+.wg-char.ghost .c { font-size: 22px; color: var(--gold); height: 28px; line-height: 28px; }
+.wg-char.ghost .n { color: var(--gold); padding-bottom: 4px; }
+.wg-card {
+  background: rgba(255,255,255,0.6);
+  border: 1px solid rgba(184,137,60,0.25);
+  padding: 10px 14px;
+  min-width: 190px;
+}
+.wg-card.main { border-color: var(--vermillion); background: rgba(255,255,255,0.8); }
+.wg-card.wide { min-width: 260px; text-align: center; }
+.wg-card-top { display: flex; justify-content: space-between; gap: 12px; font-size: 13px; }
+.wg-card-top .lb { letter-spacing: 0.2em; font-weight: 700; }
+.wg-card-top .area { color: var(--ink-soft); font-size: 12px; }
+.wg-card.wide .wg-card-top { justify-content: center; }
+.wg-card-num { display: flex; align-items: baseline; gap: 4px; margin-top: 2px; }
+.wg-card.wide .wg-card-num { justify-content: center; }
+.wg-card-num .num { font-family: var(--font-mono); font-size: 28px; font-weight: 600; }
+.wg-card-num .el { font-size: 16px; }
+.wg-card-f { font-family: var(--font-mono); font-size: 12px; color: var(--ink-soft); }
+.luck { display: inline-block; white-space: nowrap; font-size: 13px; font-weight: 700; padding: 1px 8px; margin-left: 6px; border: 1px solid; }
+.luck.good { color: var(--jade); border-color: var(--jade); }
+.luck.bad { color: var(--vermillion-deep); border-color: var(--vermillion-deep); }
+.luck.na { color: var(--ink-soft); border-color: rgba(58,46,38,0.35); font-weight: 400; }
+.wg-muted { color: var(--ink-soft); font-size: 13px; }
+.luck.mid { color: #8a6a2c; border-color: #8a6a2c; }
+.wg-note { font-size: 12px; color: var(--ink-soft); text-align: center; margin: 20px auto 36px; max-width: 640px; line-height: 1.7; }
+.wg-table-wrap { overflow-x: auto; margin-bottom: 36px; }
+.wg-table { width: 100%; border-collapse: collapse; font-size: 14px; background: rgba(255,255,255,0.5); }
+.wg-table th, .wg-table td { padding: 10px 12px; border-bottom: 1px solid var(--paper-deep); text-align: left; vertical-align: middle; }
+.wg-table thead th { font-size: 12px; letter-spacing: 0.2em; color: var(--ink-soft); font-weight: 500; background: rgba(184,137,60,0.08); }
+.wg-table tbody th { white-space: nowrap; letter-spacing: 0.1em; }
+.wg-table tbody th small { display: block; font-size: 11px; color: var(--ink-soft); font-weight: 400; letter-spacing: 0; }
+.wg-table td.num { font-family: var(--font-mono); white-space: nowrap; }
+.wg-table .luck { margin-left: 0; }
+.wg-sancai { margin-bottom: 8px; }
+.wg-sancai-row { display: flex; justify-content: center; align-items: center; gap: 14px; margin-bottom: 16px; }
+.wg-sancai-row .cell { display: flex; flex-direction: column; align-items: center; width: 64px; padding: 8px 0; border: 1px solid rgba(184,137,60,0.3); background: rgba(255,255,255,0.6); font-size: 26px; font-weight: 700; }
+.wg-sancai-row .cell.main { border-color: var(--vermillion); }
+.wg-sancai-row .cell small { font-size: 11px; color: var(--ink-soft); font-weight: 400; letter-spacing: 0.2em; }
+.wg-sancai-row .ar { color: var(--gold); }
+.wg-sancai-list { list-style: none; max-width: 640px; margin: 0 auto; font-size: 14px; line-height: 1.8; }
+.wg-sancai-list li { display: flex; gap: 10px; align-items: baseline; padding: 6px 0; border-bottom: 1px dashed rgba(184,137,60,0.3); }
+.tag { flex: none; font-size: 12px; padding: 0 6px; border: 1px solid; }
+.t-順, .t-和 { color: var(--jade); }
+.t-耗 { color: #8a6a2c; }
+.t-逆 { color: var(--vermillion-deep); }
+.wg-compare-chips { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; margin-bottom: 14px; }
+.wg-chip { display: flex; flex-direction: column; align-items: center; padding: 8px 4px; background: rgba(255,255,255,0.6); border: 1px solid rgba(184,137,60,0.2); }
+.wg-chip > span:first-child { font-size: 20px; font-weight: 700; }
+.wg-chip .v { font-size: 12px; color: var(--ink-soft); font-family: var(--font-mono); }
+.wg-ge { font-family: var(--font-display); font-size: 12px; font-weight: 400; color: var(--ink-soft); margin-top: 2px; }
+.wg-summary { font-size: 15px; line-height: 1.8; color: var(--ink); }
+.wg-compare-legend { font-size: 12px; color: var(--ink-soft); margin: 10px 0 12px; line-height: 1.7; }
+.wg-cmp-table { background: rgba(255,255,255,0.5); margin-bottom: 14px; }
+.wg-compare-list .wg-soft { padding-left: 0; text-indent: 0; font-size: 13px; opacity: 0.85; }
+.wg-compare-list { list-style: none; font-size: 14px; line-height: 1.8; color: var(--ink-soft); }
+.wg-compare-list li { padding: 4px 0 4px 18px; text-indent: -18px; }
+.wg-compare-list .dot { display: inline-block; width: 18px; text-indent: 0; font-size: 10px; vertical-align: 1px; }
+
+@media (max-width: 600px) {
+  .wg-board { grid-template-columns: 1fr 1fr; grid-template-areas: "chars chars" "right right" "wai zong"; gap: 12px; }
+  .wg-chars { flex-direction: row; justify-content: center; border: none; border-bottom: 1px solid var(--gold); padding: 0 0 10px; }
+  .wg-char { flex-direction: column; align-items: center; gap: 0; }
+  .wg-char .c { font-size: 40px; }
+  .wg-char.ghost .c { height: 48px; line-height: 48px; }
+  .wg-right { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .wg-card, .wg-card.wide { min-width: 0; padding: 8px; text-align: center; }
+  .wg-card-top { flex-direction: column; gap: 0; align-items: center; }
+  .wg-card-num { justify-content: center; flex-wrap: wrap; }
+  .wg-card-num .num { font-size: 22px; }
+  .wg-wai, .wg-zong { display: block; padding-top: 0; border-top: none; }
+  .wg-compare-chips { gap: 4px; }
+  .wg-chip .v { font-size: 10px; white-space: nowrap; }
+  .wg-sancai-list li { font-size: 13px; }
+  .tab-btn { font-size: 15px; letter-spacing: 0.15em; }
+}
 </style>
 </head>
 <body>
-
+ 
 <div class="container">
-
+ 
   <header class="hero">
     <div class="hero-en">FOUR PILLARS · LUNAR EDITION</div>
     <h1 class="hero-cn">八字排盤</h1>
     <div class="hero-sub">農 曆 排 盤</div>
   </header>
-
+ 
   <section class="input-card">
     <div class="section-label">出 生 資 料 · 農 曆</div>
     <div class="lunar-note">請輸入農曆（陰曆）出生日期。若該年有閏月且為閏月生，請勾選「是閏月」。</div>
-
+ 
     <div class="form-grid">
       <div class="field">
         <label>姓名</label>
@@ -995,28 +1130,35 @@ button {
         <label for="isLeap">是閏月</label>
       </div>
     </div>
-
+ 
     <div class="error-msg" id="error-msg"></div>
-
+ 
     <div class="btn-row">
       <button class="btn-primary" onclick="calculate()">起 　 盤</button>
     </div>
   </section>
-
+ 
   <section class="result" id="result">
-
+ 
     <div class="result-header">
       <div class="meta" id="meta-line"></div>
       <div class="solar-equiv" id="solar-equiv"></div>
     </div>
 
+    <div class="tab-bar" role="tablist">
+      <button class="tab-btn on" role="tab" aria-selected="true" data-tab="bazi" onclick="switchTab('bazi')">八字命盤</button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="name" onclick="switchTab('name')">姓名五格</button>
+    </div>
+
+    <div class="tab-panel" id="panel-bazi">
+ 
     <div class="section-title">
       <span class="symbol">◆</span>
       <h2>四柱命盤</h2>
       <span class="line"></span>
     </div>
     <div class="pillars" id="pillars"></div>
-
+ 
     <div class="section-title">
       <span class="symbol">◆</span>
       <h2>五行 · 先天後天</h2>
@@ -1030,7 +1172,7 @@ button {
         <span style="opacity:0.65;">兩排柱狀圖顯示「占比 %」，可直接對比同一五行從先天到後天的比例變化（↑ 比例上升、↓ 比例下降）。</span>
       </div>
     </div>
-
+ 
     <div class="section-title">
       <span class="symbol">◆</span>
       <h2>大運流年</h2>
@@ -1044,7 +1186,7 @@ button {
         <div class="liunian-grid" id="liunian-grid"></div>
       </div>
     </div>
-
+ 
     <div class="crystal-section" id="crystal">
       <h3>◇ 五行 · 致中和補運建議</h3>
       <div class="crystal-analysis" id="crystal-analysis"></div>
@@ -1053,7 +1195,7 @@ button {
         ※ 中華傳統文化重「致中和」，五行各占 20% 為最佳均衡。實務上請依個人狀況調整介入強度（如水晶大小、佩戴時間、配合飲食衣著等）。
       </div>
     </div>
-
+ 
     <div id="ec-section">
       <div class="section-title">
         <span class="symbol">◆</span>
@@ -1077,12 +1219,31 @@ button {
       <div class="ec-stage" id="ec-stage"></div>
     </div>
 
+    </div><!-- /panel-bazi -->
+
+    <div class="tab-panel" id="panel-name" hidden>
+      <div class="section-title">
+        <span class="symbol">◆</span>
+        <h2>姓名五格</h2>
+        <span class="line"></span>
+      </div>
+      <div class="wg-toolbar">
+        <label for="wg-surname">姓氏</label>
+        <select id="wg-surname" onchange="renderNameAnalysis()">
+          <option value="auto">自動判斷</option>
+          <option value="1">單姓</option>
+          <option value="2">複姓</option>
+        </select>
+      </div>
+      <div id="wg-body"></div>
+    </div>
+ 
   </section>
-
+ 
   <p class="disclaimer">— 命由天定 · 運由己造 —<br>命理為參考，人生由自己掌握</p>
-
+ 
 </div>
-
+ 
 <script>
 const TIANGAN = ['甲','乙','丙','丁','戊','己','庚','辛','壬','癸'];
 const DIZHI   = ['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥'];
@@ -1097,7 +1258,7 @@ const ZHI_CANG = {
 const WX_CN = {wood:'木',fire:'火',earth:'土',metal:'金',water:'水'};
 const WX_COLOR_CLASS = {wood:'wx-wood',fire:'wx-fire',earth:'wx-earth',metal:'wx-metal',water:'wx-water'};
 const WX_ORDER = ['wood','fire','earth','metal','water'];
-
+ 
 const LUNAR_MONTH_CN = ['正月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'];
 const LUNAR_DAY_CN = [
   '初一','初二','初三','初四','初五','初六','初七','初八','初九','初十',
@@ -1118,7 +1279,7 @@ const SHICHEN = [
   {name:'戌時 (19–21)', hour:19},
   {name:'亥時 (21–23)', hour:21}
 ];
-
+ 
 // 1900-2099 農曆資料（紫金山天文台公開資料）
 const LUNAR_INFO = [
   0x04bd8,0x04ae0,0x0a570,0x054d5,0x0d260,0x0d950,0x16554,0x056a0,0x09ad0,0x055d2,
@@ -1142,7 +1303,7 @@ const LUNAR_INFO = [
   0x0b273,0x06930,0x07337,0x06aa0,0x0ad50,0x14b55,0x04b60,0x0a570,0x054e4,0x0d160,
   0x0e968,0x0d520,0x0daa0,0x16aa6,0x056d0,0x04ae0,0x0a9d4,0x0a2d0,0x0d150,0x0f252
 ];
-
+ 
 function lunarLeapMonth(year){
   return LUNAR_INFO[year - 1900] & 0xf;
 }
@@ -1162,7 +1323,7 @@ function lunarYearDays(year){
   }
   return sum + lunarLeapDays(year);
 }
-
+ 
 function lunarToSolar(year, month, day, isLeap){
   let offset = 0;
   for(let y = 1900; y < year; y++){
@@ -1184,7 +1345,7 @@ function lunarToSolar(year, month, day, isLeap){
     day: result.getUTCDate()
   };
 }
-
+ 
 // 節氣
 function dateToJD(y, m, d, h, mi, s){
   if(m <= 2){ y -= 1; m += 12; }
@@ -1252,10 +1413,10 @@ function solarTermDate(year, termIdx){
 function solarTermLocalMs(year, termIdx){
   return solarTermDate(year, termIdx).getTime() + 8 * 3600 * 1000;
 }
-
+ 
 const JIE_IDX = [2,4,6,8,10,12,14,16,18,20,22,0];
 const JIE_TO_ZHI = ['寅','卯','辰','巳','午','未','申','酉','戌','亥','子','丑'];
-
+ 
 function wxRelation(meWx, otherWx){
   if(meWx === otherWx) return 'same';
   const meIdx = WX_ORDER.indexOf(meWx);
@@ -1275,7 +1436,7 @@ function shishen(dayGan, otherGan){
     gen_me: sameYy ? '偏印' : '正印'
   }[rel];
 }
-
+ 
 // 四柱推算（輸入 ms 是本地時間視為 UTC 的毫秒）
 function yearPillar(birthMs, birthYear){
   const lichunMs = solarTermLocalMs(birthYear, 2);
@@ -1285,7 +1446,7 @@ function yearPillar(birthMs, birthYear){
   const idx = (offset + 60) % 60;
   return {gan: TIANGAN[idx % 10], zhi: DIZHI[idx % 12], year: usedYear};
 }
-
+ 
 function monthPillar(birthMs, birthYear, yearGan){
   const allJie = [];
   for(let yr of [birthYear-1, birthYear, birthYear+1]){
@@ -1306,7 +1467,7 @@ function monthPillar(birthMs, birthYear, yearGan){
   const monthOrder = (zhiIdx - 2 + 12) % 12;
   return {gan: TIANGAN[(startGanIdx + monthOrder) % 10], zhi: monthZhi};
 }
-
+ 
 // 日柱用 yyyy-mm-dd（已套用晚子時規則）
 function dayPillar(year, month, day){
   const BASE_MS = Date.UTC(2026, 0, 1);
@@ -1316,7 +1477,7 @@ function dayPillar(year, month, day){
   const idx = ((BASE_IDX + diff) % 60 + 60) % 60;
   return {gan: TIANGAN[idx % 10], zhi: DIZHI[idx % 12]};
 }
-
+ 
 function hourPillar(hour, dayGan){
   let zhiIdx;
   if(hour === 23 || hour === 0) zhiIdx = 0;
@@ -1326,7 +1487,7 @@ function hourPillar(hour, dayGan){
   const startIdx = TIANGAN.indexOf(wushu[dayGan]);
   return {gan: TIANGAN[(startIdx + zhiIdx) % 10], zhi: hourZhi};
 }
-
+ 
 function calcLuck(birthMs, birthYear, yearGan, gender, monthGZ){
   const isYangYear = ['甲','丙','戊','庚','壬'].includes(yearGan);
   const forward = (isYangYear && gender === 'male') || (!isYangYear && gender === 'female');
@@ -1364,7 +1525,7 @@ function calcLuck(birthMs, birthYear, yearGan, gender, monthGZ){
   }
   return {startAge: startYears, startMonths: remainMonths, list: luckList};
 }
-
+ 
 const CRYSTAL_MAP = {
   wood: ['綠幽靈', '翡翠', '橄欖石', '孔雀石', '綠碧璽', '東陵玉', '天河石', '綠草莓晶', '純草莓晶', '海洋玉髓', '彩虹螢石'],
   fire: ['紅瑪瑙', '紅碧璽', '石榴石', '紫水晶', '粉水晶', '紫鋰輝', '紫玉', '紫幽靈', '草莓晶', '摩根石', '硃砂', '彩兔毛水晶'],
@@ -1372,7 +1533,7 @@ const CRYSTAL_MAP = {
   metal: ['白水晶', '金髮晶', '銀曜石', '白瑪瑙', '珍珠', '月光石', '硨磲貝', '奶蓋黃水晶', '白翡翠', '彩曜石'],
   water: ['黑曜石', '藍寶石', '海藍寶', '拉長石', '青金石', '藍晶石', '黑瑪瑙', '金曜石', '黑髮晶', '黑草莓晶', '堇青石', '藍虎眼石']
 };
-
+ 
 function populateSelects(){
   const monthSel = document.getElementById('month');
   monthSel.innerHTML = '';
@@ -1383,7 +1544,7 @@ function populateSelects(){
     monthSel.appendChild(opt);
   });
   monthSel.value = 5;
-
+ 
   const daySel = document.getElementById('day');
   daySel.innerHTML = '';
   LUNAR_DAY_CN.forEach((d, i) => {
@@ -1393,7 +1554,7 @@ function populateSelects(){
     daySel.appendChild(opt);
   });
   daySel.value = 23;
-
+ 
   const hourSel = document.getElementById('hour');
   hourSel.innerHTML = '';
   SHICHEN.forEach((s) => {
@@ -1404,7 +1565,7 @@ function populateSelects(){
   });
   hourSel.value = 13;
 }
-
+ 
 function updateLeapAvailability(){
   const year = parseInt(document.getElementById('year').value);
   const month = parseInt(document.getElementById('month').value);
@@ -1420,7 +1581,7 @@ function updateLeapAvailability(){
   leapWrap.classList.add('disabled');
   leapCheck.checked = false;
 }
-
+ 
 function showError(msg){
   const el = document.getElementById('error-msg');
   el.textContent = msg;
@@ -1430,7 +1591,7 @@ function showError(msg){
 function clearError(){
   document.getElementById('error-msg').classList.remove('show');
 }
-
+ 
 function calculate(){
   clearError();
   const year = parseInt(document.getElementById('year').value);
@@ -1440,7 +1601,7 @@ function calculate(){
   const gender = document.getElementById('gender').value;
   const isLeap = document.getElementById('isLeap').checked &&
                  !document.getElementById('leap-wrap').classList.contains('disabled');
-
+ 
   if(year < 1900 || year > 2099){
     showError('農曆年需在 1900–2099 之間');
     return;
@@ -1450,41 +1611,41 @@ function calculate(){
     showError(`農曆 ${year} 年 ${isLeap ? '閏' : ''}${LUNAR_MONTH_CN[month-1]} 只有 ${maxDay} 天，請檢查日期`);
     return;
   }
-
+ 
   const solar = lunarToSolar(year, month, day, isLeap);
   if(!solar){
     showError('日期轉換失敗，請檢查輸入');
     return;
   }
-
+ 
   // 出生時刻（本地時間視為 UTC 毫秒，方便和節氣比較）
   const birthMs = Date.UTC(solar.year, solar.month - 1, solar.day, hour, 0);
-
+ 
   // 子時換日規則：以 00:00（子正）為日界
   // 23:00-00:00（晚子時）仍屬當日，00:00-01:00（早子時）已屬隔日
   // 因為使用者輸入「初三 子時」明確是當日 23 點，所以日柱用當日，不需要再推
   const dayY = solar.year, dayM = solar.month, dayD = solar.day;
-
+ 
   const yp = yearPillar(birthMs, solar.year);
   const mp = monthPillar(birthMs, solar.year, yp.gan);
   const dp = dayPillar(dayY, dayM, dayD);
   const hp = hourPillar(hour, dp.gan);
-
+ 
   renderResult({yp, mp, dp, hp}, {year, month, day, hour, gender, isLeap, solar, birthMs});
 }
-
+ 
 function renderResult(pillars, opts){
   const {yp, mp, dp, hp} = pillars;
   const {year, month, day, hour, gender, isLeap, solar, birthMs} = opts;
   document.getElementById('result').classList.add('show');
-
+ 
   const shichenName = SHICHEN.find(s => s.hour === hour).name;
   const lunarStr = `${year} 年 ${isLeap ? '閏' : ''}${LUNAR_MONTH_CN[month-1]} ${LUNAR_DAY_CN[day-1]} · ${shichenName}`;
   const genderStr = gender === 'male' ? '乾造（男）' : '坤造（女）';
   document.getElementById('meta-line').textContent = `${lunarStr}　·　${genderStr}`;
   document.getElementById('solar-equiv').textContent =
     `對應國曆：${solar.year}/${String(solar.month).padStart(2,'0')}/${String(solar.day).padStart(2,'0')}`;
-
+ 
   const pillarsEl = document.getElementById('pillars');
   const titles = ['年柱','月柱','日柱','時柱'];
   const pArr = [yp, mp, dp, hp];
@@ -1514,7 +1675,7 @@ function renderResult(pillars, opts){
     `;
     pillarsEl.appendChild(div);
   });
-
+ 
   const wxCount = {wood:0, fire:0, earth:0, metal:0, water:0};
   // 原始分：天干各 1 分，地支藏干依數量加權
   pArr.forEach(p => wxCount[GAN_WX[p.gan]] += 1);
@@ -1528,7 +1689,7 @@ function renderResult(pillars, opts){
       wxCount[GAN_WX[g]] += weights[idx];
     });
   });
-
+ 
   // 淨值計算（五行流通：乘法權重）
   // 公式（全為正權重，避免負數混淆）：
   //   同我（自身）× 2.0（同類凝聚加成）
@@ -1549,10 +1710,10 @@ function renderResult(pillars, opts){
          + counts[keWx]     * 0.5
          + counts[keMeWx]   * 0.2;
   }
-
+ 
   const wxNet = {};
   WX_ORDER.forEach(wx => wxNet[wx] = calcNetValue(wx, wxCount));
-
+ 
   // 兩排柱狀圖：先天列 + 後天列
   // 重點：把兩者都正規化為「占比 %」，這樣才能直觀比較消長
   // 否則後天總和遠大於先天（約 5 倍），會誤導讀者以為「能量變多」
@@ -1566,18 +1727,18 @@ function renderResult(pillars, opts){
   });
   // 共用同一個 scale（0% ~ 兩者中的最大占比）
   const maxPct = Math.max(...Object.values(innatePct), ...Object.values(acquiredPct));
-
+ 
   const tableEl = document.getElementById('wuxing-table');
-
+ 
   const cellsName = WX_ORDER.map(wx => `<div class="wuxing-name ${WX_COLOR_CLASS[wx]}">${WX_CN[wx]}</div>`).join('');
-
+ 
   const cellsBarInnate = WX_ORDER.map(wx => {
     return `<div class="wuxing-bar-cell ${WX_COLOR_CLASS[wx]}-bg"><div class="wuxing-fill innate" data-h="${innatePct[wx]}" style="height:0"></div></div>`;
   }).join('');
   const cellsValInnate = WX_ORDER.map(wx => {
     return `<div class="wuxing-value"><span class="wuxing-pct">${innatePct[wx].toFixed(1)}%</span><span class="wuxing-raw">(${wxCount[wx].toFixed(2)})</span></div>`;
   }).join('');
-
+ 
   const cellsBarAcquired = WX_ORDER.map(wx => {
     return `<div class="wuxing-bar-cell ${WX_COLOR_CLASS[wx]}-bg"><div class="wuxing-fill acquired" data-h="${acquiredPct[wx]}" style="height:0"></div></div>`;
   }).join('');
@@ -1586,7 +1747,7 @@ function renderResult(pillars, opts){
     const arrow = diff > 0.5 ? '<span class="diff up">↑</span>' : (diff < -0.5 ? '<span class="diff down">↓</span>' : '<span class="diff flat">·</span>');
     return `<div class="wuxing-value acquired ${WX_COLOR_CLASS[wx]}"><span class="wuxing-pct">${acquiredPct[wx].toFixed(1)}%</span> ${arrow}<span class="wuxing-raw">(${wxNet[wx].toFixed(2)})</span></div>`;
   }).join('');
-
+ 
   tableEl.innerHTML = `
     <div class="wuxing-row header">
       <div></div>
@@ -1609,7 +1770,7 @@ function renderResult(pillars, opts){
       ${cellsValAcquired}
     </div>
   `;
-
+ 
   setTimeout(() => {
     tableEl.querySelectorAll('.wuxing-fill').forEach(el => {
       const v = parseFloat(el.dataset.h);
@@ -1617,20 +1778,20 @@ function renderResult(pillars, opts){
       el.style.height = h + '%';
     });
   }, 100);
-
+ 
   const luckData = calcLuck(birthMs, solar.year, yp.gan, gender, mp);
   const luckGridEl = document.getElementById('luck-grid');
   luckGridEl.innerHTML = '';
   const currentYear = new Date().getFullYear();
   const currentAge = currentYear - solar.year;
-
+ 
   // 流年計算：以 1984 = 甲子年為基準
   function yearGZ(y){
     const offset = (y - 1984) % 60;
     const idx = (offset + 60) % 60;
     return { gan: TIANGAN[idx % 10], zhi: DIZHI[idx % 12] };
   }
-
+ 
   luckData.list.forEach((l) => {
     const cell = document.createElement('div');
     const isCurrent = currentAge >= l.startAge && currentAge <= l.endAge;
@@ -1647,7 +1808,7 @@ function renderResult(pillars, opts){
   });
   // 起運資訊
   document.getElementById('luck-start-info').innerHTML = `起運：${luckData.startAge} 歲 ${luckData.startMonths} 個月`;
-
+ 
   // 流年表格渲染
   function showLiunian(){
     const lnEl = document.getElementById('liunian-grid');
@@ -1676,11 +1837,12 @@ function renderResult(pillars, opts){
     }
   }
   showLiunian();
-
+ 
   const rec = renderCrystals(wxCount, wxNet, dp.gan);
   renderEnergyCard(pArr, dp, rec, yearGZ(currentYear));
+  renderNameAnalysis(rec);
 }
-
+ 
 function renderCrystals(wxCount, wxNet, dayGan){
   function calcPct(counts){
     const net = {};
@@ -1700,10 +1862,10 @@ function renderCrystals(wxCount, wxNet, dayGan){
   function deviation(pct){
     return WX_ORDER.reduce((sum, wx) => sum + Math.abs(pct[wx] - 20), 0);
   }
-
+ 
   const acquiredPct = calcPct(wxCount);
   const currentDev = deviation(acquiredPct);
-
+ 
   // 「最小改動」分析：每個五行只補 +0.25，看哪個 CP 值最高
   const minimalChange = WX_ORDER.map(wx => {
     const trial = {...wxCount};
@@ -1711,7 +1873,7 @@ function renderCrystals(wxCount, wxNet, dayGan){
     const dev = deviation(calcPct(trial));
     return { wx, improvement: currentDev - dev, newDev: dev };
   }).sort((a,b) => b.improvement - a.improvement);
-
+ 
   // 「最佳劑量」分析：每個五行掃描 0.25 ~ 2.0，找出該五行的最佳劑量
   const bestDosage = WX_ORDER.map(wx => {
     let bestDev = currentDev;
@@ -1727,16 +1889,16 @@ function renderCrystals(wxCount, wxNet, dayGan){
     }
     return { wx, bestDev, bestDose, improvement: currentDev - bestDev };
   }).sort((a,b) => b.improvement - a.improvement);
-
+ 
   const topMinimal = minimalChange[0];
   const topBest = bestDosage[0];
   const isSame = topMinimal.wx === topBest.wx;
-
+ 
   const dayWx = GAN_WX[dayGan];
   let analysis = `日元為 <strong>${dayGan}（${WX_CN[dayWx]}）</strong>。`;
   analysis += `<br>後天五行占比：`;
   analysis += `<br><strong>${WX_ORDER.map(wx => `${WX_CN[wx]} ${acquiredPct[wx].toFixed(1)}%`).join('　')}</strong>`;
-
+ 
   if(topMinimal.improvement <= 0.01){
     analysis += `<br><br><strong>命局已相對均衡</strong>，不論補強何種五行皆難以再改善。`;
   } else {
@@ -1747,13 +1909,13 @@ function renderCrystals(wxCount, wxNet, dayGan){
     }
   }
   document.getElementById('crystal-analysis').innerHTML = analysis;
-
+ 
   const listEl = document.getElementById('crystal-list');
   listEl.innerHTML = '';
-
+ 
   const balanced = topMinimal.improvement <= 0.01;
   const sortedAsc = [...WX_ORDER].sort((a,b) => acquiredPct[a] - acquiredPct[b]);
-
+ 
   if(balanced){
     const item = document.createElement('div');
     item.className = 'crystal-item';
@@ -1770,7 +1932,7 @@ function renderCrystals(wxCount, wxNet, dayGan){
       <div class="stones">${CRYSTAL_MAP[topMinimal.wx].join('・')}</div>
     `;
     listEl.appendChild(item1);
-
+ 
     if(!isSame && topBest.improvement > 0.01){
       const item2 = document.createElement('div');
       item2.className = 'crystal-item';
@@ -1781,7 +1943,7 @@ function renderCrystals(wxCount, wxNet, dayGan){
       listEl.appendChild(item2);
     }
   }
-
+ 
   // 提供給能量卡使用
   let supplements;
   if(balanced) supplements = [sortedAsc[0]];
@@ -1789,7 +1951,7 @@ function renderCrystals(wxCount, wxNet, dayGan){
   else supplements = [topMinimal.wx];
   return { acquiredPct, supplements, balanced };
 }
-
+ 
 /* =========================================================
    五行能量卡
    ========================================================= */
@@ -1814,7 +1976,7 @@ const EC_STONES = {
   metal: [{n:'白水晶', f:'#f7f7f4', s:'#bdb8ab'}, {n:'鈦晶',   f:'#d4a857', s:'#9a7330'}, {n:'月光石', f:'#e3e6ee', s:'#a9aec0'}],
   water: [{n:'海藍寶', f:'#9cc7d8', s:'#5f8fa3'}, {n:'青金石', f:'#2d4a8a', s:'#1b2f5c'}, {n:'拉長石', f:'#7d8a96', s:'#4d5863'}]
 };
-
+ 
 const EC_LIFE = {
   wood:  '多著綠、青色，晨起散步、伸展筋骨，親近草木',
   fire:  '多著紅、紫色，多曬太陽、保持開朗，樂於交流',
@@ -1824,7 +1986,7 @@ const EC_LIFE = {
 };
 const EC_COLORNAME = {wood:'綠', fire:'紅', earth:'黃', metal:'白', water:'黑'};
 const EC_QR = 'data:image/png;base64,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';
-
+ 
 // 依五行生剋產生諮詢師叮嚀
 function ecRelLine(S, w){
   const s = WX_CN[S], x = WX_CN[w];
@@ -1857,18 +2019,18 @@ function ecAdvice(strong, supp, balanced){
     `${s}氣已足，${EC_COLORNAME[strong]}色系之物宜少用，過猶不及，貴在致中和。`
   ];
 }
-
+ 
 let ecName = '';
 let ecBeadCount = 16;
 let ecSupp = null;
-
+ 
 function ecCnNum(n){
   const d = '〇一二三四五六七八九';
   if(n < 10) return d[n];
   if(n < 20) return '十' + (n % 10 ? d[n % 10] : '');
   return d[Math.floor(n / 10)] + '十' + (n % 10 ? d[n % 10] : '');
 }
-
+ 
 // 依珠數分配珠材
 function ecRecipe(supp, N){
   const A = EC_STONES[supp[0]];
@@ -1891,7 +2053,7 @@ function ecRecipe(supp, N){
     groupLine: `${WX_CN[supp[0]]}系 ${N} 顆`
   };
 }
-
+ 
 // 排列：兩顆點綴珠置於正上、正下，其餘均勻交錯
 function ecSequence(rows, N){
   const acc = rows[0][0];
@@ -1906,7 +2068,7 @@ function ecSequence(rows, N){
   for(let i = 0; i < N; i++){ if(!seq[i]) seq[i] = items[j++].st; }
   return seq;
 }
-
+ 
 function ecBracelet(supp, N){
   const {rows, groupLine} = ecRecipe(supp, N);
   const seq = ecSequence(rows, N);
@@ -1932,14 +2094,14 @@ function ecBracelet(supp, N){
         <div style="display:flex;justify-content:space-between;font-size:19px;padding-top:12px;color:#6b5a4c"><span>${groupLine}</span><span>手圍 [　　] cm</span></div>
       </div>`;
 }
-
+ 
 function ecSetBeads(n){
   ecBeadCount = n;
   document.querySelectorAll('.ec-bead-btn').forEach(b => b.classList.toggle('on', +b.dataset.n === n));
   const el = document.getElementById('ec-bracelet');
   if(el && ecSupp) el.innerHTML = ecBracelet(ecSupp, n);
 }
-
+ 
 function ecEsc(s){
   return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
@@ -1951,7 +2113,7 @@ function ecBead(stone, cx, cy, r){
   return `<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${r}" fill="${stone.f}" stroke="${stone.s}" stroke-width="1.5"/>` +
          `<circle cx="${(cx - r*0.3).toFixed(1)}" cy="${(cy - r*0.35).toFixed(1)}" r="${(r*0.25).toFixed(1)}" fill="#ffffff" opacity="0.55"/>`;
 }
-
+ 
 function renderEnergyCard(pArr, dp, rec, yGZ){
   const pct = rec.acquiredPct;
   const supp = rec.supplements;
@@ -1960,7 +2122,7 @@ function renderEnergyCard(pArr, dp, rec, yGZ){
   const name = (document.getElementById('name').value || '').trim();
   ecName = name;
   const nameHtml = name ? ecEsc(name) : '＿＿＿＿';
-
+ 
   // 雷達圖
   const maxv = Math.max(40, ...Object.values(pct));
   const k = 140 / maxv;
@@ -1984,12 +2146,12 @@ function renderEnergyCard(pArr, dp, rec, yGZ){
     <polygon points="${val}" fill="#c8392f" fill-opacity="0.16" stroke="#c8392f" stroke-width="2.5"/>
     ${dots}${labels}
   </svg>`;
-
+ 
   const bars = WX_ORDER.map(w => {
     const hi = !balanced && w === strong;
     return `<div class="ec-bar"><span class="ch" style="color:${EC_COLOR[w]}">${WX_CN[w]}</span><div class="track"><div class="fill" style="width:${(pct[w]/maxv*100).toFixed(1)}%;background:${EC_FILL[w]}"></div></div><span class="num${hi ? ' hi' : ''}">${Math.round(pct[w])}%</span></div>`;
   }).join('');
-
+ 
   const suppCn = supp.map(w => WX_CN[w]).join('');
   const tone = balanced
     ? '五行均衡・氣韻流通'
@@ -1997,7 +2159,7 @@ function renderEnergyCard(pArr, dp, rec, yGZ){
   const reading = balanced
     ? '五行分布相對均衡，氣韻流通，進退有度。宜守中持平、順勢而為，讓各方能量自然相生。'
     : EC_STRONG[strong] + '宜以' + supp.map(w => `${WX_CN[w]}之${EC_TRAIT[w]}`).join('、') + '來調和。';
-
+ 
   const yWx = GAN_WX[yGZ.gan];
   const yCn = WX_CN[yWx];
   const yNum = new Date().getFullYear();
@@ -2009,11 +2171,11 @@ function renderEnergyCard(pArr, dp, rec, yGZ){
   } else {
     yearText = `今年${yGZ.gan}${yGZ.zhi}，${yCn}氣當令，為命局帶來新的變化。保持彈性、順勢調整，便能化變為機。`;
   }
-
+ 
   const motto = balanced
     ? '守中致和　順勢而行'
     : `以${suppCn}之${supp.map(w => EC_Q[w]).join('')}　養${WX_CN[strong]}之${EC_S[strong]}`;
-
+ 
   // 三顆開運寶石
   let stones;
   if(supp.length > 1) stones = [[supp[0],0],[supp[0],1],[supp[1],0]];
@@ -2022,13 +2184,13 @@ function renderEnergyCard(pArr, dp, rec, yGZ){
     const s = EC_STONES[w][i];
     return `<div class="ec-stone"><svg width="52" height="52" viewBox="0 0 52 52">${ecBead(s, 26, 26, 24)}</svg><div><span class="nm">${s.n}</span><span class="ds">${WX_CN[w]}・${EC_DESC[w]}</span></div></div>`;
   }).join('');
-
+ 
   const pillarTitles = ['年','月','日','時'];
   const pillarsHtml = pArr.map((p, i) => `<div class="ec-pillar"><span class="t${i === 2 ? ' day' : ''}">${pillarTitles[i]}</span><span class="g"><span style="color:${EC_COLOR[GAN_WX[p.gan]]}">${p.gan}</span><span style="color:${EC_COLOR[ZHI_WX[p.zhi]]}">${p.zhi}</span></span></div>`).join('');
-
+ 
   const now = new Date();
   const dateStr = `${now.getFullYear() - 1911} . ${String(now.getMonth()+1).padStart(2,'0')} . ${String(now.getDate()).padStart(2,'0')}`;
-
+ 
   const front = `
   <div class="ec-face" id="ec-front"><div class="ec-frame"><div class="ec-inner">
     <div class="ec-row" style="align-items:flex-start">
@@ -2069,7 +2231,7 @@ function renderEnergyCard(pArr, dp, rec, yGZ){
       <div class="ec-foot"><span>命理為參考・人生由自己掌握</span><span>${dateStr}</span></div>
     </div>
   </div></div></div>`;
-
+ 
   const br = ecBracelet(supp, ecBeadCount);
   ecSupp = supp;
   const subLine = balanced
@@ -2077,16 +2239,16 @@ function renderEnergyCard(pArr, dp, rec, yGZ){
     : (supp.length > 1
         ? `${nameHtml}・以${WX_CN[supp[0]]}為主、${WX_CN[supp[1]]}為輔，調和過旺之${WX_CN[strong]}`
         : `${nameHtml}・以${WX_CN[supp[0]]}為主，調和過旺之${WX_CN[strong]}`);
-
+ 
   const trends = WX_ORDER.map(w => {
     let ar = '・', tx = '持平', col = '#6b5a4c';
     if(supp.includes(w)){ ar = '↑'; tx = '補強'; col = '#9b2820'; }
     else if(w === strong && !balanced){ ar = '↓'; tx = '收斂'; col = '#2c3e5a'; }
     return `<div class="ec-trend"><span class="ch" style="color:${EC_COLOR[w]}">${WX_CN[w]}</span><span class="ar" style="color:${col}">${ar}</span><span class="tx">${tx}</span></div>`;
   }).join('');
-
+ 
   const adviceHtml = ecAdvice(strong, supp, balanced).map(t => `<p><span class="dot">◆</span><span>${t}</span></p>`).join('');
-
+ 
   const back = `
   <div class="ec-face" id="ec-back"><div class="ec-frame"><div class="ec-inner" style="gap:28px">
     <div>
@@ -2110,12 +2272,12 @@ function renderEnergyCard(pArr, dp, rec, yGZ){
       <div class="ec-qr"><img src="${EC_QR}" alt="預約諮詢 QR code"><span>掃碼預約諮詢</span></div>
     </div>
   </div></div></div>`;
-
+ 
   const stage = document.getElementById('ec-stage');
   stage.innerHTML = `<div class="ec-holder">${front}</div><div class="ec-holder">${back}</div>`;
   ecFit();
 }
-
+ 
 function ecFit(){
   const stage = document.getElementById('ec-stage');
   if(!stage || !stage.clientWidth) return;
@@ -2128,7 +2290,7 @@ function ecFit(){
   });
 }
 window.addEventListener('resize', ecFit);
-
+ 
 function ecLoadH2C(){
   if(window.html2canvas) return Promise.resolve();
   return new Promise((resolve, reject) => {
@@ -2139,7 +2301,7 @@ function ecLoadH2C(){
     document.head.appendChild(s);
   });
 }
-
+ 
 async function downloadCard(){
   const faces = ['ec-front','ec-back'].map(id => document.getElementById(id));
   if(faces.some(f => !f)) return;
@@ -2193,7 +2355,7 @@ async function downloadCard(){
     btn.textContent = label;
   }
 }
-
+ 
 window.addEventListener('DOMContentLoaded', () => {
   populateSelects();
   updateLeapAvailability();
@@ -2201,7 +2363,307 @@ window.addEventListener('DOMContentLoaded', () => {
   document.getElementById('month').addEventListener('change', updateLeapAvailability);
   calculate();
 });
-</script>
+const KANGXI_STROKES={"1":"一丨丶丿乙亅","2":"丁丄丅乂乃乜了二亠人儿入冂冖冫几凵刀刁力勹匕匚匸卜卩厂厶又","3":"万丈三上下丌个丫丸久乆乇么义乞也亇亍于亏亡亼亾兀兦凡凢凣刃刄劜勺千卄叉口囗土士夂夊夕大女子孑孓宀寸小尢尸屮山巛川工己已巳巾干幺广廴廾弋弓彐彑彡彳","4":"㓅㔹㕕㕛㞢㸦不与丏丐丑中丮丰丹之乢乣予云互亓井亢亣什仁仂仃仄仅仆仇仈仉今介仌仍从仏允元內公兮冄内円冇冗冘凤凶刅分切刈劝办勻勼勽勾勿匀化匹区卅卆升午卝卞卬厄历厷厹及友双反収四圠圡壬夃天太夫夬夭孔尐少尤尹尺屯巴巿帀幻廿弌弔引心戈戶户戸手才支攴攵文斗斤方无日曰月木欠止歹殳毋毌比毛氏气水火爪父爻爿片牙牛犬王瓦禸耂","5":"㐱㐲㐳㐴㒰㓜㕤㕥㘝㘞㘦㚎㚢㝊㞋㞤㞥㞦㞧㠯㠲㣔且丕世丘丙丱主丼乍乎乏五亗仔仕他仗付仙仚仜仝仞仟仠仡代令以仦仧仨仩兄冉冊冋册写冬凥凸凹出刉刊刋刌功加匃匄包匆匇北匜匝匞卉半卌卟占卡卭卮卯厉厺去叐古句另叨叩只叫召叭叮可台叱史右叴叵叶号司叹叻叼囘囚圢圣圤处外夗夘央夯夰失夲头奴奵奶孕宁宂它宄对尒尔尕尻尼屳屴屷左巧巨市布帄平幼庀庁庂広弁弍弗弘归必戉戊戹扎斥旡旦旧未末本札朮术正歺母氐民氕氶氷永氹犮玄玉瓜甘生用甩田由甲申疋疒癶白皮皿目矛矢石示禾穴立","6":"㐫㐹㐻㐼㒲㓇㔻㕂㕄㕜㕦㕧㘟㚏㚐㚣㚤㚨㜽㝌㞌㞨㞭㞯㠩㠶㡯㡰㡱㢩㢪㣻㧅㫃㬰㭁㲌㲹㲺㲻㶡䂖䇂䶸丞丟丠両丢乒乓乔乨乩争亘亙交亥亦仮仯仰仱仲仳仴仵件价仸仹仺任仼份仿伀企伂伃伄伅伆伇伈伉伊伋伍伎伏伐休伒伓伔伕伖众优伙会伜伝伢伨伬充兆兇先光兊全六共兲再冰冱冲决冴凨刎刏刐刑划刓刔刕刖列刘劣劦动匈匟匠匡匢卋卍协卐印危厊压厾叒叿吀吁吃各吅吆吇合吉吊吋同名后吏吐向吒吓吕吖囝回囟因囡団在圩圪圬圭圮圯地圱圲圳圴圵圶壮夅夙多夶夷夸夼奷奸她奺奻奼好奾奿妀妁如妃妄妅妆孖字存宅宆宇守安寺尖尘尥尽屸屹屺屻屼屾岀州巟帆师年幵庄庅廵异弎式弚弛当彴忇忉忊戌戍戎戏成扐扑扒打扔收攷旨早旪旫旬旭旮旯曲曳有朱朲朳朴朵朶朷朸朹机朻朼朽朾朿次欢此死毎氖氘氻氼氾氿汀汁求汃汄汅汆灮灯灰灱灲灳炇牝牞牟犯犰玊玌玍甪百癿礼穵竹米糸缶网羊羽老考而耒耳聿肉臣自至臼舌舛舟艮色艸虍虫血行衣襾西","7":"㑂㑃㑄㒳㒷㓈㔘㕅㕆㕇㕩㕫㕬㕯㕱㕲㕳㕶㘧㘩㘪㘬㘭㘯㘰㚓㚩㚪㚫㚬㚭㚮㝎㝐㞲㞵㞶㠹㠻㡲㢬㣼㦮㦯㪀㪯㫓㫔㫕㫗㭂㭄㲾㶤㸩㺨㺪㺫㼙㽗㿝䀎䂗䄧䖝七两串丽乱些亜亨伭伯估伱伲伳伴伵伶伷伸伹伺伻似伽伾伿佀佁佂佃佄佅但佇佈佉佊佋佌位低住佐佑佒体佔何佖佗佘余佚佛作佝佞佟你佡佢佣佤佦佧佨克兌免兎児兑兵冏冝况冶冷冸冹凬刜初刞刟删刡刣判別刦刧刨利刪别助努劫劬劭劮劳労匉匣匤匥医卣卲即却卵厎厏吘吙吚君吜吝吞吟吠吡吢吣吤吥否吧吨吩吪含听吭吮启吰吱吲吳吴吵吶吷吸吹吺吻吼吽吾吿呀呁呂呃呄呅呆呇呈呉告呋呌呍呎呏呐呑呔呚囤囥囦囧囩囪囫囬园囮囯困囱囲図圻圼圽圾圿址坁坂坃坄坅坆均坈坉坊坋坌坍坎坏坐坑坒坓坔坕坖块坘坙坟壯声壱売壳夆夋夽夾奀妉妊妌妎妏妐妒妓妔妖妗妘妙妚妛妜妝妞妟妠妡妢妣妤妥妦妧妨孚孛孜孝宋完宍宎宏宒寽対寿尨尪尫尬尾尿局屁岄岅岆岈岉岊岋岌岎岏岐岑岒岓岔岕岜巠巫巵帉帊帋希帎庇庈庉床庋庌庍序庐庒庘延廷弃弄弅弝弞弟形彣彤彶彷彸役忌忍忎忏忐忑忒忓忔忕忖志忘忙忚忛応我戒戓戺戻戼扏扗托扙扚扛扜扝扞扠扡扢扣扤扥扦执攸改攻斈旰旱旲旳旴旵时更曵杄杅杆杇杈杉杊杋杌杍李杏材村杒杓杔杕杖杗杘杙杚杛杜杝杞束杠条极步每毐毜毝氙氚汊汋汌汍汎汏汐汑汒汓汔汕汖汗汘汙汚汛汜汝汞江池污汣汷灴灵灶灷灸灹灺灻灼災灾牠牡牢牣牤犱犲犴犵状玎玏瓨瓩甫甬男甸甹町疓疔疕皀皁皂皃盀盁盯矣矴矵礽禿秀私秃究竌竍糺系羋耴肊良虬見角言谷豆豕豸貝赤走赱足身車辛辰辵邑酉釆里","8":"㐨㐩㑉㑍㑑㒺㓊㓋㓌㔽㕈㕷㕸㕺㘡㘱㘳㘴㚰㚱㚳㚴㚵㚶㚷㚸㚺㚻㚼㚽㚿㛁㝀㝒㞐㞑㞹㞾㟀㟁㡹㡻㢠㢮㣋㣍㣙㤁㤂㤃㤅㤈㤋㧋㧌㧍㧎㪴㫘㫙㬳㭇㭈㭊㭋㱚㲎㲴㳀㳂㳄㳆㳊㶦㶨㶪㸓㸚㸝㸞㹞㹠㺬㺭㺮㼚㽵䄫䄬䄭䇃䒓䒔䖈䘚並丳乖乳事亝亞亟享京佩佪佫佬佭佮佯佰佲佳佴併佶佷佸佹佺佻佼佽佾使侀侁侂侃侄侅來侇侈侉侊例侌侍侎侏侐侑侒侓侔侕侖侗侘侚供侜依侞侟侠価侢侣兒兔兕兖兩八其具典冐冞冼冽冾凭函刮刯到刱刲刳刴刵制刷券刹刺刻刼刾剁劵効劻劼劾势匊匋匼卑卒卓協单卥卦卧卶卷卸卹卺厒厓厔叁参叔叕取受呟呠呡呢呣呤呥呦呧周呩呪呫呬呭呯呰呱呲味呴呵呶呷呸呹呺呻呼命呾呿咀咁咂咄咅咆咇咈咉咊咋和咍咎咏咐咑咒咓咔咕咖咘咚囶囷囸囹固囻囼国坡坢坣坤坥坦坧坨坩坪坫坭坮坯坰坱坲坳坴坵坶坷坸坻坼坽坿垀垁垂垃垊夌夜奄奅奇奈奉奋奌奍奔妬妭妮妯妰妱妲妳妴妵妶妷妸妹妺妻妼妽妾妿姀姁姂姃姄姅姆姇姈姉姊始姌姍姎姏姐姑姒姓委姕姖姗孟孠孢季孤孥孧宓宔宕宖宗官宙定宛宜宝实実尀尙尚屄居屆屇屈屉届岝岞岟岠岡岢岣岤岥岦岧岨岩岪岫岬岭岮岯岰岱岳岴岵岶岷岸岹岺岻峁巶帑帒帓帔帕帖帗帘帙帚帛并幷幸底庖店庙庚庛府庝廸廹弆弡弢弣弤弥弦弧弨弩彔录彼彽彾彿往征徂徃径忝忞忟忠忡忣忤忥忦忧忨忩忪快忬忭忮忯忰忱忲忳忴念忶忷忸忺忻忼忽忾忿怀戔戕或戽戾房所扟扭扮扯扰扱扲扳扴扵扶扷批扺扻扼扽找承技抁抂抃抄抅抆抇抈抉把抋抌抍抎抏抑抒抓抔投抖抗折抙抛抜抝択抣报攽放政斉斦斧斨斺斻於旺旻旼旽旾旿昀昁昂昃昄昅昆昇昈昉昊昋昌昍明昏昐昑昒易昔昕昗昘曶朊朋朌服杪杫杬杭杯杰東杲杳杴杵杶杷杸杹杺杻杼杽松板枀枂枃构枅枆枇枉枊枋枌枍枎枏析枑枒枓枔枕枖林枘枙枚果枝枟枢枣枤枬欣欥欦欧武歧歨歩歾歿殀殁殴毑毒毞氓氛氜氝汥汦汧汨汩汪汫汬汭汮汯汰汱汲汳汴汵汶汸汹決汻汼汽汾汿沀沁沂沃沄沅沆沇沈沉沊沋沌沍沎沏沐沑沒沓沔沕沖沗沘沙沚沛沜沝沞沟沠没沢沪炁炂炃炄炅炆炈炉炊炋炌炍炎炏炐炑炒炓炔炕炖炘炙炚爬爭爸牀版牥牦牧牨物牪牬犹犺犻犼犽犾犿狀狁狂狃狄狅狆狇玒玓玔玕玖玗玘瓝瓫瓬瓭瓮瓯画甽甾甿畀畁畂畄疌疘疙疚疛疝疞癷的皯盂盰盱盲盳直盵知矷矸矹矺矻矼矽社礿祀祁祂禹禺秄秅秆秇秈秉秊穸穹空穻竏竺竻籴籵籶糼糽糾糿羌耵肋肌肍肎肏臥臾舍舎舠艻艼艽艾艿芀虎虭虮虯虰虱虲豖軋采金長門阜阝隶隹雨靑青非","9":"㑗㑚㑝㒸㓂㓏㓧㓨㓩㕊㖀㖁㖂㖃㖄㖇㘢㘶㘸㘹㘺㘻㚅㚚㛄㛅㝔㝕㝖㞔㞕㞖㟄㡄㡽㡾㢲㢶㣜㣟㤌㤐㤑㤓㤙㧂㧓㧕㧖㧚㪅㫝㫠㫡㭑㭒㭕㱒㱔㱞㱟㱠㲒㳋㳌㳍㳎㳏㳑㳒㶫㶬㶭㶮㶯㶰㸖㸰㸱㸳㹤㹥㹦㺰㺱㺳㺵㼜㼝㼟㽙㽸㽺㽻㿞㿬䀞䂛䂝䂞䃽䆓䆔䇆䊷䊸䊹䍐䍑䑒䑣䒕䒘䖞䖟䖠䘏䘜䚮䚰䟔䢳䣥乗九乹亭亮亯亰亱亲侮侯侰侱侲侳侴侵侶侷侸侹侺侻侾便俀俁係促俄俅俆俇俈俉俊俋俌俍俎俏俐俑俒俓俔俕俖俗俘俙俚俛俜保俞俟俠信俣俥俧俬兗兙兪兹冑冒冟冠凁凂凃凾剃剄剅剆則剈剉削剋剌前剎剏勀勁勂勃勄勅勇勉勊匍匧匽南単卻卼卽厖厗厘厙厚厛叙叚叛叜叝咞咟咠咡咢咣咤咥咦咧咨咩咪咫咬咭咮咯咰咱咲咳咴咵咶咷咸咹咺咻咼咽咾咿哀品哂哃哄哅哆哇哈哉哊哋哌响哎哏哐哖哚哞囿圀型垌垍垎垏垐垑垒垓垔垕垖垗垘垙垚垛垜垝垞垟垠垡垢垣垤垥垦垧垨垬垮垵城壴壵夈変复奎奏奐契奒奓奕妍姘姙姚姛姜姝姞姟姠姡姢姣姤姥姦姧姨姩姪姫姭姮姯姰姱姲姳姴姵姶姷姸姹姺姻姼姽姾姿娀威娂娃娄孩孪客宣室宥宦宨宫封将尛尯屋屌屍屎屏岍峆峇峈峉峊峋峌峍峎峏峐峑峒峓峔峕峖峗峘峙峚峛峜峝峞峟峡峢峥峦巷巹巺巻帝帞帟帠帡帢帣帤帥幽庠庡庢庣庤庥度建廻廼弇弈弭弮弯彖彥彦待徆徇很徉徊律後徔怇怈怉怊怋怌怍怎怏怐怑怒怓怔怕怖怗怙怚怛怜思怞怠怡怢怣怤急怦性怨怩怪怫怬怭怮怯怰怱怲怳怴怵怶怷怹怽战扁扂扃扸抦抧抨抩抪披抬抭抮抯抰抱抲抳抴抵抶抷抸抹抺抻押抽抾抿拀拁拂拄担拆拇拈拉拊拋拌拍拎拏拐拑拒拓拔拕拖拗拘拙拚招拜拝拞拟拠拡拤攱敀敁敂敃敄故斪斫施斾斿既昚昛昜昝昞星映昡昢昣昤春昦昧昨昩昫昬昭昮是昰昱昲昳昴昵昶昷昸昹昺昻昼曷朎朏朐枮枯枰枱枲枳枴枵架枷枸枹枺枻枼枿柀柁柂柃柄柅柆柇柈柉柊柋柌柍柎柏某柑柒染柔柕柖柗柘柙柚柛柜柝柞柟柢柣柤查柦柧柨柩柪柫柬柭柮柯柰柱柲柳柴柵柶柷柸柹柺査柼柾柿栀栁栅栆栐欨欪歪歫殂殃殄殆段殶毖毗毘毠毡氞氟氠氡沫沬沭沮沯沰沱沲河沴沶沷沸油沺治沼沽沾沿泀況泂泃泄泅泆泇泈泉泊泌泍泎泏泐泑泒泓泔法泖泗泘泙泛泜泝泞泟泠泡波泣泤泥泧注泩泪泫泬泭泮泯泰泱泲泳泴泵泹炟炠炡炢炣炤炥炧炨炩炪炫炬炭炮炯炰炱炲炳炴炵炶炷炸点為炻炾炿爮爰爼牁牉牊牭牮牯牰牲牳牴狉狊狋狌狍狎狏狐狑狒狓狔狖狗狘狙狚狛狜玅玜玝玞玟玠玡玢玣玤玥玦玧玨玩玪玫玬玭环瓳瓴瓵甚甭甮畆畇畈畉畊畋界畍畎畏畐疢疣疤疥疦疧疨疪疫疺癸癹皆皇皈盃盄盅盆盇盈盷相盹盺盻盼盽盾盿省眃眄眅眇眈眉眊看矜矦矧矨砂砃砄砅砆砇砈砉砊砋砌砍砎砏砐砑砒砓研砕砙砛祄祅祆祇祈祉祊祋祌祍秋秌种秎秏秐科秒秓秔秕秖秗穼穽穾穿窀突窂窃竐竑竒竓竔竕竼竽竾竿笀笁籷籸籹籺类籼籽籿粀粁紀紁紂紃約紅紆紇紈紉缸罔罕羍美羏羑羾羿耍耎耏耐耑耔耶耷肐肑肒肓肔肕肖肗肘肙肚肛肜肝肟致臿舡舢舤芃芄芅芆芊芋芌芍芎芏芐芑芒芓芔芕虐虳虴虵虶虷虸虹虺虻虼虽衁衂衍衎衦衧表衩衪衫要覌觓觔訂訃訄訅訆訇計貞貟負赲赳赴趴軌軍边邒邓酊酋重釓釔閁閂面靣革韋韭音頁風飛食首香鬼","10":"㑥㓐㓑㓮㓯㔞㕋㕍㕖㖐㖒㖓㖗㘣㘿㙂㙃㙄㙅㛍㛎㛏㛐㛑㛓㛔㛕㛖㛙㛛㛜㛝㛞㝃㟊㟍㟑㟔㢆㤛㤟㤨㤪㤬㧣㧤㧥㧦㧨㧪㧮㧯㧱㪇㪶㫩㫫㬴㭜㭠㭢㱡㱿㳖㳙㳝㳞㶳㶵㸧㸵㸶㹮㺷㺸㽍㽽㾂㾇㿟䀀䀠䀡䀢䀤䂣䂤䂥䄁䄃䄷䄸䆗䆘䆙䇇䇉䇙䇛䉻䉼䊼䊽䊿䋁䋃䋄䍒䍓䍩䍾䍿䎳䎴䏐䏒䏓䏛䏜䑙䑚䑤䒚䒛䒜䒝䒟䒢䒣䒥䖋䖌䖍䙷䙸䚲䟖䡅䢊䣧䣨䦺䧱乘亳修俯俰俱俲俳俴俵俶俷俸俹俺俻俼俽俾俿倀倂倃倄倅倆倇倈倉個倌倍倎倏倐們倒倓倔倕倖倗倘候倚倛倜倝倞借倠倡倢倣値倥倦倧倨倩倪倫倬倭倮倯倰倱倲倳倵倶倷倸倹值倿党兛兼冓冔冡冢冣冤冥冦凄凅准凇凈凉凊凋凌凍凎剒剓剔剕剖剗剙剚剛剜剝剞剟剠剡剢剣剤剥剧勌勍勎勏勐勑匎匪十卿厜厝厞原叟哠員哢哤哥哦哧哨哩哪哫哭哮哯哰哱哲哳哴哵哶哷哸哹哺哻哼哽哿唀唁唂唃唄唅唆唇唈唉唊唋唌唍唎唏唐唑唒唓唔唗唘唙唚唦唧圁圂圃圄圅垶垷垸垹垺垻垼垽垾垿埀埁埂埃埄埅埆埇埈埉埊埋埌埍埏埐埑埒埔埕埛夎夏奊套奘奚姬娉娊娋娌娍娏娑娒娓娔娕娖娗娘娙娚娛娜娝娞娟娠娡娢娣娤娥娦娩娪娫娭娮娯娱娳娽孫孬宧宬宭宮宰害宴宵家宷宸容宻宼尃射尅屐屑屒屓屔展屖屗屘峨峩峪峫峬峭峮峯峰峱峳峴峵島峷峸峹峺峻峽峿崀崁巡差帨帩帪師帬席帮帯帰座庨庩庪庫庬庭庮庯廽弰弱弲弳彧徎徏徐徑徒従恀恁恂恃恄恅恆恇恉恊恋恌恍恎恏恐恑恒恓恔恕恖恘恙恚恛恜恝恞恟恠恡恢恣恤恥恦恧恨恩恪恫恬恭恮息恰恲恳恴恵恼戙扅扆扇拪拫括拭拮拯拰拱拲拳拴拵拶拷拸拹拺拻拼拽拾拿挀持挂挃挄挅指挈按挋挌挍挎挏挐挑挓挔挕挖挗挙挛挟挡敆效敉敊敋斋料斚旁旂旃旄旅旆旊晀晁時晃晄晅晆晇晈晉晊晋晌晍晎晏晐晑晒書朒朓朔朕栒栓栔栕栖栗栘栙栚栛栜栝栞栟栠校栢栣栤栥栦栧栨栩株栫栬栭栮栯栰栱栲栳栴栵栶样核根栺栻格栽栾桀桁桂桃桄桅框桇案桉桋桌桍桎桏桐桑桒桓桔桕桖桘桙桚桞欫欬欭欮欯欰欱歬歭殈殉殊残殷毢毣毤毥毦毧毨毩毪氣氤氥氦氧氨泚泿洀洁洂洃洄洅洆洇洈洉洊洋洌洎洏洐洑洒洓洔洕洗洘洙洚洛洜洝洞洟洠洡洢洣洤津洦洧洨洩洪洫洬洭洮洯洰洱洲洳洴洵洶洷洸洹洺活洼洽派洿浀流浂浄浅烄烅烆烇烈烊烋烌烍烎烏烐烑烒烓烔烕烖烗烘烙烚烛烜烝烞烟烠烡烢烣烤烥烪烮爹牂牶牷牸特牺狟狠狡狢狣狤狥狦狧狨狩狪狫独狭玆玲玳玴玵玶玷玸玹玻玼玽玾玿珀珁珂珃珄珅珆珇珈珉珊珋珌珍珎珏珐瓞瓟瓶瓷甡畔畕畖畗畘留畚畛畜畝畞畟疰疱疲疳疴疵疶疸疹疻疼疽疾疿痀痁痂痃痄病症皉皊皋皰盉益盋盌盍盎眎眏眐眑眒眓眕眖眘眙眚眛眝眞真眠眡眢眣眤眥眦眧眨眩眪眫眿矝矩砝砞砟砠砡砢砣砤砥砦砧砨砩砪砫砬砭砮砯砰砱砲砳破砵砶砷砸砽祏祐祑祒祓祔祕祖祗祘祙祚祛祜祝神祟祠祡祢离秘秙秚秛秜秝秞租秠秡秢秣秤秥秦秧秨秩秪秫秬秭秮称窄窅窆窇窈窉窊窋窌竘站竚竛竜竝笅笆笈笉笊笋笍笎笏笐笑笒笓笔粃粄粅粆粇粈粉粊粋粌粍粎粑紊紋紌納紎紏紐紑紒紓純紕紖紗紘紙級紛紜紝紞紟素紡索紤紥缹缺罘罙羒羓羔羖羗羙翀翁翂翃翄翅翆耄者耆耕耖耗耘耙耹耻耼耽耾耿聀聁肂股肢肣肤肥肦肧肨肩肪肫肬肭肮肯肰肱育肳肴肵肶肸肺肻臬臭舀舁舐舥舧舨舩航舫般舭舯芘芙芚芛芜芝芞芟芠芡芢芣芤芥芦芧芨芩芪芫芬芭芮芯芰花芲芳芴芵芶芷芸芹芺芻芼芽芾苀苂苃苄苉茾虒虓虔蚄蚅蚆蚇蚉蚊蚋蚌蚍蚎蚏蚐蚑蚒蚓蚔蚕蚖蚗蚘蚙蚚蚛蚜蚝蚞蚟蚠蚡蚢蚣蚤蚥蚦蚧蚨蚩蚪衃衄衏衭衮衯衰衱衲衳衴衵衶衷衸衹衺衻衼衽衾衿袀袁袂袃袄袇訊訋訌訍討訏訐訑訒訓訕訖託記訙豇豈豗豹豺豻財貢貣貤赶起赸趵趶趷躬軏軐軑軒軓軔軕辱达辿迁迂迄迅迆过迉邔邕邖邗邘邙邚邛邜酌配酎酏酐酑酒釕釖釗釘釙釚釛釜針釞釟釠釢閃閅阞隻隼隽馬骨高髟鬥鬯鬲","11":"㐡㑤㑯㑰㔭㕘㖟㖠㖣㖤㖦㖴㙇㙈㙉㙊㚞㛦㛧㛨㛩㛫㛬㛭㝛㝜㝝㝠㞙㟗㟘㟚㟝㟠㟥㡎㢈㢌㣎㣥㣦㤰㤲㤳㤵㤷㤹㦷㧲㧳㧴㧵㧷㧸㪋㪍㪷㫊㫋㫳㬶㭨㭪㭫㭱㭲㰮㱢㲘㲵㳥㳦㳩㳫㳬㳭㳮㳳㶹㶺㶻㸔㸘㸽㹀㹱㻀㻁㻂㻄㻈㽞㾌㾑㿡䀂䀪䀫䂫䂭䂯䄄䄽䅄䅇䆜䇠䇤䊀䋊䋋䋎䋒䋓䋔䍄䍅䍈䎁䎅䎆䎣䎵䏢䏣䑛䑦䒦䒨䒩䒪䒫䒬䖏䖤䖥䖧䘑䚴䚵䚹䚺䚻䚽䚾䛂䝘䞛䞜䟚䟞䡆䡇䡈䡋䡌䡍䢍䢵䢶䢷䣫䤜䦌䦻䧳䨋䬢䯆乾乿亀偀偁偂偃偄偅偆假偈偉偊偋偌偍偎偏偐偑偒偓偔偕偖偗偘偙做偛停偝偞偟偠偡偢偣偤健偦偨偩偪偫偬偭偮偯偰偱偲偳側偵偶偷偸偹偺偻偼偽兜兝兞冕冨减凐凑凰剨剪剫剬剭剮副剰剶勒勓勔動勖勗勘務匏匐匙匭匾匿區厠厩參叄唨唩唪唫唬唭售唯唰唱唲唳唴唵唶唷唸唹唺唻唼唾唿啀啁啃啄啅商啈啉啊啋啌啍啎問啐啑啒啓啔啕啖啗啘啚啜啝啞啟啡啢啣啤啥啦啨啪啱啲啳啵啶啷圇圈圉圊國圏埜埝埞域埠埡埢埣埤埥埦埧埨埩埬埭埮埯埰埱埲埳埴埵埶執埸培基埻埼埽埾埿堀堁堂堃堄堅堆堇堈堉堊堋堌堍堎堏堐堒堓堔壷够夠奛奜奝奞娬娵娶娷娸娹娺娻娼娾娿婀婁婂婃婄婅婆婇婈婉婊婋婌婍婎婏婐婑婒婓婔婕婖婗婘婙婚婛婜婝婞婟婠婡婢婣婤婥婦婧婨婩婪婫婬婭婮婯婰婱婳婵孮孰孲宿寀寁寂寃寄寅密寇寈將專尉屙屛屜屝崆崇崈崉崊崋崌崍崎崏崐崑崒崓崔崕崖崗崘崙崚崛崜崝崞崟崠崡崢崣崤崥崦崧崨崩崪崬崮崯崰巢巣帲帳帴帵帶帷常帹帺庰庱庲庳庴庵庶康庸庹庺庻弴張弶強弸弹彗彩彪彫彬徖得徘徙徛徜從徟徠御恾恿悀悁悃悄悅悆悇悈悉悊悋悌悍悎悐悒悓悔悕悖悗悘悙悚悛悜悝悞悟悠悡悢患悤悦悧您悩悪悮戚戛扈挨挩挪挫挬挭挮振挰挱挲挳挴挵挶挷挸挹挺挻挼挽挾挿捀捁捂捃捄捅捆捇捈捉捊捋捌捍捎捏捐捑捒捓捔捕捖捗捘捙捚捛捜捝捠捤敍敎敏救敓敔敕敖敗敘教敚斌斍斎斛斜斬断旇旉旋旌旍旎族旣晗晙晚晛晜晝晞晟晠晡晢晣晤晥晦晧晨晩曹曼朑朖朗朘朙朚望桫桬桭桮桯桰桱桲桳桴桵桶桷桸桹桺桻桼桽桾桿梀梁梂梃梄梅梆梇梉梊梋梌梎梏梐梑梒梓梔梕梖梗梘梙梚梛梜條梞梟梠梡梢梣梤梥梦梧梨梩梪梫梬梭梮梯械梱梲梳梴梵梶梷梸梹棁欲欳欴欵欶欷欸殌殍殎殏殐殑殺殻毫毬毭氪氫洍洖浖浗浘浙浚浛浜浝浞浟浠浡浢浣浤浥浦浧浨浩浪浫浬浭浮浯浰浱浲浳浴浵浶海浸浹浺浻浼浽浾浿涀涁涂涃涄涅涆涇消涉涊涋涌涍涎涏涐涑涒涓涔涕涖涗涘涚涛涥烯烰烱烲烳烴烵烶烷烸烹烺烻烼烽烾烿焀焁焂焃焄焆焇焈焉焊焋焌焍焎焏焐焑焒焓焗爽牻牼牽牾牿犁狳狴狵狶狷狸狹狺狻狼狽狾狿猀猁猂率玈珒珓珔珕珖珗珘珙珚珛珜珝珞珟珠珡珢珣珤珥珦珧珨珩珪珫珬班珮珯琉瓠瓹瓻甛甜產産畡畢畣畤略畦畧畨異痊痋痌痍痎痏痐痑痒痓痔痕皎皏皐盒盓盔盕盖盗盛眭眯眰眱眲眳眴眵眶眷眸眹眺眻眼眽眾硂硃硅硆硇硈硉硊硋硌硍硎硏硐硑硒硓硔硘祣祤祥祧票祩祪祫祬祭祮禼秱秲秳秵秶秷秸秹秺移窏窐窑窒窓窔窕竟章竡笖笗笘笙笚笛笜笝笞笟笠笡笢笣笤笥符笨笪笫第笭笮笯笰笱笲笳笴笵笶笷笸笻粒粓粔粕粖粗粘粙粚粛粜粣紨紩紫紬紭紮累細紱紲紳紴紵紶紷紸紹紺紻紼紽紾紿絀絁終絃組絅絆絇絈絉絊経缻缽罛罜罝罞罟罠罡罢羕羚羛羜羝羞翇翉翊翋翌翍翎翏翐翑習耇耈耚耛耜耝耞耟聃聄聅聆聇聈聉聊胂胃胄胅胆胇胈胉胊胋背胍胎胏胐胑胒胓胔胕胖胗胘胙胚胛胜胝胞胟胠胡胢胣胤胥胦脉舂舑舲舳舴舵舶舷舸船舺艴苐苑苒苓苔苕苖苗苘苙苛苜苝苞苟苠苡苢苣苤若苦苧苨苩苪苫苬苭苮苯苰英苲苳苴苵苶苷苸苹苺苻苼苽苾茀茁茂范茄茅茆茇茈茉茋茌茍茎茐處虖虗虘虙虚蚮蚯蚰蚱蚲蚳蚴蚵蚶蚷蚸蚹蚺蚻蚼蚽蚾蚿蛀蛁蛂蛃蛄蛅蛆蛇蛈蛉蛋蛌衅衐衒術袈袉袊袋袌袍袎袏袐袑袒袓袔袕袖袗袘袙袚袛袜袞袟袠袡袢袣袤袥袦袧袨袩袪被袬覂規覑覒覓覔觕觖觙訛訜訝訞訟訠訡訢訣訥訦訧訨訩訪訫訬設訰許訲谹谺谻豉豘豚豛豜豝豼豽貥貦貧貨販貪貫責貭貮赥赦赹赺赻赼赽赾赿趹趺趻趽趾趿跀跁跂躭躯軖軗軘軙軛軜軝軞軟軠軡迊迋迌迍迎迏近迒迓返迕迖迗还这邞邟邠邡邢那邤邥邦邧邨邩邪邫酓酔酕酖酗酘酙酚酜野釣釤釥釦釧釨釩釪釫釬釭釮釰釱釲釳釴釵釶釷釸釹閆閇閈閉阠阡阢阣阤隿雀雩雪靪頂頃頄飡飢飣飤馗魚鳥鹵鹿麥麻","12":"㐤㑴㑺㓃㓔㓕㓷㓻㕠㖷㖹㖺㖽㖾㖿㗁㗃㗇㗋㗍㗐㙏㙑㙓㙕㚟㛮㛯㛰㛱㛲㛳㛴㛵㛷㛺㛻㛽㛾㜂㜃㜄㝄㝢㝷㟦㟧㟨㟫㟭㟯㠭㡓㡕㢐㢽㢾㣏㣐㣬㥀㥃㥇㥈㥋㥌㥍㥎㥑㥕㦸㧼㧿㨀㨂㨄㨇㨈㪚㪸㫵㫷㫸㫺㫽㬸㭹㭻㭼㮀㮃㮅㮆㮇㮈㰴㱕㱨㲜㳵㳸㳺㳻㳼㳽㴅㴆㴇㴈㴊㷂㷅㷉㷊㷋㷍㻉㻊㻋㻍㻎㼯㽒㽟㾕㾖㾘㾝㾞䀃䀯䀱䀳䂰䂴䄇䄈䅎䅐䅒䆡䆣䆥䇌䇪䇭䇯䊄䊅䋕䋗䋘䋙䋚䋛䋞䎜䎝䏦䑪䒱䒳䒴䒵䒷䒹䒺䓁䖑䖮䖰䖴䖵䘩䘫䘬䘭䘮䙿䛅䛆䛉䛊䛋䛐䛒䜭䜵䝬䞝䞟䞠䞢䟢䟫䠲䠶䡏䡐䡒䢸䣯䣰䣱䤝䤞䤟䤠䦎䦐䦑䧴䧵䧶䨌䩑䪦䪧䪨䬤䬥䭴䯇䯧䯭亁傀傁傂傃傅傇傈傉傋傌傍傎傏傑傒傔傕傖傗傘備傚傛傜傝傞傢傣傦兟兠凒凓凔凖凱剩割剳剴創勛勝勞匑匒博厤厥厦厧厨叅啙啫啺啻啼啽啾啿喀喁喂喃善喅喆喇喈喉喊喋喌喎喏喑喒喓喔喕喖喗喘喙喚喛喜喝喞喟喠喡喢喣喤喥喦喧喨喩喪喫喬喭單喯喱喲喳喴喵喺喻圌圍圎埪堘堙堚堛堜堝堞堟堠堡堢堣堤堥堦堧堨堩堪堬堭堮堯堰報堲堳場堵堶堷堸堹堺堻堼堾堿塇塈壹壺壻奠奡奢奣奤婷婸婹婺婻婼婽婾婿媀媁媂媃媄媅媆媇媈媉媊媋媌媍媎媏媑媒媓媔媕媖媗媘媙媚媛媜媝媞媟媠媡媢媣媤媥媦媧媨媩媪媫媬媮媯嫏孱寊寋富寍寎寐寑寒寓寔寕寪尊尋尌尞尰就属屟屠屡崱崲崳崴崵崶崷崸崹崺崻崼崽崾崿嵀嵁嵂嵃嵄嵅嵆嵇嵈嵉嵋嵌嵍嵎嵏嵐嵑嵒嵓嵕嵗嵙嵛巽帽帾幀幁幂幃幄幅幆幇幾庽庾庿廀廁廂廊弑强弻弼弾彘彭徚徥徦徧徨復循徫悰悱悲悳悴悵悶悷悸悹悺悻悼悽悾悿惀惁惃惄情惆惇惈惉惊惋惌惍惎惏惐惑惒惓惔惕惖惗惘惙惚惛惜惝惞惟惠惡惢惣惤惥惦惧惨惩惪惮戞戟扉扊捥捦捧捨捩捪捫捬捭据捯捰捱捲捳捴捵捶捷捸捹捺捻捼捽捾捿掀掁掂掃掄掅掆掇授掉掊掋掌掍掎掏掐掑排掓掔掖掗掘掙掛掜掝掞掟掠採探掣掤接控推掩措掫掬掭掮掯掰掱掶掺掽攲敜敝敞敟敠敡敢散敤敥敦敧敨敪敭斐斑斝斮斯旐旑晪晫晬晭普景晰晱晲晳晴晶晷晸晹智晻晼晽晾晿暀暁暑曾替最朁朂朝朞期棃棄棅棆棇棈棉棊棋棌棍棎棏棐棑棒棓棔棕棖棗棘棚棛棜棝棞棟棠棡棢棣棤棥棦棧棨棩棪棫棬棭森棯棰棱棲棳棴棵棶棷棸棹棺棻棼棽棾棿椀椁椂椃椄椅椆椇椈椉椊椋椌植椎椏椐椑椒椓椔椕椗椘検椞椥椩椪椬椮欹欺欻欼欽款欿歮歯殔殕殖殗殘殙殼殽毯毰毲毳毴毶氬氭氮氯氰涙涪涫涬涭涮涯涰涱液涳涴涵涶涷涸涹涺涻涼涽涾涿淀淁淂淃淄淅淆淇淈淉淊淋淌淍淎淏淐淑淒淓淔淕淖淗淘淙淚淛淜淝淞淟淠淡淢淣淤淥淦淧淨淩淪淫淬淭淮淯淰深淲淳淴淵淶混淸淹淺添淼淽淾淿渀渁渂渄清渆渇済渉渊渌渏渒渗渚湴焙焚焛焜焝焞焟焠無焢焣焤焥焦焧焨焪焫焬焭焮焯焰焱焲焳焴焵然焷焸焹焺焻焽焿煮爲牋牌牚犀犂犃犄犅犆犇犈犉犋猆猇猈猊猋猌猎猏猐猑猒猓猖猗猘猙猚猛猜猝猞猪珳珴珵珶珸珹珺珻珼珽現珿琀琁琂球琄琅理琇琈琊琋琌琍琒瓽瓾瓿甀甁甤甥甦甯番畫畬畭畮畯疎疏痗痘痙痚痛痝痞痟痠痡痢痣痤痥痦痧登發皒皓皔皕皖皳皴盙盚盜着睂睃睄睅睆睇睈睉睊睋睌睍睎睏矞矟矬短硜硝硞硟硠硢硣硤硥硦硨硩硪硫硬硭确硯硰硱硶祦祰祱祲祳祴祵祶禄禽秿稀稂稃稄稅稇稈稉稊程稌稍税窖窗窘窙窚竢竣竤童竦竧笄筀筁筂筃筄筅筆筇筈等筊筋筌筍筎筏筐筑筒筓答筕策筗筘筙粞粟粠粡粢粤粥粦粧粨粩絍絎絏結絑絒絓絔絕絖絗絘絙絚絜絝絞絟絠絡絢絣絤給絧絨絩絪絫絬絭絮絯絰統絲絳絴絵絶缾缿罀罣羠羡羢翓翔翕翖翗耊耋聎聏聐聑聒聓聠胭胮胯胰胱胲胳胴胵胶胷胸胹胺胻胼能胾胿脀脁脂脃脄脅脆脇脈脊脔臦臮臯臶臷臸舃舄舒舜舼舽舿茒茖茗茘茙茛茜茞茟茠茡茢茤茥茦茧茨茩茪茫茬茭茯茱茲茳茴茵茶茷茸茹茺茻茼茿荀荁荂荃荄荅荆荇荈草荊荋荌荍荎荏荐荑荒荔荖荗荘荢荣萬虛虜虝蛐蛑蛓蛔蛕蛗蛘蛙蛚蛛蛜蛝蛞蛟蛡蛢蛣蛤蛦蛨蛩蛪蛫蛬蛭蛮衆衇衈衕衖街衘袱袲袴袵袶袷袸袹袺袻袼袽袾袿裀裁裂裉覃覄覕視覗覘覚觚觛觝訴訵訶訸訹診註証訽訾訿詀詁詂詃詄詅詆詈詉詊詋詌詍詎詏詐詑詒詔評詖詗詘詙詚詛詝詞詠豞豟豠象豾豿貀貁貂貃貯貰貱貲貳貴貵貶買貸貹貺費貼貽貾貿賀賁赧趀趁趂趃趄超趆趇趈趉越趋跅跆跇跈跉跊跋跌跍跎跏跐跑跒跓跔跕跖跗跘跙跚跛跜距躰軤軥軦軧軨軩軪軫軬軮軯軱軲軳軴軵軶軷軸軹軺軻軼軽辜辝迠迡迢迣迤迥迦迧迨迩迪迫迭迮迯述迱邭邯邰邱邲邳邴邵邶邷邸邹酟酠酡酢酣酤酥釉量釽釾釿鈀鈁鈂鈃鈄鈅鈆鈇鈈鈉鈊鈋鈌鈍鈎鈏鈐鈑鈒鈓鈔鈕鈖鈗鈘鈙鈚鈛鈜鈞鈠鈡鈢鈣鈤鈥鈦鈧鈫镺開閌閍閎閏閐閑閒間閔閕閗阦阧阨阩阪阫阬阭阮阯阰阱防阳阴雁雂雃雄雅集雇雈雬雭雮雯雰雱雲靟靬靭靮靯靰韌項順頇須颩飥飦飧馭馮骩髠鬽鳦黃黄黍黑黒黹鼎","13":"㐮㑻㑼㑽㓽㔲㗖㗚㗛㙛㙜㜆㜈㜉㜊㜋㜍㜏㜐㜑㜒㜓㝧㟶㥞㥠㥤㥧㥫㨋㨍㨏㨓㨔㨗㪟㪱㬃㬄㬅㬆㬇㬈㬉㬌㮌㮍㮎㮒㮓㮔㮖㮘㮙㮚㮛㮜㮟㮡㮣㱪㱭㲄㲠㴑㴓㴕㴖㴗㴚㴛㴜㴝㷎㷏㷐㷒㷓㷘㷙㹇㺃㻑㻔㻕㻖㻗㽢㽣㿢䀄䁃䂺䂼䂾䄍䄎䄏䄑䄒䅕䅗䅙䅛䇎䇵䇹䇺䇼䇾䊇䊈䊉䊊䊋䋠䋡䋥䋦䎋䎍䎹䏯䏲䏹䏺䏻䑓䓅䓈䓎䓑䓒䖒䖕䖖䖸䖹䖽䘒䚀䚁䚘䚚䛔䛖䛚䛛䛜䝱䝲䞨䟰䟱䠷䠸䠹䡓䡕䢒䢕䢻䢽䢾䣁䣂䣵䤡䦒䧃䧸䧹䧺䨎䩃䩓䩖䪞䪩䫺䬧䬩䬪䭶䰟䲥亂亃亄亶亷傪傫催傭傮傯傰傱傲傳傴債傶傷傸傹傺傻傼傽傾傿僁僂僃僄僅僆僇僈僉僊僋僌働兡兾兿凗剷剸剹剺剻剼剽剾剿募勠勡勢勣勤勦勧匯厀厪厫叠喍喿嗀嗁嗂嗃嗄嗅嗆嗇嗈嗉嗊嗋嗌嗍嗎嗏嗐嗑嗒嗓嗔嗕嗖嗗嗙嗚嗛嗜嗝嗞嗟嗡嗢嗣嗤嗥嗦嗧嗨嗩嗪嗮嗯嗰嗲嗴園圓圔圕堽塉塊塋塌塍塎塏塐塑塒塓塔塕塖塗塘塙塚塛塜塝塞塟塠塡塢塣塤塥塦塨塩塪填塬塭塯塱壼奦奧奨媐媰媱媲媳媴媵媶媷媸媹媺媻媼媽媾媿嫀嫁嫂嫃嫄嫅嫆嫇嫈嫉嫊嫋嫌嫍嫎嫐嫑嫓孳孴寖寗寘寙寚寛寜尟尠尳嵊嵞嵠嵢嵣嵤嵥嵦嵧嵨嵩嵫嵬嵭嵮嵯嵱嵲嵵巰幊幋幌幍幎幏幹廅廆廇廈廉廋廌弒彀彂彙彚彮徬徭微徯惰惱惲想惴惵惶惷惸惹惺惻惼惽惾惿愀愁愃愄愅愆愇愈愉愊愋愌愍愎意愐愑愒愓愔愕愖愘愙愚愛愜愝愞感愠愡愢愣愥慨戠戡戢戣戤戥掲掾掿揀揁揂揃揄揆揇揈揉揊揋揌揍揎描提揑插揓揕揖揗揘揙揚換揜揝揞揟揠握揢揣揤揥揦揧揨揩揪揫揭揮揯揰揱揲揳援揵揶揷揸揹揾搃搜敫敬敯数斒斞斟新旒旓旤暄暆暇暈暉暊暋暌暍暎暏暐暒暓暔暕暖暗暘暙會朠椯椰椱椲椳椴椵椶椷椸椹椻椼椽椾椿楀楁楂楃楄楅楆楇楈楉楊楋楌楍楎楏楐楑楒楓楔楕楖楗楘楙楚楛楜楝楞楟楠楡楢楣楤楥楦楧楨楩楪楫楬業楮楯楰楱楳楴極楶楷楸楹楺楻楼楽概榃榅榆榔榘歀歁歂歃歄歅歆歇歈歱歲歳殛殜殾殿毀毁毓毷毸毹毺毻毼毽氱渃渘渙減渜渝渞渟渠渡渢渣渤渥渦渧渨温渪渫測渭渮港渰渱渲渳渴渵渶游渹渺渻渼渽渾渿湀湁湂湃湄湅湆湇湈湉湊湋湌湍湎湏湐湑湒湓湔湕湖湗湘湙湚湛湜湝湞湟湠湡湢湣湤湥湦湧湨湩湪湫湬湭湮湯湰湱湲湳湵湶湷湸湹湻湼湾満溄溈溉溊溋滋煁煂煃煄煅煆煇煈煉煊煋煌煍煎煏煐煑煒煓煔煖煗煘煙煚煜煝煞煟煠煡煢煣煤煥煦照煨煩煪煫煬煭煯煰煱煲煴煵煶煷煸爺牎牏牐牑牒犌犍犎犐犑猢猣猤猥猦猧猨猩猫猬猭献猯猰猱猲猳猴猵猶猷猸獁珷琔琕琖琗琘琙琚琛琜琝琟琠琡琢琣琤琥琦琧琨琩琪琫琬琭琮琯琰琱琲琳琴琵琶琸琹琺琻琼瓡甂甃甄甆甝甞當畷畸畹畺痭痮痯痰痱痲痳痴痵痶痷痸痹痺痻痼痽痾痿瘀瘁瘂瘃皗皘皙皵盝盞盟睒睓睔睕睖睘睙睚睛睜睝睞睟睠睢督睤睥睦睧睨睩睪睫睬睭矠矮硸硹硺硻硼硽硿碀碁碂碃碄碅碆碇碈碉碊碋碌碍碎碏碐碑碒碓碔碕碖碗碘碙碚碰祹祺祼祽祾祿禀禁禂禃禆稏稐稑稒稓稔稕稗稘稙稚稛稜稝稞稟稠稢稥窞窟窠窡窢窣窤窧竩竪竫筞筠筡筢筣筤筥筦筧筨筩筫筬筭筮筯筰筱筲筳筴筵筶筷筸筹節粮粯粰粱粲粳粴粵絛絸絹絺絻絼絽絾絿綀綁綃綄綅綆綇綈綉綊綋綌綍綎綏綐綑綒經綔綕綖綗綘継罥罦羣群羥羦羧羨義翛翜翝耡聖聗聘肄肅肆脕脖脗脘脙脚脛脝脞脟脡脢脣脤脥脧脩脪脫脬脭脮脯脰脱脴臹舅舝艀艁艂艄艅艇艈艉茝茣荱荲荳荴荵荶荷荸荹荺荻荼荽荾荿莀莁莃莄莅莆莇莈莉莊莋莌莍莎莏莐莑莒莓莔莕莖莗莘莙莚莛莜莝莞莟莠莡莢莣莤莥莦莧莨莩莪莫莮莯莰获莽虞號蛖蛵蛶蛷蛸蛹蛺蛻蛼蛽蛾蛿蜀蜁蜂蜃蜄蜅蜆蜇蜈蜉蜊蜋蜌蜍蜎蜑蜒蜓蜕蜖蜫蝆衙裊裋裌裍裎裏裐裒裔裕裖裗裘裙裚裛補裝裞裟裠裡覅覛覜觜觟觠觡觢解觤觥触觧詡詢詣詤詥試詧詨詩詪詫詬詭詮詯詰話該詳詴詵詶詷詸詹詺詻詼詽詾詿誀誁誂誃誄誅誆誇誈誠谼豊豋豢豣豤豥豦貄貅貆貈貉貊賂賃賄賅資賈賉賊賌賍赨赩趌趍趎趏趐趑趒趓趔趼跟跠跡跢跣跤跦跧跨跩跪跫跬跭跮路跰跱跲跳跴跺躱躲軾軿輀輁輂較輄輅輆輇輈載輊輋辞辟辠農迴迵迶迷迸迹迺迻迼追迾迿退送适逃逄逅逆逈选邼邽邾邿郀郁郂郃郄郅郆郇郈郉郊郋郍郎酧酨酩酪酫酬酮酯鈭鈮鈯鈰鈱鈲鈳鈴鈵鈶鈷鈸鈹鈺鈻鈼鈽鈾鈿鉀鉁鉄鉅鉆鉈鉉鉊鉋鉌鉍鉎鉏鉐鉑鉒鉓鉔鉕鉖鉗鉙鉚鉛鉜鉝鉞鉟鉠鉡鉢鉣鉤鉥鉦鉧鉪鉫鉬鉭鉮鉯鉰鉲鉳銏镻閘閙閚閛閜閞閟阷阹阺阻阼阽阾阿陀陁陂陃附雉雊雋雌雍雎雴雵零雷雸雹雺電雼雽靕靖靲靳靴靶靷靸靹韮韵頊頋頌頍頎頏預頑頒頓颬飩飪飫飬飭飯飰飱飲馚馯馰馱馲馳馴馵骫骭髡髢鬾鬿魀魁魂魛魝鳧鳨鳩鳪鳫鳬鳭鳮鳯麀麁麂黽鼓鼔鼠","14":"㒆㒉㒋㒌㒍㓗㔃㔄㔇㔢㕑㕡㗣㗤㗥㗩㗪㙣㙥㚌㜕㜚㜛㜜㜠㜡㝫㟾㠀㠁㠄㡭㢓㢡㥬㥭㥲㥵㥶㥹㥺㨛㨞㨟㨢㨣㨤㨥㨦㨧㨨㨩㨪㬍㬏㬐㮩㮬㮮㮳㮴㮸㮺㰿㴦㴧㴨㴩㴪㴮㴰㴱㴳㴴㴸㴻㷠㷡㷦㸕㺋㻞㻟㻡㾭㾮㿣㿵䀆䁏䁔䃉䃋䄓䄕䅠䅡䅣䅤䅦䈄䈇䈊䊍䊏䊐䊒䋧䋬䋭䋮䋯䋲䍌䍛䍜䍞䍲䍴䍶䎏䎐䎾䏾䐇䑴䓟䓡䓢䓥䓧䗀䗅䗉䗕䘳䘺䙀䙁䙂䛡䛤䛦䛧䛨䜹䝜䝵䞮䞰䟺䟽䡛䢙䢛䣆䤤䤦䦖䦗䦘䦚䧆䧻䨒䨔䩅䩜䩝䪸䪺䬃䬭䬮䬰䬱䬲䭸䭺䭻䭼䭽䭾䯉䯳䰙䰚䲦䲧䲨䲩䲫䴮䵞僎像僐僑僓僔僕僖僗僘僙僚僛僜僝僞僠僡僢僣僤僥僦僧僨僩僪僫僬僭僮僯僰僱僳僴兢凘凳凴劀劁劂劃勩勪勫勭匰匱匲厬厭厮厰嗶嗷嗸嗹嗺嗻嗼嗽嗾嗿嘀嘁嘂嘃嘄嘅嘆嘇嘈嘉嘋嘌嘍嘎嘏嘐嘑嘒嘓嘔嘕嘖嘗嘘嘛嘜嘝嘞嘢嘦嘧噑噓圖圗團塲塳塴塵塶塷塸塹塺塻塼塽塾塿墀墁墂境墄墅墆墇墈墉墊墋墌墍墎墏墐墑墒墓墔墕墖増墘墛壽壾夐夢夣夤夥奩奪奫奬嫕嫖嫗嫘嫙嫚嫛嫜嫝嫞嫟嫠嫡嫢嫣嫤嫥嫦嫧嫨嫩嫪嫫嫬嫭嫮嫯嫰孵孶孷寞察寠寡寢寣寤寥實寧寨對尡屢屣嵷嵸嵹嵺嵻嵼嵽嵾嵿嶀嶁嶂嶃嶄嶆嶇嶈嶉嶊嶋嶌嶍嶎幈幒幓幔幕幗幘幙幛廄廍廎廏廐廑廒廓廔廕廖廗廘彃彄彯彰徳徴愧愨愩愪愫愬愮愯愰愱愲愳愴愶愷愸愺愻愼愽愾愿慀慁慂慃慄慅慆慇慈慉慊態慌慍慎慏慐戧戨戩截戫戬搆搇搈搉搊搋搌損搎搏搐搑搒搓搔搕搖搗搘搙搚搛搝搞搟搠搡搢搣搤搥搦搧搨搩搪搫搬搭搮搯搰搲搳搴搵搶搷搸搹携搻搼搽搾搿摀摁摃摆摇摉敱敲敳斠斡斲旖旗暚暜暝暟暠暡暢暤暥暦暨朄朅朢榍榎榏榐榑榒榓榕榖榗榙榚榛榜榝榞榟榠榡榢榣榤榥榦榧榨榩榪榫榬榭榮榯榰榱榲榳榴榵榶榷榹榻榼榽榾榿槀槁槂槃槄槅槆槈槉槊構槌槍槎槏槐槑槒槓槔槕槖様槙槡槩歉歊歋歌歍歴殞殟殠殡毃毄毾氲氳溍溎溏源溑溒溓溔準溗溘溙溚溛溜溝溞溟溠溡溢溣溤溥溦溧溨溩溪溫溬溮溯溰溱溲溳溴溵溶溷溸溹溺溻溼溽溾溿滀滁滂滃滄滅滆滇滈滉滊滍滎滏滐滑滒滓滔滕滖滘滙滛滜滝滣滦滨滩漓煛煻煼煽煾煿熀熁熂熃熄熅熆熇熈熉熊熋熌熍熎熏熐熑熒熓熔熖熗熙熦爾牄牓犒犓犔犕犖犗猺猻猼猾猿獀獂獃獅獆獇獈獉獊琞琽琾琿瑀瑁瑂瑃瑄瑅瑆瑇瑈瑉瑊瑋瑌瑍瑎瑏瑐瑑瑒瑓瑔瑕瑖瑗瑘瑙瑚瑛瑜瑝瑞瑟甇甈甉畱畽疐疑瘇瘈瘉瘊瘋瘌瘍瘎瘏瘐瘑瘓瘔瘕瘖瘟瘧皷皸皹盡盢監睡睮睯睱睴睵睶睷睸睹睺睻睼睽睾睿瞀瞁瞂瞃瞄瞅硾碞碟碠碡碢碣碤碥碦碧碨碩碪碫碬碭碮碯碱碲碳碴碷碸磁禇禈禉禊禋禍禎福禐禒禓禔禕禖禗禘禙稦稨稩稪稫稬稭種稯稰稱稲穊窨窩窪窫窬竬竭端竰箁箂箃箄箅箆箇箈箊箋箌箍箎箏箐箑箒箓箔箕箖算箘箙箚箛箜箝箞箟箠管箣箤粷粸粹粺粻粼粽精粿綜綝綞綟綠綡綢綣綤綦綧綨綩綪綫綬維綮綯綰綱網綳綴綵綶綷綸綹綺綻綼綽綾綿緀緁緂緄緅緆緇緈緉緊緋緌緍緎総緐緑緒罁罧罨罩罪罫罬罭置署翞翟翠翡翢翣耣耤聚聛聜聝聞聟聡聣肇脹脺脻脽脾腀腁腂腃腄腅腆腇腈腉腊腋腌腍腎腏腐腑腒腓腔腕臧臺與舓舔舕舞艊艋艌艵荓莿菀菁菂菃菄菅菆菇菈菉菊菋菌菍菎菏菑菒菓菔菕菖菗菘菙菚菛菜菝菞菟菠菡菢菣菤菥菦菧菨菩菪菫菬菭菮華菰菱菲菳菴菵菶菸菹菺菻菼菽菾菿萀萁萂萃萄萅萆萇萈萉萊萋萌萍萎萏萐萑萒萓萔萖萗萘萛萞萟萡萣著蒸虡蜘蜙蜚蜛蜜蜝蜞蜠蜡蜢蜣蜤蜥蜦蜧蜨蜩蜪蜬蜭蜮蜰蜱蜲蜳蜴蜵蜶蜷蜸蜹蜺蜻蜼蜽蜾蜿蝀蝁蝂蝃蝅蝇蝊裧裨裩裪裫裬裭裮裯裰裱裲裳裴裵裶裷裸裹裺裻裼製裾裿褀褁褂褃覝覞覟覡觨觩觪觫誋誌認誎誏誐誑誒誓誔誕誖誘誙誚誛誜誝語誟誡誢誣誤誥誦誧誨誩說誫説谽豧豨豩豪貌貍賏賐賑賒賓賔賕賖賗賘赫趕趖趗趘趙趚跼跽跾跿踀踁踂踃踄踅踆踇踈踉踊踋踍躳躴輍輎輐輑輒輓輔輕辡辢辣逋逌逍逎透逐逑递逓途逕逖逗這通逛逜逝逞速造逡逢連逤逥郔郕郖郗郘郙郚郛郜郝郞郟郠郡郢郣郤郥酲酳酴酵酶酷酸酹酺酻酼鉶鉸鉹鉺鉻鉽鉾鉿銀銁銂銃銄銅銆銇銈銉銊銋銌銍銎銐銑銒銓銔銕銖銗銘銙銚銛銜銝銞銠銡銢銣銤銥銦銧銨銩銪銫銬銭銮銰銱閡関閣閤閥閧閨閩陊陋陌降陎陏限陑陓陔雐雑雒雿需靘静靤靺靻靼靽靾靿鞀鞁鞂鞃鞄鞅韍韎韶頔頕頖頗領頙頚颭颮颯颱飳飴飵飶飷飸飹飼飽飾飿馜馝馶馷馸馹馺馻馼馽馾馿駀駁駂駃駄駇骯骰骱髚髣髤髥髦髧髨髩髪鬦魃魄魅魆魟魠魡鳱鳲鳳鳴鳵鳶麧麼麽鼏鼐鼻齊","15":"㒒㒓㒕㒖㒗㗳㗵㙨㙩㙫㙬㚄㜥㜦㜨㠈㠌㠏㡠㢘㥿㦂㦃㦄㦼㨰㨱㨲㨴㨵㨶㨸㨺㨼㨿㩀㬔㬕㮿㯂㯄㯇㯈㯌㯍㯎㯏㯠㱃㲶㴼㴾㵀㵂㷫㷬㷭㷮㷯㺓㻧㼼㽐㽦㾸㿶䁗䁞䄙䅮䅰䅲䅶䈑䈒䈔䈖䈙䈟䈤䈥䊓䊔䊕䊖䋳䋸䋹䋺䋻䋼䌀䌃䌄䍟䎿䐏䐓䐖䐘䐙䑹䓰䓵䓶䓷䓹䗋䗌䗎䗏䗑䛭䛱䛴䛸䜯䝝䝞䝶䝷䝾䝿䞳䞶䟼䠀䠂䠃䠊䢇䢜䢞䢠䣎䤫䤭䤮䤰䦞䦟䧋䧍䧼䧽䨗䨘䨙䪿䬵䬶䬹䭫䭬䮀䮁䮃䯊䯎䯶䰛䰣䰹䲮䲳䲴䲵䲷䴢僵僶僷僸價僻僼僽僾僿儀儁儂儃億儅儆儇儈儉儊儋儌儍儎儏凙凚凛凜劆劇劈劉劊劋劌劍劎勮勯勰勱勲匔匳厱厲嘟嘠嘨嘩嘪嘫嘬嘭嘮嘯嘰嘱嘲嘳嘴嘵嘶嘷嘸嘹嘺嘻嘽嘾嘿噀噁噂噄噅噆噇噈噉噊噋噌噍噎噏噐噒噔噖噗噘噙噚噴圚墜墝增墟墠墡墢墣墤墥墦墧墨墩墪墫墬墭墮墯墰墱墲墳墴墵墷壿夀夦奭嫳嫴嫵嫶嫷嫸嫹嫺嫻嫼嫽嫾嫿嬀嬁嬂嬃嬄嬅嬆嬇嬈嬉嬊嬋嬌嬍嬎嬏審寫寬寮導層履屧嶏嶐嶑嶒嶓嶔嶕嶖嶗嶘嶙嶚嶛嶜嶝嶞嶟嶠嶡嶢嶣嶤嶥巤幚幜幝幞幟幠幡幢幣幥廙廚廛廜廝廞廟廠廡廢廣弊彆彈彉影徲徵徶德徸徹徺慒慓慔慕慖慗慘慙慚慛慜慝慞慟慠慡慢慣慤慥慦慧慩慪慫慬慮慯慰慱慲慳慴慵慶慷慸慹慺慻慼慽慾憀憁憂憃憅憆憇憈戭戮戯戱揅摋摌摍摎摏摐摑摒摓摔摕摗摘摙摛摜摝摞摟摠摡摢摤摥摦摧摨摩摪摫摬摭摮摯摰摱摲摳摴摵摶摷摸摹摺摻摼摽摾摿撀撁撂撃撇整敵敶敷數敹敺敻斳暩暪暫暬暭暮暯暰暱暲暳暴暵暶暷朡槢槣槤槥槦槧槨槪槫槬槭槮槯槰槱槲槳槴槶槷槸槹槺槻槼槽槾槿樀樁樂樄樅樆樇樈樉樊樋樌樍樎樏樐樑樒樓樔樕樖樗樘標樚樛樜樝樞樟樠模樢樣樤樥樦樧樨権横樬樭歎歏歐歑歒歓歶殢殣殤殥殦毅毆毿氀氁氂滌滚滫滬滭滮滯滰滱滲滳滴滵滶滷滸滹滺滻滼滽滾滿漀漁漂漃漄漅漆漇漈漉漊漌漍漎漏漐漑漒演漕漗漘漙漚漛漜漝漞漟漠漡漢漣漥漦漧漨漩漪漫漬漭漮漯漰漱漲漳漴漵漶漷漸漹漺漻漼漾漿潀潁潂潃潄潈潉潊潌熚熛熜熝熞熟熠熡熢熣熤熥熧熨熩熪熫熬熭熮熯熰熱熲熳熴熵牕牖牗犘犙犚犛獄獌獍獎獏獐獑獒獓獔獕瑠瑡瑢瑣瑤瑥瑦瑧瑨瑩瑪瑫瑬瑭瑮瑯瑰瑱瑲瑳瑴瑵瑶甊甋甌甍甎畾畿瘙瘚瘛瘜瘝瘞瘠瘡瘢瘣瘤瘥瘦瘨瘩皚皛皜皝皞皺盤瞇瞈瞉瞊瞋瞌瞍瞎瞏瞐瞑確碻碼碾磀磂磃磄磅磆磇磈磉磊磋磌磍磎磏磐磑磒磓磔磕磖磘磜禚禛禜禝禞禟禠禡禢禣稷稸稹稺稻稼稽稾稿穀穁穂窮窯窰窱窲窳窴箬箭箮箯箱箲箳箴箵箷箸箹箾箿篁範篆篇篊篋篌篍篎篐糂糃糄糅糆糇糈糉糊糋糌糍糎緓緖緗緘緙線緛緜緝緞緟締緡緢緣緤緥緦緧編緩緪緫緬緭緮緯緰緱緲緳練緵緶緷緸緹緺緻緼緽緾緿縀縁縂縃縇罯罰罱罳羬羭羮羯羰翥翦翧翨翩翪翫翬翭耦聤聥聦聧聨聪聫腛腜腝腞腟腠腡腢腣腤腥腦腧腩腪腫腬腭腮腯腰腱腲腳腴腵腶腷腸腹腺腽興舖艎艏艐艑艒艓莭萩萪萫萭萮萯萰萱萲萳萴萵萶萷萸萹萺萻萼落萾萿葀葁葂葃葄葅葆葇葈葉葊葋葌葍葎葏葐葑葒葓葔葕葖葘葙葚葛葜葝葞葟葠葡葢董葤葥葦葧葨葩葫葬葭葮葯葰葱葲葳葴葵葶葷葸葹葺葻葽葾葿蒀蒂蒃蒄蒆蒍蒎蒏虢虣蝌蝍蝎蝏蝐蝑蝒蝓蝔蝕蝖蝗蝘蝙蝚蝛蝜蝝蝞蝟蝠蝡蝢蝣蝤蝥蝦蝧蝨蝩蝪蝫蝬蝭蝮蝯蝱蝳蝴蝵蝶蝷蝸蝺蝻蝽蟡衚衛衜衝裦褅褆複褉褊褋褌褎褏褐褑褒褓褔褕褖褗褘褙褚褛覢覣覤覥觬觭觮誯誰誱課誳誴誵誶誷誸誹誺誻誼誽誾調諀諁諂諃諄諅諆談諈諉諊請諌諍諎諏諐諑諒諓諔諕論諗諘諙諩谾豌豍豎貎貏賙賚賛賜賝賞賟賠賡賢賣賤賥賦賧賨賩質賫賬趛趜趝趟趠趡趢趣趤踏踐踑踒踓踔踕踖踗踘踙踚踛踜踝踞踟踠踡踢踣踤踥踦踧踨踩踪踮躶躷躸躹躺躼輖輗輘輙輚輛輜輝輞輟輠輢輣輤輥輦輧輩輪輫輬辤辳逨逩逪逫逬逭逮逯逰週進逴逵逶逷逸逺逻部郩郪郫郬郭郮郯郰郱郲郳郴郵郷醀醁醂醃醄醅醆醇醈醉醊醋醌銲銳銴銵銶銷銸銹銻銼銾銿鋀鋁鋂鋃鋄鋅鋆鋇鋈鋉鋊鋋鋌鋍鋎鋏鋐鋑鋒鋓鋔鋕鋖鋗鋘鋙鋚鋛鋜鋝鋞鋟鋠鋡鋢鋤鋥鋦鋧鋨鋩鋪鋫鋭鋮鋯鋰鋱鋳鋴鋵鋶閫閬閭閮閯閰閱閲閳陖陘陙陛陜陝陞陟陠陡院陣除雓霂霄霅霆震霈霉霊靚靠鞇鞈鞉鞊鞋鞌鞍鞎鞏韏韐韯頛頜頝頞頟頠頡頢頦頧頨頩頪頫颲颳飺餀餁餂餃餅餆餇餈餉養餌餎駈駉駊駋駌駍駎駏駐駑駒駓駔駕駖駗駘駙駚駛駜駝駞駟駠骳骴骵骶骷髫髬髭髮髯髱髲髳髴鬧魣魤魦魧魨魩魫魬魯魰魱魲魴魵魶魷鳷鳸鳹鳺鳻鳼鳽鳾鳿鴀鴁鴂鴃鴄鴅鴆鴇鴈鴉鴌鴍麃麄麩麪麫麾黎黓鼒齒","16":"㒙㗽㘁㘂㙰㙲㙳㙴㙵㙶㚡㜩㜪㠖㡢㢙㣓㣵㦉㦊㦍㦔㦖㩄㩎㬙㬛㬜㬿㯐㯓㯖㯗㯚㯛㯜㯞㯟㯢㯤㯥㯦㲆㲇㲭㲷㵊㵍㵎㵑㵓㵖㵘㵙㷴㷵㷷㷸㷻㷼㻭㻮㻯㻰㻱㻲㽁㽃㿅䁢䁣䁦䁧䃘䃙䃛䄛䅹䅽䈬䈰䈷䊚䌅䌇䌉䌊䍹䏂䐡䐥䐦䑞䓽䔁䔅䔉䔌䔍䗘䗜䗞䘗䙑䛺䛻䜻䜽䜿䝟䞄䞼䠎䠏䠔䡠䣑䤄䤈䤳䤴䦢䦤䦥䦦䦧䧐䧑䧓䧔䧕䧖䧾䧿䨀䨜䨝䩧䪔䫅䫇䫈䫉䬼䮆䮇䮈䮊䯏䯐䰜䰿䱃䱄䱆䱇䱈䱉䲺䲼䲾䳂䳄䳆䳈䴣儐儑儒儓儔儕儖儗儘儚儛儜儝儞儫兣冀冪凝凞劐劑劓劔勳匴叡噞噟噠噡噢噣噤噥噦噧器噩噪噫噬噭噮噯噰噱噲噳噶噷噸噹噻圛圜墺墻墼墽墾墿壀壁壂壃壄壅壆壇壈壉壊夁奮嬐嬑嬒嬓嬔嬕嬖嬗嬘嬙嬚嬛嬜嬝嬞嬟嬠嬡嬢嬴學孹寯寰嶦嶧嶨嶩嶪嶫嶬嶭嶮嶯嶰嶱嶲嶳嶴嶵嶶幦幧幨幩廥廦廧廨廩廪彊彋彛徻徼憉憊憋憌憍憎憏憐憑憒憓憔憕憖憗憘憙憚憛憜憝憞憟憡憢憣憤憦憧憨憩憪憫憬憭憮憯憰憱憲憳戰搱摖撅撆撈撉撊撋撌撍撎撏撐撑撒撓撔撕撖撗撘撙撚撛撜撝撞撟撠撡撢撣撤撥撦撧撨撩撪撫撬播撮撯撰撱撲撳撴撶撹擆攳敼敿斢暸暹暺暻暼暽暾暿曀曁曃曄曅曆曇曈曉曊曋曌曍朆朣朤樲樳樴樵樶樷樸樹樺樻樼樽樾樿橀橁橂橃橄橅橆橇橈橉橊橋橌橍橎橏橐橑橒橓橔橕橖橗橘橙橚橛橜橝橞機橠橡橢橣橤橦橧橨橩橪橫橬橭橮橯橰橱橶橷橺歔歕歖歗歘歙歷殧殪殫毇毈氃氄氅氆漋漽潎潏潐潑潒潓潔潕潗潘潙潚潛潜潝潞潟潠潡潢潣潤潥潦潧潩潪潫潬潭潮潯潰潱潲潳潴潵潶潷潸潹潺潻潼潽潾潿澁澂澄澅澆澇澈澉澋澌澍澎澏澐澑澒澓澔澕澖澗澝濐熶熷熸熹熺熻熼熽熾熿燀燁燂燃燄燅燆燇燈燉燊燋燌燎燏燐燑燒燓燔燕燖燘燙燚燛燜燝燞犝犞獋獗獘獙獚獛獝獞獟獠獡獢瑹瑺瑻瑼瑽瑾瑿璀璁璂璃璄璅璆璇璈璉璊璋璌璓瓢甏甐甑甒疀疁瘬瘭瘯瘰瘱瘲瘳瘴瘵瘶瘷瘸瘺瘻瘼瘽皡皻盥盦盧瞕瞖瞗瞘瞙瞚瞛瞜瞝瞞瞟瞠瞡瞢瞣磚磛磝磞磟磠磡磢磣磥磧磨磩磪磫磬磭磮禤禥禦穄穅穆穇穈穋穌積穎穏窵窶窷窸窺窻窽竮竱築篔篕篘篙篚篛篜篝篞篟篠篡篢篣篤篥篦篧篨篩篪篫篬篭簑糐糑糒糓糔糕糖糗縈縉縊縋縌縍縎縏縐縑縒縓縔縕縖縗縙縚縛縜縝縞縟縠縡縢縣縤縥縦縧罃罵罶罷罸羱羲翮翯翰翱耨耩耪聬腿膀膁膂膃膄膆膇膈膉膊膋膌膍膏臲臻舉舘艕艖艗艘艙蒐蒑蒒蒓蒔蒕蒖蒗蒘蒙蒚蒛蒜蒝蒞蒟蒠蒡蒢蒣蒤蒥蒧蒨蒩蒪蒫蒬蒭蒮蒯蒰蒱蒲蒳蒴蒵蒶蒷蒹蒺蒻蒼蒽蒿蓀蓁蓂蓃蓄蓅蓆蓇蓈蓉蓊蓋蓌蓍蓎蓏蓐蓑蓒蓓蓔蓕蓖蓗蓘蓚蓛蓞蓡蓢蓤虤虥蝹螁螂螃螄螅螇螈螉螊螋融螎螏螐螑螒螓螔螖螗螘螙螚螛螜螝螞螟螡螢螣螤螥螩衞衟衡褞褟褡褢褣褤褥褦褧褩褪褫褬褭褮褯褰褱褲覦覧覩親觰觱諛諜諝諞諟諠諡諢諣諤諥諦諧諨諪諫諬諭諮諯諰諱諲諳諴諵諶諷諸諹諺諻諼諽諾諿謀謁謂謃豫豬豭貐貑貒貓賭賮賯賰賱賲賳賴賵赬赭赮趥趦趧踫踰踱踲踳踴踵踶踸踹踻踼踽踾踿蹀蹁蹂蹃蹄蹅躽輭輮輯輰輱輲輳輴輵輶輷輸輹輻輼辥辦辧辨辪逼逽逾逿遀遁遂遃遄遅遆遇遈遉遊運遌遍過遏遐遑遒道達違郹郺郻郼都郾郿鄀鄁鄂鄃鄄鄅鄆鄇鄈鄉鄊醍醎醏醐醑醒醓醕醖鉼鋷鋸鋹鋺鋻鋼鋽鋾鋿錀錁錂錃錄錅錆錇錈錉錊錋錌錍錎錏錐錒錓錔錕錖錗錘錙錚錛錜錝錞錟錠錡錢錣錤錥錦錧錩錪錫錬錭錮錯錰錱録錳錴錵錶錸錹錼錿鍂鍅鍆鍈镼閵閶閸閹閺閻閼閽閾閿闀闁闂陚陪陫陬陭陮陯陰陱陲陳陴陵陶陷陸陹隷雔雕霋霌霍霎霏霐霑霒霓霔霕霖霗靛靜靦鞓鞔鞗鞘鞙韒韰韸頤頭頮頯頰頱頲頳頴頵頶頷頸頹頺頻頼頽颵餐餑餒餓餔餕餖餗餘餙餝馞馠駡駢駣駤駥駦駧駨駩駪駫駬駭駮駯駰駱骸骹骻骼髵髶髷髸髹髺髻鬇鬨鬳魈魉魺魻魼魽魾鮀鮂鮃鮄鮅鮆鮇鮈鮉鮋鮌鮎鮏鮐鮑鮒鮓鮔鮕鮘鮣鴊鴏鴐鴒鴓鴔鴕鴖鴗鴘鴙鴚鴛鴝鴞鴟鴠鴡鴢鴣鴤鴥鴦鴧鴨鴩鴪麅麆麇麈麬麭麮黅黆黔黕黖黗默黺鼽齓龍","17":"㒝㒞㔤㘇㙸㙹㠘㠙㠜㦽㩒㩕㩖㩗㩘㩙㬠㬡㬲㯪㯬㯭㯮㯲㯳㯵㯶㱈㱉㵡㵢㵥㵦㵩㵪㵬㷾㸀㸁㸃㹕㹖㻵㻸㻹䁯䂊䃣䃥䃦䅿䆵䆶䆻䉀䊜䊝䊠䌍䌏䌑䌓䌔䒂䒃䔎䔐䔔䔖䔙䔚䔛䔟䔡䔢䔣䔥䔫䗢䗦䗨䗫䗬䗮䙖䙗䙙䙛䙝䛾䜀䜁䝂䝠䠝䠾䡥䡩䢢䢥䣕䤸䦭䦮䧗䧙䨂䨟䨠䨢䩨䩬䩭䩮䪠䫋䫎䫐䫑䫒䫓䬠䭰䭲䮏䮐䮒䯕䯙䯺䰥䱋䳋䳌䳎䳏䳐䳒䴵償儠儡儢儤儥儦儧儨儩優凟勴勵匵厳噽噾噿嚀嚁嚂嚃嚄嚅嚆嚇嚉嚊嚌嚍嚎嚏嚐嚑嚒嚓嚺壍壎壏壐壑壒壓壔壕壖嬣嬤嬥嬦嬧嬨嬩嬪嬫嬬嬭嬮嬯嬰嬱嬲嬳嬵嬷孺孻寱寲尶尷屨嶷嶸嶹嶺嶼嶽嶾嶿幪幫幬彌徽徾憴憵憶憷憸憹憺憼憽憾憿懀懁懂懃懄懅懆懇懈應懊懋懌懍懎懏懐懓戲戴撻撼撽撾撿擀擁擂擃擄擅擇擈擉擊擋操擎擏擐擑擒擓擔擕擖擗擘擙據擛擜斀斁斂斵斶旚曎曏曐曑曒曔曕曖曗曚橽橾橿檀檁檂檃檄檅檆檇檈檉檊檌檍檎檏檐檑檒檓檔檕檖檗檘檙檚檛檜檝檞檟檠檡檢檣檤檥檦檧檨檪歛歜歝殭殮毚氈氉氊澙澞澟澠澡澢澣澤澥澦澧澨澩澪澫澬澭澮澯澰澱澲澳澴澵澶澷澸澹澺澻澼澽澾澿激濁濂濃濄濆濇濈濉濊濋濌濍濎濏濓濖營燠燡燢燣燤燥燦燧燨燩燪燫燬燭燮燯燰燱燲燳燴牆獥獦獧獨獩獪獫獬璍璐璒璔璕璖璗璘璚璛璜璝璞璟璠璡璣璤甓甔甕疃疄療癃癄癅癆癇癈癉癌癎皣皤皥皼盩盪瞤瞥瞦瞧瞨瞩瞪瞫瞬瞭瞯瞰瞱瞲瞳瞴瞵瞶瞷矯矰磯磰磱磲磳磴磷磸磹磺磻磼磽磾磿礁礂礄礅禧禨禩禪禫穉穓穔穖穗穘穚穛穜窾窿竀竁竂竲竳篰篱篲篳篴篶篷篸篹篺篻篼篽篾篿簀簁簂簃簅簆簇簈簉簊簋簌簍簎簏簐簒糙糚糛糜糝糞糟糠糡糢糨縩縪縫縬縭縮縯縰縱縲縳縴縵縶縷縸縹縺縻縼總績縿繀繁繂繃繄繅繆繇繉繌繍罄罅罆罹罺罻罼翲翳翴翵翶翼耫耬聯聰聱聲聳膒膓膔膕膖膗膘膙膚膛膜膝膞膟膠膡膢膣臨臩艚艛艜艱蓧蓨蓩蓪蓫蓬蓭蓮蓯蓰蓱蓲蓳蓴蓵蓶蓷蓸蓹蓺蓻蓼蓽蓾蓿蔀蔁蔂蔃蔄蔅蔆蔇蔈蔉蔊蔋蔌蔍蔎蔏蔑蔒蔓蔔蔕蔖蔗蔘蔙蔚蔛蔜蔝蔞蔟蔠蔡蔣蔤蔥蔦蔧蔨蔩蔪蔫蔬蔭蔮蔯蔰蔱蔳蔴蔵蔻虧虨螪螫螬螭螮螯螰螱螲螳螴螵螶螷螸螹螺螻螼螽螾螿蟀蟁蟂蟃蟄蟅蟆蟇蟈蟉蟊蟋蟌蟍蟎蟑蟒褳褵褶褷褸褹褻褼褽褾褿襀襁襂襃襄襔覫覬覭覮覯觲觳謄謅謆謇謈謉謊謋謌謍謎謏謐謑謒謓謔謕謖謗謘謙謚講謜謝謞謟謠謢谿豀豁豏豯豰豱豲豳貔貕貖賶賷賸賹賺賻購賽赯趨蹆蹇蹈蹉蹊蹋蹌蹍蹎蹏蹐蹓躿輽輾輿轀轁轂轃轄轅遘遙遚遛遜遝遞遟遠遡遢遣鄋鄌鄍鄎鄏鄐鄑鄒鄓鄔鄕鄖鄗醙醚醛醜醝醞醟醠醡醢醣錨鍇鍉鍊鍋鍌鍍鍎鍏鍐鍑鍒鍓鍔鍕鍖鍗鍘鍙鍚鍛鍜鍝鍞鍟鍠鍡鍢鍣鍤鍥鍦鍧鍨鍩鍪鍫鍬鍭鍮鍰鍱鍲鍳鍴鍵鍶鍷鍸鍹鍺鍻鍼鍽鍾鍿鎀鎂鎃鎆閷闃闄闅闆闇闈闉闊闋闌闍闎陻陼陽陾陿隀隁隂隃隄隅隆隇隈隉隊隋隌隍階隸雖霘霙霚霛霜霝霞霟霠鞚鞛鞜鞝鞞鞟鞠鞡韓韔韕韱頿顀顁顃顄顅顆顇顈顉顊颶颷餚餛餜餞餟餠餡餢餣餤餥餧館餩馘馡馢馣駴駵駶駷駸駹駺駻駼駽駾駿騀騁騂騃骽骾髼髽髾鬀鬁鬂鬴魊魋魌魍魎魏鮙鮚鮛鮝鮞鮟鮠鮡鮢鮤鮥鮦鮨鮪鮫鮭鮮鮯鴭鴮鴯鴰鴱鴳鴵鴶鴷鴸鴹鴻鴽鴾鴿鵀鵁鵂鵃鵄鵅鵉麉麊麋麯麰黈黏黚黛黜黝點黻黿鼢鼣鼤鼾齋齔龜龠","18":"㒯㘌㙼㜰㜱㦞㩚㩛㩜㩝㩞㪫㯹㱘㲊㵯㵰㵳㵵㵸㵻㸄㺝㻽㻿㼂䁹䃩䃫䄠䄡䆁䉍䉘䉙䊥䊩䌙䌚䌛䎖䎗䎘䏈䐷䐸䔝䔳䔵䔷䔽䕀䗲䜇䜈䜊䝡䝢䟂䟆䠞䢦䢩䣚䣛䤽䤾䥅䥆䧚䧛䧞䧟䨃䨦䨧䪘䪭䫕䫙䫚䫝䬕䬖䬗䬡䭋䭌䭎䮖䮘䮛䯿䰨䱏䱔䱖䳗䳘䴦䴸䶊儭儮儯儰儱儲叢嚔嚕嚖嚗嚘嚙嚚嚛嚜嚝嚞嚟嚠壘壙夑奰嬸嬺嬻嬼嬽屩屪巀巁巂幭幮幯彍彝彞憻懖懘懙懚懛懜懝懞懟懠懢懣懤懥懦懧懨戳擟擠擡擢擣擤擦擧擨擩擪擫擬擭擮擯擰擱斃斷旛曘曙曛曜朥朦檫檬檭檮檯檰檱檲檳檴檵檶檷檸檹檺檻檼檽檾檿櫀櫁櫂櫃櫄櫅櫆櫇櫈櫊歞歟歸殯氋澀濔濕濗濘濙濚濛濜濝濞濟濠濡濢濣濤濥濦濧濨濩濪濫濬濭濮濯濰濱濲濴濵濶濷濸燸燹燺燻燼燽燾燿爀爁爂爃爵獮獯獰獱獲獳璢璥璦璧璨璩璪璫璬璭璮璯環璱璲璳璴甖癏癐癑癒癓癖癗癘癙癚癛癜皦皽盫盬瞸瞹瞺瞻瞼瞽瞾瞿矀矁矂礆礇礈礉礊礋礌礍礎礐礑礒礓礔礕禬禭禮禯穟穠穡穢竄竅竵簘簙簚簛簜簝簞簟簠簡簢簣簤簥簦簧簨簩簪簫簬簭簮簯簰簲糣糦糧繈繏繐繑繒繓織繕繖繗繘繙繚繛繜繝繞繟繠繡繢繣繤繱罇罈罽罾罿羳羴羵翷翸翹翺翻耮聮聴聵聶職膦膧膨膩膪膫膬膭膮膯膰膱膲膳膴膵舊舙艞艟蔽蔾蔿蕀蕁蕂蕃蕄蕅蕆蕇蕈蕉蕊蕋蕌蕍蕎蕑蕓蕔蕕蕖蕗蕘蕙蕚蕛蕜蕝蕞蕟蕠蕡蕢蕣蕤蕥蕦蕧蕨蕩蕪蕫蕬蕭蕮蕯蕰蕱蕳蕵虩蟓蟔蟕蟖蟗蟘蟙蟚蟛蟜蟝蟞蟟蟠蟢蟣蟤蟥蟦蟧蟨蟩蟪蟫蟬蟭蟮蟯蟰蟲蟳蟴蟵蠁蠎襆襈襉襊襋襌襍襎襏襐襑襒襓覆覰覱覲観觴謣謤謥謦謧謨謩謪謫謬謭謮謯謰謱謲謳謴謵謶謷謸謹謺謻謼謽謾豂豐豴豵貗貘貙賾贀贂贃贄贅蹔蹕蹖蹗蹘蹙蹚蹛蹜蹝蹞蹟蹠蹡蹢蹣蹤蹥蹦蹧軀軁轆轇轈轉轊轋辬遧遨適遪遫遭遮遯遰遱遳鄘鄙鄚鄛鄜鄝鄞鄟鄠鄡鄢鄣鄤鄥醥醧醨醩醪醫醬釐鎈鎉鎊鎋鎌鎍鎎鎏鎐鎑鎒鎓鎔鎕鎖鎗鎘鎙鎚鎛鎜鎝鎞鎟鎠鎡鎢鎣鎤鎥鎦鎧鎨鎪鎬鎭鎮鎯鎰鎱鎲鎳鎴鎵鎷鎸鎻鎼鎽鎾闐闑闒闓闔闕闖闗闘随隑隒隓隔隕隖隗隘隙雗雘雙雚雛雜雝雞雟霢霣霤霥靝鞢鞣鞤鞥鞦鞨鞩鞪鞫鞬鞭鞮韖韗韘韙韚韹韺顋題額顎顏顐顑顒顓顔顕颸颹颺餪餫餬餭餮餯餰餱餲餳餵馤馥駳騄騅騆騇騈騉騊騋騌騍騎騏騐騑骿髀髁髜鬃鬄鬅鬆鬈鬩鬵鮵鮶鮸鮹鮻鮽鮿鯀鯁鯂鯃鯄鯅鯆鯇鯈鯉鯊鯋鯌鯍鯒鯓鯽鵊鵋鵌鵍鵎鵏鵐鵑鵒鵓鵔鵕鵖鵗鵘鵙鵚鵛鵜鵝鵞鵟鵠鵡鵣麌麍麎麐麱麲黊黟黠鼀鼁鼂鼕鼖鼥鼦鼧鼨鼩鼪鼫鼬齌齕龎","19":"㜴㜵㞡㦡㩡㩥㩦㩨㩪㬩㬪㰀㰅㰆㰈㲱㸉䄢䇕䉏䉝䉠䉡䉢䊪䌡䌢䕌䕍䕏䕑䗶䚑䜍䝥䠥䠿䢪䢫䢬䣞䥈䥊䥋䥌䥐䥑䥒䧠䧡䧢䧣䨄䨭䨮䨯䩷䩸䩻䪡䪢䫣䬙䬚䮞䯝䰅䰪䱠䱦䱧䱨䳞䳡䵩䵷䶌儳儴儵劖勷匶厴嚥嚦嚧嚨嚪嚫嚬嚭嚮嚯嚰壚壛壜壝壞壟壠壢夒嬹嬾嬿孼寳寵屫嶻巃巄幰廬廭徿懩懪懫懭懮懰懱懲懳擥擲擳擴擶擷擸擹擺擻擼擽擾擿攀攁攃攄攅攆斄斔旜旝旞曝曞曟曠曡曢櫋櫌櫍櫎櫏櫐櫑櫒櫓櫔櫕櫗櫘櫙櫚櫛櫜櫝櫞櫟櫠櫡櫢櫣櫥櫦櫫櫭歠殰毉氌濺濻濼濽濾濿瀀瀁瀂瀃瀄瀅瀆瀇瀈瀉瀊瀋瀌瀍瀎瀏瀐瀑瀓瀔爄爅爆爇爈爊爌爍爎爕牘犡犢犣犤犥犦獵獶獷獸璵璶璷璸璹璺璻璼璽璾璿瓀瓁瓂瓣疆疇癟癠癡皩矄矅矆矇矉矊矱礗礘礙礚礛礜礝礞礠礡禰禱穤穦穧穨穩穪穫簳簴簵簷簸簹簻簼簽簾簿籀籂糪糬糭繦繨繩繪繫繬繭繮繯繰繲繳繴繵繶繷繸繹繺罊罋羶羷羸羹翽翾聸膷膸膹膺膻膼膽膾膿臀臂臃臄臅臆臇臈臉臊臌舋舚艡艢艣艤艥艶蕶蕷蕸蕹蕺蕻蕼蕾蕿薀薁薂薃薄薅薆薇薈薉薊薋薌薍薎薏薐薑薒薓薔薕薖薗薘薙薚薛薜薝薞薟薠薡薢薣薤薦薧薨薪薫薬蟶蟷蟸蟹蟺蟻蟼蟽蟾蟿蠀蠂蠃蠅蠆蠇蠈蠉蠊蠋蠌蠍蠏襖襗襘襙襚襛襜襝襞襟襠襡襢覇覈覵覶覷觵觶謿譀譁譂譃譅譆譇譈證譊譋譌譎譏譐譑譒譓譔譕譖譗識譙譚譜豃豷貚贆贇贈贉贊贋贌趩趪趫趬趭蹨蹩蹪蹫蹬蹭蹯蹰蹲蹳蹴蹵蹶蹷蹸蹺蹻蹼軂軃轍轎轏轐轑轒轓轔辭辴遲遴遵遶遷選遹遺遻遼邆鄦鄧鄨鄩鄪鄫鄬鄭鄮鄯鄰鄱鄲醭醮醯醰醱鎩鏀鏁鏂鏃鏄鏅鏆鏇鏈鏊鏋鏌鏍鏎鏏鏐鏑鏒鏓鏔鏕鏖鏗鏘鏙鏚鏛鏜鏝鏞鏟鏠鏡鏢鏣鏤鏥鏦鏧鏨鏩鏪鏫鏬鏭鏮鏯鏱鏲鏹闚闛關闝際障隝隞隟隠隡雡離難霦霧霨霩霪霫霬靡鞱鞲鞳鞴鞵鞶鞷韜韝韞韟韲韻韼顖顗願顙顛顜顝類颻颼颽颾颿飀餶餸餹餺餻餼餽餾餿饀饁饂馦馧騔騕騖騗騘騙騚騛騜騝騞騟騠騡騢騣騤騥騦騧髂髄鬉鬊鬋鬌鬍鬎鬷魐鯔鯕鯖鯗鯙鯚鯛鯜鯞鯟鯠鯡鯢鯣鯤鯥鯦鯧鯨鯩鯪鯫鯬鯮鯰鯻鵦鵧鵨鵩鵪鵫鵬鵭鵮鵯鵰鵱鵲鵳鵴鵵鵶鵷鵸鵹鵺鵻鵽鵾鵿鶀鶁鶂鶃鶄鶅鶆鶇鶈鶉鶊鶋鶌鶑麑麒麓麔麕麗麴黀黣黼鼃鼄鼗鼭齀齁齍齖齗齘龐","20":"㒥㒦㘔㜶㜸㩬㩭㬫㰉㰊㰍㰎㰐㰑㰖㱺㶈㸈㸊㸋䃲䆈䊮䌤䌦䌧䎙䑃䑅䕒䕕䕖䕗䕘䘁䘙䙨䜓䜖䜘䞉䟈䢄䥔䥖䥚䧤䧥䨅䨆䨇䨱䪣䫫䬜䭗䮥䮦䯡䱫䱯䱲䱳䳦䳨䳩䳬䳰儶勸匷嚲嚳嚴嚵嚶嚷嚸嚹壣壤孀孂孃孄孅孆孽孾寶巆巇巈巉巊巋巌幱廮廯廰忀忁懵懶懷懸攇攈攉攊攋攌攍攎攏攐斅旟曣曤曥曦曧曨朧櫧櫨櫩櫪櫬櫮櫯櫰櫱櫳櫴櫵濳瀕瀖瀗瀘瀙瀚瀛瀜瀝瀞瀟瀠瀡瀢瀣瀤瀥瀦瀧瀨瀩瀪瀫瀬瀭瀮爋爏爐爑爒爓爔爖爗爘犧犨獺獻瓃瓄瓅瓇瓈瓉瓊瓋甗癢癤癥皪皫皾盭矌矍矎矏矲礢礣礤礥礦礧礨礩礪礫礬禲穬穭穮穯竇競竷籃籄籅籇籈籉籊籋籌籍籎籕籖糮糯糰繻繼繽繾繿纀纁纂罌羃羅羆羺翿耀耯聹聺聻聼臍臎臏臐臑臒艦艨艩薩薯薰薱薲薳薴薵薶薷薸薹薺薻薽薾薿藀藁藂藃藄藅藆藇藈藉藋藌藍藎藏藐藑藒蘤蠐蠑蠒蠓蠔蠕蠖蠗蠘蠙襣襤襥襦襧覹覺覻觷觸譍譝譟譠譡譢譣譤譥警譧譨譩譪譫譬譭譮譯議譱豑豶贍贏趮躁躂躃躄躅躆躇躈躉軆轕轖轗轘轙轚辮遽遾避邀邁邂邃還邅邉鄳鄴鄵鄶鄷醲醳醴醵醷釋鏳鏵鏶鏷鏸鏺鏻鏼鏽鏾鏿鐀鐂鐃鐄鐅鐆鐇鐈鐉鐊鐋鐌鐍鐎鐏鐐鐑鐒鐓鐔鐕鐖鐗鐘鐙鐚鐛鐜鐞鐟鐠鐢鐣鐤鐧鐨镽闞闟闠闡隢隣隤隥霮霯霰霱露霳霴鞸鞹鞺鞻韽韾響顟顠顢顣飁飂飃飄饃饄饅饇饈饉馨騩騪騫騬騭騮騯騰騱騲騴騵騶騷騸髆髇髈髉髊鬐鬑鬒鬪鬸魑魒魓魔鯶鯷鯸鯹鯼鯾鯿鰀鰂鰄鰅鰆鰇鰈鰉鰊鰋鰌鰍鰎鰐鰒鰓鰔鰕鰗鰛鶐鶒鶔鶕鶖鶗鶘鶙鶚鶛鶜鶝鶞鶟鶠鶡鶢鶣鶤鶥鶦鶧鶨鶩鶪鹹麘麙麚麛麵黁黤黥黦黧黨鼮鼯鼰齙齚齛齜齝齞齟齠齡齣龑","21":"㘕㝱㠦㣆㦨㩰㰕㶌㶑㼇㿗䀋䂀䉩䉫䌨䌩䑆䑟䕟䕢䕤䘂䙪䚔䡹䢰䥞䥡䥤䥥䥦䧧䭚䭛䮪䮯䰍䱶䱷䱹䱺䱼䱽䳱䳶䵯䶚亹儷儸儹儺兤劗劘嚻嚼嚽嚾囀囁囂囃囄囍壦孇孈孉寷屬巍巏巐廱忂懹懺懻攑攓攔攕攖攗攘攙攚斕曩櫸櫹櫺櫻櫼櫽櫾櫿欀欁欂欃欄殲瀯瀰瀱瀲瀳瀴瀵瀶瀷瀸瀹瀺瀻瀼瀽瀾瀿灀灁爙爚爛獼獽瓌瓍瓎瓏瓐瓑癧癨癩癪矐矑矓礭礮礯礰礱礲礴竈竉籐籑籓籔糲纄纅纆纇纈纉纊纋續纍纎纏罍羻羼耰臔臕臗臘艪藔藕藖藗藘藙藚藛藜藝藞藟藡藢藣藤藥藦藧藨藩藪藫藬藭藯藰藱藲藴藵蠚蠛蠜蠝蠟蠠蠡蠢蠣蠤蠴衊襩襪襫襬襭襮覼覽觺譴譵護譸譹譺譻譼譽贐贑贒贓贔趯趰躊躋躌躍躎轛轜轝轞轟辯邇邈鄸鄹醹醺醻鏴鐩鐪鐫鐬鐭鐮鐰鐱鐲鐳鐵鐶鐷鐸鐹鐺鐻鐼鐽鐿鑀闢闣闤闥隧隨隩險隫雤霵霶霷霸霹霺霻靧鞽鞾鞿韡韢顤顥顦顧顨飆飇飈飉飊飜饋饌饍饎饏饐饑饒饓馩騹騺騻騼騽騾騿驀驁驂驃驄驅驆髍髎髏鬔鬕鬖鬗鬘鬝鬺魕魖鰜鰝鰟鰡鰣鰤鰥鰨鰩鰫鰬鰭鰮鶬鶭鶮鶯鶰鶱鶲鶳鶴鶵鶶鶷鶸鶹鶺鶻鶼鶽鶾鶿鷁鷂鷃鷄鷅鷇鷈鷊鷌鷍鷎鷏鹺鹻麜麝黫黭黮黯鼅鼘鼙鼚鼛鼱齎齤齥齦齧齩龒龡","22":"㡩㩳㬬㬭㰗㶗㶘䉮䌬䏊䕠䕨䕪䕬䕯䕱䘆䘇䘈䜠䝓䞊䟎䡺䥧䥨䥫䥭䪅䪰䫳䭟䮶䱿䲂䲄䲆䳺䳼䳽䴩䶇儻儼囅囆囇囈囉囊囋圝夔奱孊孋孌孿巑巒巓巔巕巗廲彎彲懼懽懾懿戵攛攜攝欆欇欈欉權欋欍欎歡氍灂灃灄灅灆灇灈灉灊灋灌灍爜爝爞爟爠犩獾獿瓓瓔瓕瓖瓤疉疊癬癭癮礵禳禴穰穳竊竸籗籘籙籚籛籜籝籞籟籠糱糳糴纑纒罎罏聽聾臖臙臚臛艫藮藶藷藸藹藺藻藼藽藾藿蘀蘁蘂蘃蘄蘅蘆蘇蘈蘉蘊蘋蘌蘍蘏蘐蘑蘓蘢蠥蠦蠧蠨蠩蠪蠫蠬襯襱襲覾覿觻觼譾譿讀讁讂讃讄讅豄贕贖贗贘躐躑躒躓躔躕躖轠轡轢邊邋鄺鄻鄼鄽鄾鑂鑃鑄鑅鑆鑇鑈鑉鑊鑋鑌鑍鑎鑏鑐鑑鑒鑔鑧闧隬隭隮隯隰隱隲霼霽霾霿靀韀韁韃韣顩顪顫飋饔饕饖饗饘饙驈驉驊驌驍驎驏驐驑驒驓驔驕髐髝鬙鬚鬫鬻鰱鰲鰳鰴鰵鰶鰷鰸鰹鰺鰻鰼鰽鰾鰿鱀鱁鱄鱅鱆鱈鷋鷐鷑鷒鷓鷕鷖鷗鷘鷙鷚鷛鷜鷝鷞鷟麞麶黐黰黱鼲鼳鼴鼵齂齪齫齬龓龔龕龝龢","23":"㘙㘚㦫㰙㰚㰛㶚㸐䉵䕴䡁䥲䥳䥴䨵䨶䪈䪝䭣䲎䲏䳿䴄䴅䶞儽劙劚囌壧壨孍巖巘彏戀戁戂攞攟攠攡攢攣攤攦攧斖曫曬欏欐欑欒毊灑灒灓灔灕灖灗灘爡爢玀瓗瓘瓙癯癰皭矔礷禵穱籢籣籤籥籦籧籨糵纓纔纕纖羇臝艬蘕蘖蘗蘘蘙蘚蘛蘜蘝蘞蘟蘠蘡蘣蘥蘦蘧蘨蘩蘪蘫蘬蘭蘮蘯蠭蠮蠯蠰蠱蠲蠳襳襴襽覉觾讆讇讈變讋讌讍讎讐豅贙贚躗躘躙躚轣轤邍鄿酀醼鑕鑖鑗鑚鑛鑜鑝鑞鑟鑠鑡鑢鑣鑤鑥鑦隳靁靨韄韅頀顬顭顮顯饚饛饜馪驖驗驘驙驚驛驜髑髒髓體髞鬞鬟鬠魗魘魙鱉鱊鱋鱌鱍鱎鱏鱐鱑鱒鱓鱔鱕鱖鱗鱘鱙鷡鷢鷣鷤鷥鷦鷨鷩鷫鷬鷭鷮鷯鷰鷲鷳鷴鷵鷶鷷鷸鷺鷻鷼麟黲黳黴鼆鼇鼜鼶鼷鼸鼹齃齏齮齯齰齱","24":"㕔㚁㩵㶜䃺䌲䕸䙮䡼䥵䥷䧮䨷䮺䰑䲒䴊䴪䴫䵄䵹儾囑囒囓壩奲孎孏屭戃戄攥攨攩攪攫曭曮欓欔灙灚灛灜爣犪玁玂玃瓚瓥癱癲矕矗礸禶禷穲籪纗罐臞臟艭艷蘲蘳蘴蘵蘶蘷蠵蠶蠷蠸蠹衋衢襶讑讒讓讔讕讖贛躝躞躟躠酁酃醽醾醿釀鑨鑩鑪鑫鑬隴雥雦靂靃靄靅靆靇靈韆韇韈韤韥顰驞驟髕鬡鬢鬬鱝鱞鱟鱠鱡鱢鱣鱥鱦鱧鷹鷽鷾鷿鸀鸁鸂鸃鸄鸅鸆鸇鸈鸉鹼鹽麠黂鼝鼞齅齆齲齴齵齶齷","25":"㝈䊴䕻䕼䘍䙰䝔䠰䥸䨉䨸䪋䫷䮽䰞䲖䴍䵳囔廳戅攬攭斸曯欖欗欘欙欚欛灝灞灟灠灡爤爥爦瓛矘矙礹籩籫籬籭籮糶纘纙纚纛羈羉臠臡臢蘱蘸蘹蘺蘻蘼蘽蘾蘿虀虁蠻襸襹襺襻襼覊觀觿讗讘讙豒貛贜躡躢躣躤躥酄酅酆釁釂鑭鑮鑯鑰鑱鑲鑳隵靉顱顲饝髖鬣鱨鱬鱭鱮鱯鸋鸍鸎鸏鸐鸑鸒麡黌黵鼈鼉齇齸齹齺齻龣","26":"㒪㜻㜼㸑䃻䪍䭦䲙䶦圞彠攮欜欝灢灣癳矚籯虂虃虅虪蠼讚讛趲躦躧邏邐酇酈釃釄鑴鑵鑶鑷鑸鑺韉饞饟驠驡驢驣髗鱱鱳鱴鱵鱶鸓鸔黶鼊龤龥","27":"㶠䣣䨹䭳䮿䴏䶧䶵灤灥灦犫糷纜虆虇虈虉蠽蠾讜讝讞豓貜躩躪軉轥釅鑻鑼鑽鑾鑿靋靍顳顴飌飍飝馫驤驥驦驧鬤鬮鬰鱷鱸鸕鸖鸗黷齈","28":"㦭㿜䖁䠱䶨戇欞灧灨爧蠿豔躨钀钁钂雧饡驨驩鸘鸙鸚麢齼","29":"䄥䯁爨纞虊讟钃钄驪鬱鱹鸛鸜麷","30":"䆐癵籱韊驫鱺鸝鸞","31":"䚖䡿䴐虋虌麣","32":"䨊灩籲","33":"灪爩鱻麤龗","35":"䴒齾","36":"䨺齉","39":"靐","48":"龘","52":"䨻"};
+// ===== 姓名五格（熊崎式五格剖象法）核心 =====
+// 依賴：KANGXI_STROKES（康熙筆畫表，部首已還原，一～十以數值計）
 
+const WUGE_STROKE = (() => {
+  const m = new Map();
+  for (const [n, chars] of Object.entries(KANGXI_STROKES)) for (const c of chars) m.set(c, +n);
+  return m;
+})();
+
+// 常見複姓
+const WUGE_COMPOUND_SURNAMES = ['歐陽','司馬','諸葛','上官','司徒','東方','皇甫','尉遲','公孫','慕容','長孫','宇文','夏侯','令狐','軒轅','端木','西門','南宮','獨孤','聞人','澹臺','公羊','赫連','呼延','太史','申屠','范姜','張簡','張廖','周黃','江謝','簡李','張李','陳李','劉張','黃龍'];
+
+// 81 數理：[吉凶, 名稱, 釋義]（釋義為通行意涵之白話整理）
+const WUGE_81 = [null,
+['吉','太極','萬物開端，健全發展之數'],
+['凶','兩儀','根基未穩，易動搖分離'],
+['吉','三才','天地人和，進取順遂'],
+['凶','四象','困頓待發，宜防挫折'],
+['吉','五行','陰陽調和，福壽平穩'],
+['吉','六爻','天德地祥，家運安穩'],
+['吉','七政','剛毅果斷，獨立有為'],
+['吉','八卦','意志堅定，努力發展'],
+['凶','大成','才高運薄，易陷困境'],
+['凶','終結','萬事終局，多空虛之象'],
+['吉','旱苗逢雨','穩健向上，挽回家運'],
+['凶','掘井無泉','力量薄弱，易孤立無援'],
+['吉','春日牡丹','聰穎有謀，才藝出眾'],
+['凶','破兆','家庭緣薄，勞而少功'],
+['吉','福壽','慈祥有德，福壽圓滿'],
+['吉','厚重','厚德載物，貴人相助'],
+['吉','剛強','突破萬難，意志貫徹'],
+['吉','鐵鏡重磨','有志竟成，權威進取'],
+['凶','風雲蔽日','雖有才智，多遇障礙'],
+['凶','屋下藏金','起伏不定，宜防破敗'],
+['吉','明月中天','獨立權威，首領之運'],
+['凶','秋草逢霜','中途挫折，意志易消'],
+['吉','壯麗','旭日東昇，發展蓬勃'],
+['吉','掘藏得金','才略出眾，白手成家'],
+['吉','英俊','資性英敏，自力成功'],
+['凶','變怪','英雄氣質，但波瀾重疊'],
+['半吉','增長','自信心強，毀譽參半'],
+['凶','闊水浮萍','易遭誹謗，離散多變'],
+['吉','智謀','財力歸集，名利可得'],
+['半吉','非運','浮沉不定，吉凶參半'],
+['吉','春日花開','智勇兼備，事業得志'],
+['吉','寶馬金鞍','得人提攜，機運順遂'],
+['吉','旭日昇天','才德兼備，家門隆昌'],
+['凶','破家','辛苦不絕，易生變故'],
+['吉','高樓望月','溫和平靜，文藝有成'],
+['凶','波瀾重疊','俠義心重，常陷紛擾'],
+['吉','猛虎出林','權威顯達，忠實熱誠'],
+['半吉','磨鐵成針','技藝可成，宜專一守成'],
+['吉','富貴榮華','變化中成就，宜持盈保泰'],
+['凶','退安','智謀膽力兼具，但缺乏德望'],
+['吉','有德','德望高大，事業穩進'],
+['凶','寒蟬在柳','博識多能，惜難專精'],
+['凶','散財破產','外表風光，內裡辛苦'],
+['凶','煩悶','事與願違，憂患較多'],
+['吉','順風','新生泰和，順利發展'],
+['凶','浪裡淘金','載寶沉舟，難享成果'],
+['吉','點石成金','開花結果，得享福澤'],
+['吉','古松立鶴','智謀兼備，可為人師'],
+['半吉','轉變','吉凶難分，宜守成'],
+['凶','小舟入海','一成一敗，起伏大'],
+['半吉','沉浮','盛衰交加，先榮後守'],
+['吉','達眼','卓識遠見，善於掌握時機'],
+['凶','曲卷難星','外表安泰，內有隱憂'],
+['凶','石上栽花','多難辛苦，成事不易'],
+['半吉','善惡','外美內苦，吉凶交雜'],
+['凶','浪裡行舟','歷盡艱辛，耐力為要'],
+['吉','日照春松','寒盡春來，晚運漸好'],
+['半吉','晚行遇月','先苦後甘，晚成之象'],
+['凶','寒蟬悲風','時運不濟，缺乏耐性'],
+['凶','無謀','方向不明，易迷惘'],
+['吉','牡丹芙蓉','名利雙收，宜修身慎言'],
+['凶','衰敗','內外不和，事業難展'],
+['吉','舟出平海','富貴榮華，順遂發展'],
+['凶','非命','骨肉分離，孤獨辛勞'],
+['吉','巨流歸海','富貴長壽，家運隆昌'],
+['凶','岩頭步馬','進退維谷，內外不和'],
+['吉','順風通達','天賦幸運，事事如意'],
+['吉','順風吹帆','智慮周密，發明創新'],
+['凶','非業','坐立不安，多變動'],
+['凶','殘菊逢霜','寂寞清冷，運勢低迷'],
+['半吉','石上金花','先成後守，內心勞苦'],
+['凶','勞苦','先甘後苦，得失參半'],
+['半吉','無勇','志高力微，宜務實'],
+['凶','殘菊經霜','有志難伸，宜防虛耗'],
+['半吉','退守','宜守不宜進，保守可安'],
+['凶','離散','傾覆離散，根基不穩'],
+['半吉','半吉','先苦後甘，樂極生悲須防'],
+['半吉','晚苦','前半順利，晚年辛勞'],
+['凶','雲頭望月','難得信任，事多阻滯'],
+['凶','遁吉','辛苦不絕，宜修身養性'],
+['吉','萬物回春','還原復始，吉祥圓滿'],
+];
+
+const WUGE_ELEMENT = n => ['水','木','木','火','火','土','土','金','金','水'][n % 10];
+const WUGE_FATE = n => WUGE_81[((n - 1) % 80) + 1];
+
+// 五行生剋
+const WG_GEN = {木:'火',火:'土',土:'金',金:'水',水:'木'};
+const WG_KE  = {木:'土',土:'水',水:'火',火:'金',金:'木'};
+function wgRel(a, b) { // a 對 b
+  if (a === b) return '比和';
+  if (WG_GEN[a] === b) return '生';
+  if (WG_GEN[b] === a) return '被生';
+  if (WG_KE[a] === b) return '剋';
+  return '被剋';
+}
+
+function wugeSplit(full, surnameLen) {
+  const chars = [...full.replace(/\s/g, '')];
+  if (!surnameLen) surnameLen = (chars.length >= 3 && WUGE_COMPOUND_SURNAMES.includes(chars[0] + chars[1])) ? 2 : 1;
+  return { surname: chars.slice(0, surnameLen), given: chars.slice(surnameLen) };
+}
+
+function wugeCompute(full, surnameLen) {
+  const { surname, given } = wugeSplit(full, surnameLen);
+  if (!surname.length || !given.length) return { error: '請輸入完整姓名（姓＋名）' };
+  if (surname.length > 2 || given.length > 2) return { error: '目前支援單姓/複姓搭配單名/雙名' };
+  const all = [...surname, ...given];
+  const missing = all.filter(c => !WUGE_STROKE.has(c));
+  if (missing.length) return { error: `「${missing.join('、')}」未收錄於康熙筆畫字庫，暫不計算`, missing };
+  const S = surname.map(c => WUGE_STROKE.get(c)), G = given.map(c => WUGE_STROKE.get(c));
+  const sumS = S.reduce((a, b) => a + b, 0), sumG = G.reduce((a, b) => a + b, 0);
+  const tian = surname.length === 1 ? S[0] + 1 : sumS;
+  const ren  = S[S.length - 1] + G[0];
+  const di   = given.length === 1 ? G[0] + 1 : sumG;
+  const zong = sumS + sumG;
+  const wai  = (surname.length === 1 ? 1 : S[0]) + (given.length === 1 ? 1 : G[G.length - 1]);
+  const formulas = {
+    tian: surname.length === 1 ? `${S[0]}＋1（假數）` : `${S[0]}＋${S[1]}`,
+    ren:  `${S[S.length - 1]}＋${G[0]}`,
+    di:   given.length === 1 ? `${G[0]}＋1（假數）` : `${G[0]}＋${G[1]}`,
+    wai:  `${surname.length === 1 ? '1（假數）' : S[0]}＋${given.length === 1 ? '1（假數）' : G[G.length - 1]}`,
+    zong: [...S, ...G].join('＋'),
+  };
+  const mk = (key, label, n, area) => {
+    const [luck, title, desc] = WUGE_FATE(n);
+    return { key, label, n, el: WUGE_ELEMENT(n), luck, title, desc, area, formula: formulas[key] };
+  };
+  const ge = {
+    tian: mk('tian', '天格', tian, '長輩運'),
+    ren:  mk('ren',  '人格', ren,  '主運'),
+    di:   mk('di',   '地格', di,   '前運・子女運'),
+    wai:  mk('wai',  '外格', wai,  '人際・家庭運'),
+    zong: mk('zong', '總格', zong, '後運・老年運'),
+  };
+  // 三才：天→人、人→地
+  const t = ge.tian.el, r = ge.ren.el, d = ge.di.el;
+  const sancai = { tian: t, ren: r, di: d, tr: wgRel(t, r), rd: wgRel(r, d) };
+  return { chars: all.map((c, i) => ({ c, n: [...S, ...G][i], isSurname: i < surname.length })), surname, given, ge, sancai };
+}
+
+
+/* =========================================================
+   姓名五格分頁
+   ========================================================= */
+const WG_CN2KEY = {木:'wood',火:'fire',土:'earth',金:'metal',水:'water'};
+let wgLastRec = null;
+
+function switchTab(name){
+  document.querySelectorAll('.tab-btn').forEach(b => {
+    const on = b.dataset.tab === name;
+    b.classList.toggle('on', on);
+    b.setAttribute('aria-selected', on ? 'true' : 'false');
+  });
+  document.querySelectorAll('.tab-panel').forEach(p => p.hidden = p.id !== 'panel-' + name);
+  if(name === 'bazi' && typeof ecFit === 'function') ecFit();
+}
+
+function wgLuckClass(l){ return l === '吉' ? 'good' : (l === '凶' ? 'bad' : 'mid'); }
+function wgEl(el){ return `<span class="${WX_COLOR_CLASS[WG_CN2KEY[el]]}">${el}</span>`; }
+
+function wgSancaiText(sc){
+  const up = { '比和':['和','天格與人格同屬'+sc.ren+'，與長輩、上位者氣質相近，相處平順'],
+               '被生':['耗','天格'+sc.tian+'受人格'+sc.ren+'所生：自己對上付出較多，宜量力而為'],
+               '生':['順','天格'+sc.tian+'生人格'+sc.ren+'：易得長輩、上位者提攜'],
+               '剋':['逆','天格'+sc.tian+'剋人格'+sc.ren+'：壓力常來自上方，宜培養韌性'],
+               '被剋':['耗','人格'+sc.ren+'剋天格'+sc.tian+'：主見強，與長輩易有意見之爭'] }[sc.tr];
+  const down = { '比和':['和','人格與地格同屬'+sc.ren+'，內外一致，根基平穩'],
+                 '生':['耗','人格'+sc.ren+'生地格'+sc.di+'：願為家庭、部屬付出，也須留意自身消耗'],
+                 '被生':['順','地格'+sc.di+'生人格'+sc.ren+'：根基穩固，得家庭、部屬支持'],
+                 '剋':['耗','人格'+sc.ren+'剋地格'+sc.di+'：主導性強，帶人時宜多溝通'],
+                 '被剋':['逆','地格'+sc.di+'剋人格'+sc.ren+'：根基易動搖，宜穩紮穩打'] }[sc.rd];
+  return [up, down];
+}
+
+function renderNameAnalysis(rec){
+  if(rec) wgLastRec = rec;
+  rec = wgLastRec;
+  const box = document.getElementById('wg-body');
+  const name = (document.getElementById('name').value || '').trim();
+  const mode = document.getElementById('wg-surname').value;
+  if(!name){
+    box.innerHTML = `<div class="wg-empty">請在上方「姓名」欄輸入姓名，再按「起盤」。</div>`;
+    return;
+  }
+  const r = wugeCompute(name, mode === 'auto' ? 0 : +mode);
+  if(r.error){
+    box.innerHTML = `<div class="wg-empty">${ecEsc(r.error)}</div>`;
+    return;
+  }
+  const g = r.ge;
+  const surnameTxt = r.surname.join(''), givenTxt = r.given.join('');
+  const singleS = r.surname.length === 1, singleG = r.given.length === 1;
+
+  // 字欄
+  const slot = (c, n, cls) => `<div class="wg-char ${cls||''}"><span class="c">${c}</span><span class="n">${n}</span></div>`;
+  let charsHtml = '';
+  if(singleS) charsHtml += slot('·', 1, 'ghost');
+  r.chars.forEach(x => charsHtml += slot(ecEsc(x.c), x.n, x.isSurname ? 'sur' : ''));
+  if(singleG) charsHtml += slot('·', 1, 'ghost');
+
+  const card = (x, extra) => `
+    <div class="wg-card ${extra||''}">
+      <div class="wg-card-top"><span class="lb">${x.label}</span><span class="area">${x.area}</span></div>
+      <div class="wg-card-num"><span class="num">${x.n}</span><span class="el">（${wgEl(x.el)}）</span>${x.key === 'tian' ? '<span class="luck na">不論</span>' : `<span class="luck ${wgLuckClass(x.luck)}">${x.luck}</span>`}</div>
+      <div class="wg-card-f">${x.formula}</div>
+    </div>`;
+
+  // 81 數理明細
+  const rows = ['tian','ren','di','wai','zong'].map(k => {
+    const x = g[k];
+    const n81 = x.n > 81 ? `（${x.n}−80＝${((x.n-1)%80)+1}）` : '';
+    return `<tr><th>${x.label}<small>${x.area}</small></th><td class="num">${x.n}${n81}</td><td>${wgEl(x.el)}</td>${k === 'tian'
+      ? `<td><span class="luck na">不論</span></td><td class="wg-muted">天格由姓氏決定，同姓者皆相同，屬祖上承襲之數，不論吉凶，僅取其五行用於三才配置。</td></tr>`
+      : `<td><span class="luck ${wgLuckClass(x.luck)}">${x.luck}</span></td><td><strong>${x.title}</strong>　${x.desc}</td></tr>`}`;
+  }).join('');
+
+  // 三才
+  const sc = r.sancai;
+  const [up, down] = wgSancaiText(sc);
+
+  // 姓名五行占比（五格各占 20%，天格五行計入）
+  const KEYS = ['tian','ren','di','wai','zong'];
+  const namePct = {}; WX_ORDER.forEach(w => namePct[w] = 0);
+  KEYS.forEach(k => namePct[WG_CN2KEY[g[k].el]] += 100 / KEYS.length);
+  const where = key => KEYS.filter(k => WG_CN2KEY[g[k].el] === key).map(k => g[k].label);
+  const nameMax = Math.max(...Object.values(namePct));
+  const bar = w => `<div class="wuxing-bar-cell ${WX_COLOR_CLASS[w]}-bg"><div class="wuxing-fill acquired" style="height:${(namePct[w] / nameMax * 100).toFixed(1)}%"></div></div>`;
+  const elS = w => `<strong class="${WX_COLOR_CLASS[w]}">${WX_CN[w]}</strong>`;
+  const present = WX_ORDER.filter(w => namePct[w] > 0);
+  const lack = WX_ORDER.filter(w => namePct[w] === 0);
+  const topV = Math.max(...present.map(w => namePct[w]));
+  const tops = present.filter(w => namePct[w] === topV);
+  const rest = present.filter(w => namePct[w] < topV);
+  let summary;
+  if(!lack.length) summary = `姓名五行俱全，五格各見一行，分布平均。`;
+  else {
+    summary = `姓名五行以 ${tops.map(w => `${elS(w)}（${EC_DESC[w]}）`).join('、')} 為主`;
+    if(rest.length) summary += `，兼有${rest.map(elS).join('、')}`;
+    summary += `；未見${lack.map(elS).join('、')}。`;
+  }
+  const compareHtml = `
+      <div class="wuxing-table wg-cmp-table">
+        <div class="wuxing-row header"><div></div>${WX_ORDER.map(w => `<div class="wuxing-name ${WX_COLOR_CLASS[w]}">${WX_CN[w]}</div>`).join('')}</div>
+        <div class="wuxing-row"><div class="wuxing-row-label bold">姓名</div>${WX_ORDER.map(bar).join('')}</div>
+        <div class="wuxing-row values"><div></div>${WX_ORDER.map(w => `<div class="wuxing-value acquired"><span class="wuxing-pct">${namePct[w].toFixed(0)}%</span><span class="wg-ge">${where(w).join('・') || '—'}</span></div>`).join('')}</div>
+      </div>
+      <p class="wg-summary">${summary}</p>`;
+
+  box.innerHTML = `
+    <div class="wg-board">
+      <div class="wg-wai">${card(g.wai, 'side')}</div>
+      <div class="wg-chars">${charsHtml}</div>
+      <div class="wg-right">${card(g.tian)}${card(g.ren, 'main')}${card(g.di)}</div>
+      <div class="wg-zong">${card(g.zong, 'wide')}</div>
+    </div>
+    <div class="wg-note">筆畫採康熙字典筆畫</div>
+
+    <div class="section-title"><span class="symbol">◆</span><h2>八十一數理</h2><span class="line"></span></div>
+    <div class="wg-table-wrap"><table class="wg-table">
+      <thead><tr><th>格</th><th>數</th><th>五行</th><th>吉凶</th><th>數理</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table></div>
+
+    <div class="section-title"><span class="symbol">◆</span><h2>三才配置</h2><span class="line"></span></div>
+    <div class="wg-sancai">
+      <div class="wg-sancai-row">
+        <div class="cell"><small>天</small>${wgEl(sc.tian)}</div><div class="ar">→</div>
+        <div class="cell main"><small>人</small>${wgEl(sc.ren)}</div><div class="ar">→</div>
+        <div class="cell"><small>地</small>${wgEl(sc.di)}</div>
+      </div>
+      <ul class="wg-sancai-list">
+        <li><span class="tag t-${up[0]}">${up[0]}</span>${up[1]}</li>
+        <li><span class="tag t-${down[0]}">${down[0]}</span>${down[1]}</li>
+      </ul>
+    </div>
+
+    <div class="crystal-section wg-compare">
+      <h3>◇ 姓名 · 五行對照</h3>
+      ${compareHtml}
+      <div class="crystal-footnote">※ 姓名五行取五格數理之尾數，五格各占五分之一。天格由姓氏決定，不論吉凶，但其五行仍計入。可與八字分頁的五行分布對照參考，不宜單憑名字論斷吉凶。</div>
+    </div>
+  `;
+}
+
+</script>
+ 
 </body>
 </html>
